@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The utility class for JMH(Java Micro-benchmarking Harness).
+ * The utility class for JMH.
  *
  * @author Bohan Du
  * @version 1.0
