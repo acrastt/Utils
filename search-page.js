@@ -39,7 +39,6 @@ $(function () {
         searchLink.html(href);
         copy[0].onmouseenter();
     }
-
     function copyLink(e) {
         var textarea = document.createElement("textarea");
         textarea.style.height = 0;
@@ -87,7 +86,6 @@ $(window).on("load", function () {
     var fixedTab = false;
     var visibleTabs = [];
     var feelingLucky = false;
-
     function renderResults(result) {
         if (!result.length) {
             notify.html(messages.noResult);
@@ -165,7 +163,6 @@ $(window).on("load", function () {
             renderTable(activeTab, r[activeTab]).appendTo(resultContainer);
         }
         resultSection.show();
-
         function renderResult(category, button) {
             activeTab = category;
             setSearchUrl();
@@ -175,11 +172,9 @@ $(window).on("load", function () {
             button.addClass("active-table-tab");
         }
     }
-
     function selectTab(category) {
         $("button#result-tab-" + category).click();
     }
-
     function renderTable(category, items) {
         var table = $("<div class='summary-table'>")
             .addClass(category === "modules"
@@ -211,7 +206,6 @@ $(window).on("load", function () {
         });
         return table;
     }
-
     function renderItem(item, table, rowColor) {
         var label = getHighlightedText(item.input, item.boundaries, item.prefix.length, item.input.length);
         var link = $("<a/>")
@@ -228,9 +222,7 @@ $(window).on("load", function () {
         }
         $("<div/>").html(link).addClass("col-last").addClass(rowColor).appendTo(table);
     }
-
     var timeout;
-
     function schedulePageSearch() {
         if (timeout) {
             clearTimeout(timeout);
@@ -239,7 +231,6 @@ $(window).on("load", function () {
             doPageSearch()
         }, 100);
     }
-
     function doPageSearch() {
         setSearchUrl();
         var term = searchTerm = input.val().trim();
@@ -254,7 +245,6 @@ $(window).on("load", function () {
             doSearch({term: term, maxResults: 1200}, renderResults);
         }
     }
-
     function setSearchUrl() {
         var query = input.val().trim();
         var url = document.location.pathname;

@@ -2,7 +2,7 @@ typeSearchIndex = [{"l": "All Classes and Interfaces", "u": "allclasses-index.ht
     "p": "utils",
     "l": "ConcurrentList"
 }, {"p": "utils", "l": "FixedObjectOutputStream"}, {"p": "utils", "l": "JMHUtils"}, {
-    "p": "<Unnamed>",
+    "p": "utils",
     "l": "Main"
 }, {"p": "utils", "l": "NumberUtils"}];
 updateSearchResults();

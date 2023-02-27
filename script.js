@@ -198,13 +198,11 @@ function indexFilesLoaded() {
         && memberSearchIndex
         && tagSearchIndex;
 }
-
 // Copy the contents of the local snippet to the clipboard
 function copySnippet(button) {
     copyToClipboard(button.nextElementSibling.innerText);
     switchCopyLabel(button.firstElementChild, button.parentElement);
 }
-
 // Copy the link to the adjacent header to the clipboard
 function copyUrl(button) {
     var id;
@@ -224,7 +222,6 @@ function copyUrl(button) {
     copyToClipboard(url + "#" + id);
     switchCopyLabel(button.lastElementChild, button.parentElement);
 }
-
 function copyToClipboard(content) {
     var textarea = document.createElement("textarea");
     textarea.style.height = 0;
@@ -234,7 +231,6 @@ function copyToClipboard(content) {
     document.execCommand("copy");
     document.body.removeChild(textarea);
 }
-
 function switchCopyLabel(span, parent) {
     var copied = span.getAttribute("data-copied");
     if (span.innerHTML !== copied) {
@@ -245,7 +241,6 @@ function switchCopyLabel(span, parent) {
         };
     }
 }
-
 // Workaround for scroll position not being included in browser history (8249133)
 document.addEventListener("DOMContentLoaded", function (e) {
     var contentDiv = document.querySelector("div.flex-content");

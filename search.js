@@ -44,15 +44,12 @@ const categories = {
 const highlight = "<span class='result-highlight'>$&</span>";
 const NO_MATCH = {};
 const MAX_RESULTS = 500;
-
 function checkUnnamed(name, separator) {
     return name === "<Unnamed>" || !name ? "" : name + separator;
 }
-
 function escapeHtml(str) {
     return str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
-
 function getHighlightedText(str, boundaries, from, to) {
     var start = from;
     var text = "";
@@ -71,7 +68,6 @@ function getHighlightedText(str, boundaries, from, to) {
     text += escapeHtml(str.slice(start, to));
     return text;
 }
-
 function getURLPrefix(item, category) {
     var urlPrefix = "";
     var slash = "/";
@@ -92,7 +88,6 @@ function getURLPrefix(item, category) {
     }
     return urlPrefix;
 }
-
 function getURL(item, category) {
     if (item.url) {
         return item.url;
@@ -125,7 +120,6 @@ function getURL(item, category) {
     item.url = url;
     return url;
 }
-
 function createMatcher(term, camelCase) {
     if (camelCase && !isUpperCase(term)) {
         return null;  // no need for camel-case matcher for lower case query
@@ -163,7 +157,6 @@ function createMatcher(term, camelCase) {
     re.upperCase = upperCase;
     return re;
 }
-
 function analyzeMatch(matcher, input, startOfName, category) {
     var from = startOfName;
     matcher.lastIndex = from;
@@ -231,21 +224,17 @@ function analyzeMatch(matcher, input, startOfName, category) {
         boundaries: boundaries
     };
 }
-
 function isUpperCase(s) {
     return s !== s.toLowerCase();
 }
-
 function isLowerCase(s) {
     return s !== s.toUpperCase();
 }
-
 function rateNoise(str) {
     return (str.match(/([.(])/g) || []).length / 5
         + (str.match(/([A-Z]+)/g) || []).length / 10
         + str.length / 20;
 }
-
 function doSearch(request, response) {
     var term = request.term.trim();
     var maxResults = request.maxResults || MAX_RESULTS;
@@ -270,7 +259,6 @@ function doSearch(request, response) {
                 return "";
         }
     }
-
     function useQualifiedName(category) {
         switch (category) {
             case "packages":
@@ -282,7 +270,6 @@ function doSearch(request, response) {
                 return false;
         }
     }
-
     function searchIndex(indexArray, category) {
         var matches = [];
         if (!indexArray) {
@@ -336,7 +323,6 @@ function doSearch(request, response) {
     }
     response(result);
 }
-
 // JQuery search menu implementation
 $.widget("custom.catcomplete", $.ui.autocomplete, {
     _create: function () {
@@ -414,7 +400,6 @@ $(function () {
             expanded = false;
         }
     }
-
     $("button#navbar-toggle-button").click(function (e) {
         if (expanded) {
             collapse();
