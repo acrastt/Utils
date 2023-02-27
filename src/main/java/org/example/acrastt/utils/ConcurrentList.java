@@ -1,4 +1,4 @@
-package utils;
+package org.example.acrastt.utils;
 
 
 import java.io.Serializable;

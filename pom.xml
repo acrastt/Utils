@@ -6,7 +6,7 @@
 
     <name>Utils</name>
     <packaging>jar</packaging>
-    <groupId>bot-333.Utils</groupId>
+    <groupId>org.example.acrastt.utils</groupId>
     <artifactId>bot-333.Utils</artifactId>
     <version>1.0-SNAPSHOT</version>
 

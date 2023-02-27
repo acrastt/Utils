@@ -1,4 +1,4 @@
-package utils;
+package org.example.acrastt.utils;
 
 import org.openjdk.jmh.results.format.ResultFormatType;
 import org.openjdk.jmh.runner.Runner;

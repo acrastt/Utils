@@ -1,4 +1,4 @@
-package utils;
+package org.example.acrastt.utils;
 
 /**
  * The utility class for numbers(int, double, long, etc.).
