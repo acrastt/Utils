@@ -10,22 +10,49 @@ import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
 
+/**
+ * This is a thread-safe implementation of the {@link java.util.ArrayList} interface.
+ *
+ * @param <T> The type of the elements in this collection.
+ * @author Bohan Du
+ * @version 1.0
+ * @see java.util.ArrayList
+ */
 public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>, Serializable {
 
     private final StampedLock lock = new StampedLock();
 
+    /**
+     * Creates a new ConcurrentList.
+     *
+     * @param initialCapacity The initial size/capacity of the list.
+     */
     public ConcurrentList(int initialCapacity) {
         super(initialCapacity);
     }
 
+    /**
+     * Creates a new ConcurrentList.
+     */
     public ConcurrentList() {
         super();
     }
 
+    /**
+     * Creates a new ConcurrentList with elements of the specified collection.
+     *
+     * @param c The specified Collection.
+     */
     public ConcurrentList(Collection<? extends T> c) {
         super(c);
     }
 
+    /**
+     * Check if "o" has the same value as this ConcurrentList.
+     *
+     * @param o the object to be compared for equality with this list
+     * @return true if the specified object is equal to this list. Otherwise false
+     */
     @Override
     public boolean equals(Object o) {
         long stamp = lock.tryOptimisticRead();
@@ -41,6 +68,11 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Returns the hash code for this ConcurrentList.
+     *
+     * @return The hash code
+     */
     @Override
     public int hashCode() {
         long stamp = lock.tryOptimisticRead();
@@ -57,6 +89,9 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
     }
 
 
+    /**
+     * Trims this ConcurrentList so that it contains no null elements(In its base list).
+     */
     @Override
     public void trimToSize() {
         long stamp = lock.writeLock();
@@ -67,6 +102,12 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Ensures that this ConcurrentList can hold at least the specified
+     * number of elements without increasing the base list
+     *
+     * @param minCapacity the desired minimum capacity
+     */
     @Override
     public void ensureCapacity(int minCapacity) {
         long stamp = lock.writeLock();
@@ -77,6 +118,12 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Removes the item with the specified index from this ConcurrentList.
+     *
+     * @param index the index of the element to be removed
+     * @return the removed element
+     */
     @Override
     public T remove(int index) {
         long stamp = lock.writeLock();
@@ -87,6 +134,12 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Removes items from "fromList"(inclusive) to "toList"(exclusive) from this ConcurrentList.
+     *
+     * @param fromIndex index of first element to be removed
+     * @param toIndex   index after last element to be removed
+     */
     @Override
     protected void removeRange(int fromIndex, int toIndex) {
         long stamp = lock.writeLock();
@@ -97,6 +150,9 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * @return returns the String representation of this ConcurrentList
+     */
     @Override
     public String toString() {
         long stamp = lock.tryOptimisticRead();
@@ -113,6 +169,11 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
     }
 
 
+    /**
+     * Returns the number of elements in this ConcurrentList.
+     *
+     * @return the number of elements
+     */
     @Override
     public int size() {
         long stamp = lock.tryOptimisticRead();
@@ -129,6 +190,11 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
     }
 
 
+    /**
+     * Checks if this ConcurrentList is empty.
+     *
+     * @return true if this ConcurrentList is empty, otherwise false
+     */
     @Override
     public boolean isEmpty() {
         long stamp = lock.tryOptimisticRead();
@@ -144,6 +210,12 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Checks if this ConcurrentList contains the specified element.
+     *
+     * @param o the element to be checked for containment in this list
+     * @return true if this ConcurrentList contains the specified element, otherwise false
+     */
     @Override
     public boolean contains(Object o) {
         long stamp = lock.tryOptimisticRead();
@@ -159,6 +231,12 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Returns the Iterator for this ConcurrentList.
+     *
+     * @return the iterator
+     * @see java.util.Iterator
+     */
     @Override
     public Iterator<T> iterator() {
         long stamp = lock.tryOptimisticRead();
@@ -174,6 +252,12 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Make action to all elements in this ConcurrentList based on the given action.
+     *
+     * @param action the action that will be performed on each element
+     * @see java.util.function.Consumer
+     */
     @Override
     public void forEach(Consumer<? super T> action) {
         long stamp = lock.tryOptimisticRead();
@@ -189,6 +273,11 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Returns this ConcurrentList in Object[] form.
+     *
+     * @return the list in Object[] form
+     */
     @Override
     public Object[] toArray() {
         long stamp = lock.tryOptimisticRead();
@@ -204,6 +293,14 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Returns this ConcurrentList in V[] form.
+     *
+     * @param <V> the type of the array elements
+     * @param a   the array to be returned(Will make a copy), if length of a is
+     *            smaller than the size of this ConcurrentList, a new array will be created
+     * @return the collection in V[] form
+     */
     @Override
     public <V> V[] toArray(V[] a) {
         long stamp = lock.tryOptimisticRead();
@@ -219,6 +316,13 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Returns the V[] form of this ConcurrentList allocated using provided function.
+     *
+     * @param <V>       the type of the array elements
+     * @param generator the function
+     * @return the ConcurrentList in V[] form
+     */
     @Override
     public <V> V[] toArray(IntFunction<V[]> generator) {
         long stamp = lock.tryOptimisticRead();
@@ -234,6 +338,12 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Adds element at the index provided, elements after index will be pushed forward.
+     *
+     * @param index   the index
+     * @param element the element to be added
+     */
     @Override
     public void add(int index, T element) {
         long stamp = lock.writeLock();
@@ -244,6 +354,12 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Add item t to the end of this ConcurrentList.
+     *
+     * @param t the element to be added
+     * @return true
+     */
     @Override
     public boolean add(T t) {
         long stamp = lock.writeLock();
@@ -254,6 +370,12 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Remove the first occurrence o from this ConcurrentList.
+     *
+     * @param o the element to be removed
+     * @return true if the list contained the specified element, otherwise false
+     */
     @Override
     public boolean remove(Object o) {
         long stamp = lock.writeLock();
@@ -264,6 +386,12 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Check if this ConcurrentList contains all items from the specified collection.
+     *
+     * @param c the collection to check
+     * @return true if this ConcurrentList contains all items from the specified collection, false otherwise
+     */
     @Override
     public boolean containsAll(Collection<?> c) {
         long stamp = lock.tryOptimisticRead();
@@ -279,6 +407,12 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Adds all items from the specified collection.
+     *
+     * @param c the collection to add
+     * @return true if this ConcurrentList changed because of the call
+     */
     @Override
     public boolean addAll(Collection<? extends T> c) {
         long stamp = lock.writeLock();
@@ -289,6 +423,13 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Adds all items from the specified collection at index.
+     *
+     * @param index the index the collection is to be added at
+     * @param c     the collection to be added
+     * @return true if this ConcurrentList changed because of the call, otherwise false
+     */
     @Override
     public boolean addAll(int index, Collection<? extends T> c) {
         long stamp = lock.writeLock();
@@ -299,6 +440,12 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Remove all items specified in the collection.
+     *
+     * @param c the collection
+     * @return true if this ConcurrentList changed because of the call, otherwise false
+     */
     @Override
     public boolean removeAll(Collection<?> c) {
         long stamp = lock.writeLock();
@@ -309,6 +456,12 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Remove if the specified filter returns true for each element.
+     *
+     * @param filter the filter
+     * @return true if this ConcurrentList changed because of the call, otherwise false
+     */
     @Override
     public boolean removeIf(Predicate<? super T> filter) {
         long stamp = lock.writeLock();
@@ -319,6 +472,12 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Removes all elements from this ConcurrentList that is not in the specified collection.
+     *
+     * @param c the collection
+     * @return true if this ConcurrentList changed because of the call, otherwise false
+     */
     @Override
     public boolean retainAll(Collection<?> c) {
         long stamp = lock.writeLock();
@@ -329,6 +488,11 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Replace all with the result of the operator for each item.
+     *
+     * @param operator the operator
+     */
     @Override
     public void replaceAll(UnaryOperator<T> operator) {
         long stamp = lock.writeLock();
@@ -339,6 +503,13 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Sorts this ConcurrentList with
+     * <a href="https://www.geeksforgeeks.org/timsort/#:~:text=TimSort%20is%20a%20sorting%20algorithm,
+     * a%20merge%20of%20merge%20sort">TimSort</a>.
+     *
+     * @param c the comparator to compare elements
+     */
     @Override
     public void sort(Comparator<? super T> c) {
         long stamp = lock.writeLock();
@@ -349,6 +520,9 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Removes all elements from this ConcurrentList.
+     */
     @Override
     public void clear() {
         long stamp = lock.writeLock();
@@ -359,6 +533,12 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Get an item at index.
+     *
+     * @param index the index
+     * @return the item at index
+     */
     @Override
     public T get(int index) {
         long stamp = lock.tryOptimisticRead();
@@ -374,6 +554,13 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Set the item at index to element.
+     *
+     * @param index   the index
+     * @param element the element
+     * @return the item before setting the element at index
+     */
     @Override
     public T set(int index, T element) {
         long stamp = lock.writeLock();
@@ -384,6 +571,12 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Returns the index of the first occurrence of o.
+     *
+     * @param o the object to search for
+     * @return the index of the first occurrence of o, -1 if o is not found
+     */
     @Override
     public int indexOf(Object o) {
         long stamp = lock.tryOptimisticRead();
@@ -399,6 +592,12 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Searches for the last occurrence of int.
+     *
+     * @param o the object to search for
+     * @return the index of the last occurrence of o, -1 if o is not found
+     */
     @Override
     public int lastIndexOf(Object o) {
         long stamp = lock.tryOptimisticRead();
@@ -414,6 +613,12 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Returns the list iterator of this ConcurrentList.
+     *
+     * @return the list iterator
+     * @see java.util.ListIterator
+     */
     @Override
     public ListIterator<T> listIterator() {
         long stamp = lock.tryOptimisticRead();
@@ -429,6 +634,12 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Returns the list iterator of this ConcurrentList starting at index(inclusive).
+     *
+     * @param index the index of the first element to be returned
+     * @return the list iterator
+     */
     @Override
     public ListIterator<T> listIterator(int index) {
         long stamp = lock.tryOptimisticRead();
@@ -444,6 +655,13 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Returns the smaller list from fromIndex(inclusive) to toIndex(exclusive).
+     *
+     * @param fromIndex the first index to be returned
+     * @param toIndex   the index after the last element to be returned
+     * @return the smaller list
+     */
     @Override
     public java.util.List<T> subList(int fromIndex, int toIndex) {
         long stamp = lock.tryOptimisticRead();
@@ -459,6 +677,12 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Returns the spliterator of this ConcurrentList.
+     *
+     * @return the spliterator
+     * @see java.util.Spliterator
+     */
     @Override
     public Spliterator<T> spliterator() {
         long stamp = lock.tryOptimisticRead();
@@ -474,6 +698,12 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Returns the stream of this ConcurrentList.
+     *
+     * @return the stream
+     * @see java.util.stream.Stream
+     */
     @Override
     public Stream<T> stream() {
         long stamp = lock.tryOptimisticRead();
@@ -489,6 +719,12 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         }
     }
 
+    /**
+     * Returns the parallel stream of this ConcurrentList.
+     *
+     * @return the parallel stream
+     * @see java.util.stream.Stream
+     */
     @Override
     public Stream<T> parallelStream() {
         long stamp = lock.tryOptimisticRead();
