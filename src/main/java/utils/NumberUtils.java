@@ -1,10 +1,23 @@
 package utils;
 
+/**
+ * The utility class for numbers(int, double, long, etc.).
+ *
+ * @author Bohan Du
+ * @version 1.0
+ * @since 1.0
+ */
 public class NumberUtils {
 
     private NumberUtils() {
     }
 
+    /**
+     * Convert a number to number with ordinals in String form.
+     *
+     * @param number the number to be converted
+     * @return the String with ordinals
+     */
     public static String convertToOrdinal(int number) {
         String suffix = "th";
         int lastTwoDigits = Math.abs(number) % 100;
