@@ -8,7 +8,7 @@
     <packaging>jar</packaging>
     <groupId>bot-333.Utils</groupId>
     <artifactId>bot-333.Utils</artifactId>
-    <version>1.0-FINAL</version>
+    <version>1.0-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>19</maven.compiler.source>
