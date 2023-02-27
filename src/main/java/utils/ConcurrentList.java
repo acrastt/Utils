@@ -20,6 +20,9 @@ import java.util.stream.Stream;
  */
 public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>, Serializable {
 
+    /**
+     * A stamped lock that is used to synchronize access to the list.
+     */
     private final StampedLock lock = new StampedLock();
 
     /**
@@ -504,9 +507,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
     }
 
     /**
-     * Sorts this ConcurrentList with
-     * <a href="https://www.geeksforgeeks.org/timsort/#:~:text=TimSort%20is%20a%20sorting%20algorithm,
-     * a%20merge%20of%20merge%20sort">TimSort</a>.
+     * Sorts this ConcurrentList with TimSort.
      *
      * @param c the comparator to compare elements
      */
