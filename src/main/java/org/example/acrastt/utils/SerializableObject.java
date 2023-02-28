@@ -11,12 +11,12 @@ import java.io.Serial;
  * @since 1.0
  */
 public class SerializableObject implements java.io.Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     /**
      * Nothing to say here.
      */
     public SerializableObject() {
     }
-
-    @Serial
-    private static final long serialVersionUID = 1L;
 }
