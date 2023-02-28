@@ -1,0 +1,2 @@
+JMH S 35 org.example.acrastt.utils.Benchmark S 76 org.example.acrastt.utils.jmh_generated.Benchmark_nativeStringAppend_jmhTest S 18 nativeStringAppend S 14 SingleShotTime E A 1 1 1 E I 2 50 E E I 4 1000 E E I 1 1 E E E E E E U 12 MILLISECONDS E E 
+JMH S 35 org.example.acrastt.utils.Benchmark S 71 org.example.acrastt.utils.jmh_generated.Benchmark_stringBuilder_jmhTest S 13 stringBuilder S 14 SingleShotTime E A 1 1 1 E I 2 50 E E I 4 1000 E E I 1 1 E E E E E E U 12 MILLISECONDS E E 

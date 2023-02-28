@@ -28,8 +28,9 @@ public class JMHUtils {
      * "JMH" + caller class name + ".json".
      */
     public static void runWithJson() {
-        String[] file = new Exception().getStackTrace()[1].getClassName().split("\\.");
-        runWithJson(file[file.length - 1]);
+        String file = new Exception().getStackTrace()[1].getClassName();
+        String[] split = file.split("\\.");
+        runWithJson(split[split.length - 1], file);
     }
 
     /**
@@ -38,13 +39,12 @@ public class JMHUtils {
      *
      * @param file the name of the json file to be saved
      */
-    public static void runWithJson(String file) {
+    public static void runWithJson(String file, String clazz) {
         try {
-            String caller = new Exception().getStackTrace()[1].getClassName();
             new Runner(new OptionsBuilder()
-                    .include(caller)
+                    .include(clazz)
                     .resultFormat(ResultFormatType.JSON)
-                    .result(file + ".json")
+                    .result(file)
                     .build()).run();
         } catch (RunnerException e) {
             log.error(e.getMessage(), e);
@@ -57,8 +57,9 @@ public class JMHUtils {
      * "JMH" + caller class name + ".csv".
      */
     public static void runWithCsv() {
-        String[] file = new Exception().getStackTrace()[1].getClassName().split("\\.");
-        runWithCsv(file[file.length - 1]);
+        String file = new Exception().getStackTrace()[1].getClassName();
+        String[] split = file.split("\\.");
+        runWithCsv(split[split.length - 1], file);
     }
 
     /**
@@ -67,13 +68,12 @@ public class JMHUtils {
      *
      * @param file the name of the csv file to be saved
      */
-    public static void runWithCsv(String file) {
+    public static void runWithCsv(String file, String clazz) {
         try {
-            String caller = new Exception().getStackTrace()[1].getClassName();
             new Runner(new OptionsBuilder()
-                    .include(caller)
+                    .include(clazz)
                     .resultFormat(ResultFormatType.CSV)
-                    .result(file + ".csv")
+                    .result(file)
                     .build()).run();
         } catch (RunnerException e) {
             log.error(e.getMessage(), e);
