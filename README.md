@@ -64,3 +64,12 @@ public class Main {
     }
 }
 ```
+
+## Contributing
+
+If you want to contribute, please email us at `bohandu@hotmail.com`.
+If you find any bugs or suggestions, feel free to submit a pull request.
+
+## License
+
+This project is licensed under the [MIT License](https://github.com/bot-333/Utils/blob/master/LICENSE)
