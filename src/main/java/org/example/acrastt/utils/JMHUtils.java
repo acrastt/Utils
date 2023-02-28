@@ -37,7 +37,8 @@ public class JMHUtils {
      * Run a JMH benchmark while saving the results in a json file.
      * The json file will be saved with specified directory and name.
      *
-     * @param file the name of the json file to be saved
+     * @param file  the name of the json file to be saved
+     * @param clazz the class to be called for the benchmark
      */
     public static void runWithJson(String file, String clazz) {
         try {
@@ -67,6 +68,7 @@ public class JMHUtils {
      * The csv file will be saved with specified directory and name.
      *
      * @param file the name of the csv file to be saved
+     * @param clazz the class to be called for the benchmark
      */
     public static void runWithCsv(String file, String clazz) {
         try {
