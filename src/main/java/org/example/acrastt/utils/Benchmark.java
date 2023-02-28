@@ -5,6 +5,9 @@ import org.openjdk.jmh.infra.Blackhole;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * If you see this message, it means that you are not supposed to use this benchmark.
+ */
 @BenchmarkMode(Mode.SingleShotTime)
 @Fork(1)
 @Warmup(iterations = 50)
@@ -12,13 +15,31 @@ import java.util.concurrent.TimeUnit;
 @State(Scope.Benchmark)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 public class Benchmark {
+    /**
+     * Just why...
+     */
     String s = "";
 
+    /**
+     * Hey what are you doing here?
+     */
+    public Benchmark() {
+
+    }
+
+    /**
+     * Stop reading this!
+     */
     @Setup
     public void setup() {
         s = "";
     }
 
+    /**
+     * I said stopp reading this!
+     *
+     * @param bh you will be eaten by the black hole!
+     */
     @org.openjdk.jmh.annotations.Benchmark
     @SuppressWarnings("all")
     public void nativeStringAppend(Blackhole bh) {
@@ -28,6 +49,11 @@ public class Benchmark {
         bh.consume(s);
     }
 
+    /**
+     * STOP!!!
+     *
+     * @param bh bh.consume(YOU);
+     */
     @org.openjdk.jmh.annotations.Benchmark
     @SuppressWarnings("all")
     public void stringBuilder(Blackhole bh) {
