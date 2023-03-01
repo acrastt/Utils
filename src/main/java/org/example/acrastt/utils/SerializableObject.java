@@ -18,5 +18,6 @@ public class SerializableObject implements java.io.Serializable {
      * Nothing to say here.
      */
     public SerializableObject() {
+        // Hello
     }
 }

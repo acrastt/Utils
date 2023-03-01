@@ -140,7 +140,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
     /**
      * Removes items from "fromList"(inclusive) to "toList"(exclusive) from this ConcurrentList.
      *
-     * @param fromIndex index of first element to be removed
+     * @param fromIndex index of the first element to be removed
      * @param toIndex   index after last element to be removed
      */
     @Override
@@ -300,7 +300,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      * Returns this ConcurrentList in V[] form.
      *
      * @param <V> the type of the array elements
-     * @param a   the array to be returned(Will make a copy), if length of a is
+     * @param a   the array to be returned(Will make a copy), if the length of a is
      *            smaller than the size of this ConcurrentList, a new array will be created
      * @return the collection in V[] form
      */
@@ -342,7 +342,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
     }
 
     /**
-     * Adds element at the index provided, elements after index will be pushed forward.
+     * Adds an element at the index provided, elements after the index will be pushed forward.
      *
      * @param index   the index
      * @param element the element to be added
@@ -556,7 +556,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
     }
 
     /**
-     * Set the item at index to element.
+     * Set the item at index to an element.
      *
      * @param index   the index
      * @param element the element
@@ -573,7 +573,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
     }
 
     /**
-     * Returns the index of the first occurrence of o.
+     * Returns the index of o's first occurrence.
      *
      * @param o the object to search for
      * @return the index of the first occurrence of o, -1 if o is not found

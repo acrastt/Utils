@@ -21,7 +21,7 @@ public class Benchmark {
     String s = "";
 
     /**
-     * Hey what are you doing here?
+     * Hey, what are you doing here?
      */
     public Benchmark() {
 
