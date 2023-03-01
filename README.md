@@ -24,6 +24,7 @@ has a separate file and can be used independently.
 ### Requirements
 
 - JDK(Java Development Kit) 14 or higher.
+- Apache Maven 3.2.5 or higher
 
 ## Usage
 
