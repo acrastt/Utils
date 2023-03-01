@@ -22,8 +22,7 @@ is has a separate file and can be used independently.
 
 ### Requirements
 
-- JDK(Java Development Kit) 8 or higher, but it's recommended to use JDK
-  11 or higher.
+- JDK(Java Development Kit) 11 or higher.
 
 ## Usage
 
