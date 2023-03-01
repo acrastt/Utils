@@ -41,8 +41,6 @@ B
 javadoc/index.html,e/2/e274c27624fb40b43250772fc29c5160f6b84bea
 o
 ?src/main/java/org/example/acrastt/utils/SerializableObject.java,3/6/366f8040189425c09c2720d0cda6ddf84ce419bd
-;
-LICENSE.txt,7/9/79b82ce9b64a924266619555502f890dd80c83b9
 f
 6src/main/java/org/example/acrastt/utils/Benchmark.java,1/e/1e06ebcb096368c09898892972a0c780f2fee93e
 e
