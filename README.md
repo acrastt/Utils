@@ -4,13 +4,14 @@ This is a collection of different utility functions that can be used in
 various applications. This repository contains the following utilities.
 
 - `ConcurrentList`: A thread-safe list that allows concurrent operations
-  without error. This is designed for high number of reads,
-  low number of writes and low number of threads.
+  without error.
+  This is designed for a high number of reads,
+  a low number of writes and a low number of threads.
 - `JMHUtils`: A utility for JMH(Java Microbenchmark Harness), currently it has
   functions that creates json/csv file when running benchmarks.
-- `NumberUtils`: A utility that processes numbers in Java, it currently has
+- `NumberUtils`: A utility which processes numbers in Java, it currently has
   a function that converts numbers to string with ordinals.
-- `SerializableObject`: SerializableObject is a class that is serializable,
+- `SerializableObject`: SerializableObject is a class which is serializable,
   it can be used for testing purposes.
 - `Benchmark`: How dare you?
 
@@ -18,7 +19,7 @@ various applications. This repository contains the following utilities.
 
 To use this library, simply clone the repository using a tool such as GitHub CLI
 and add necessary files to your application's source code. Each utility
-is has a separate file and can be used independently.
+has a separate file and can be used independently.
 
 ### Requirements
 
@@ -49,7 +50,7 @@ public class Main {
 
 ### JMHUtils
 
-JMHUtils is had self-explanation methods, so just find methods that
+JMHUtils had self-explanation methods, so just find methods that
 match your needs.Here are some examples:
 
 ```java
