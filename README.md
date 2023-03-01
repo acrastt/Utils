@@ -57,8 +57,8 @@ import org.example.acrastt.utils.JMHUtils;
 
 public class Main {
     public static void main(String[] args) {
-        JMHUtils.runWithCsv("csv.csv", "yourClassName");
-        JMHUtils.runWithJson("json.json", "yourClassName");
+        JMHUtils.runWithCsv("foo.csv", "yourClassName");
+        JMHUtils.runWithJson("bar.json", "yourClassName");
         // etc...
     }
 }
