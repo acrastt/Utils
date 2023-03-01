@@ -72,4 +72,4 @@ If you find any bugs or suggestions, feel free to submit a pull request.
 
 ## License
 
-This project is licensed under the [MIT License](https://github.com/bot-333/Utils/blob/master/LICENSE.txt)
+This project is licensed under the [MIT License](LICENSE.txt)
