@@ -52,7 +52,8 @@ public class Main {
 ### JMHUtils
 
 JMHUtils had self-explanation methods, so just find methods that
-match your needs.Here are some examples:
+match your needs.
+Here are some examples:
 
 ```java
 import org.example.acrastt.utils.JMHUtils;
