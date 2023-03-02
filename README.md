@@ -106,6 +106,10 @@ public class Main {
 }
 ```
 
+## Documentation
+
+You can find the documentation at [here](javadoc/index.html)
+
 ## Contributing
 
 If you want to contribute, please email us at `bohandu@hotmail.com`.
