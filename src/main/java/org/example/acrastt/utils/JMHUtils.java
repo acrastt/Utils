@@ -26,11 +26,14 @@ public class JMHUtils {
      * Run a JMH benchmark while saving the results in a json file.
      * The json file will be saved in the src directory with naming
      * "JMH" + caller class name + ".json".
+     *
+     * @deprecated Use {@link #runWithJson(String, String)}
      */
+    @Deprecated(since = "1.4", forRemoval = false)
     public static void runWithJson() {
         String file = new Exception().getStackTrace()[1].getClassName();
         String[] split = file.split("\\.");
-        runWithJson(split[split.length - 1], file);
+        runWithJson("JMH" + split[split.length - 1], file);
     }
 
     /**
@@ -56,18 +59,21 @@ public class JMHUtils {
      * Run a JMH benchmark while saving the results in a csv file.
      * The json file will be saved in the src directory with naming
      * "JMH" + caller class name + ".csv".
+     *
+     * @deprecated Use {@link #runWithCsv(String, String)}
      */
+    @Deprecated(since = "1.4", forRemoval = false)
     public static void runWithCsv() {
         String file = new Exception().getStackTrace()[1].getClassName();
         String[] split = file.split("\\.");
-        runWithCsv(split[split.length - 1], file);
+        runWithCsv("JMH" + split[split.length - 1], file);
     }
 
     /**
      * Run a JMH benchmark while saving the results in a csv file.
      * The csv file will be saved with specified directory and name.
      *
-     * @param file the name of the csv file to be saved
+     * @param file  the name of the csv file to be saved
      * @param clazz the class to be called for the benchmark
      */
     public static void runWithCsv(String file, String clazz) {
