@@ -61,6 +61,8 @@ public class Main {
     public static void main(String[] args) {
         JMHUtils.runWithCsv("foo.csv", "yourClassName");
         JMHUtils.runWithJson("bar.json", "yourClassName");
+        JMHUtils.runWithGC("yourClassName");
+        JMHUtils.runWithCSVAndGC("baz.csv", "yourClassName");
         // etc...
     }
 }

@@ -115,7 +115,7 @@ public class JMHUtils {
      * @param file the csv file to be saved
      * @param clazz class of the benchmark to be run
      */
-    public static void runWithCSVAndGC(String file, String clazz) {
+    public static void runWithGCAndCSV(String file, String clazz) {
         try {
             new Runner(new OptionsBuilder()
                     .include(clazz)
