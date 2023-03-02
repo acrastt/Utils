@@ -89,7 +89,8 @@ public class JMHUtils {
     }
 
     /**
-     * This runs the given JMH benchmark with GC profiling and saves the results in a json file.
+     * This runs the given JMH benchmark with GC profiling(Memory measurement)
+     * and saves the results in a json file.
      *
      * @param file the json file to be saved
      * @param clazz class of the benchmark to be run
@@ -108,7 +109,8 @@ public class JMHUtils {
     }
 
     /**
-     * This runs the given JMH benchmark with GC profiling and saves the results in a csv file.
+     * This runs the given JMH benchmark with GC profiling(Memory measurement)
+     * and saves the results in a csv file.
      *
      * @param file the csv file to be saved
      * @param clazz class of the benchmark to be run
@@ -127,7 +129,7 @@ public class JMHUtils {
     }
 
     /**
-     * This runs the given JMH benchmark with GC profiling.
+     * This runs the given JMH benchmark with GC profiling(Memory measurement).
      *
      * @param clazz class of the benchmark to be run
      */
