@@ -66,6 +66,46 @@ public class Main {
 }
 ```
 
+### NumberUtils
+
+NumberUtils is a utility class for numbers. Here are some examples:
+
+```java
+import org.example.acrastt.utils.NumberUtils;
+
+public class Main {
+    public static void main(String[] args) {
+        NumberUtils.convertToOrdinal(1); // 1st
+        NumberUtils.convertToOrdinal(2); // 2nd
+        NumberUtils.convertToOrdinal(3); // 3rd
+        NumberUtils.convertToOrdinal(4); // 4th
+        NumberUtils.convertToOrdinal(5); // 5th
+        // etc...
+    }
+}
+```
+
+### SerializableObject
+
+SerializableObject is a utility class for testing,
+it is a serializable object that can be used in ObjectOutputStreams or others.
+Here are some examples:
+
+```java
+import org.example.acrastt.utils.SerializableObject;
+import java.io.ObjectOutputStream;
+import java.io.FileOutputStream;
+
+public class Main {
+  public static void main(String[] args) {
+    SerializableObject obj = new SerializableObject();
+    try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("yourFileName.txt"))) {
+        out.writeObject(obj);
+    }
+  }
+}
+```
+
 ## Contributing
 
 If you want to contribute, please email us at `bohandu@hotmail.com`.
