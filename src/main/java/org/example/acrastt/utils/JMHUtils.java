@@ -29,7 +29,7 @@ public class JMHUtils {
      *
      * @deprecated Use {@link #runWithJson(String, String)}
      */
-    @Deprecated(since = "1.4")
+    @Deprecated(since = "1.4", forRemoval = true)
     public static void runWithJson() {
         String file = new Exception().getStackTrace()[1].getClassName();
         String[] split = file.split("\\.");
@@ -62,7 +62,7 @@ public class JMHUtils {
      *
      * @deprecated Use {@link #runWithCsv(String, String)}
      */
-    @Deprecated(since = "1.4")
+    @Deprecated(since = "1.4", forRemoval = true)
     public static void runWithCsv() {
         String file = new Exception().getStackTrace()[1].getClassName();
         String[] split = file.split("\\.");
@@ -82,6 +82,60 @@ public class JMHUtils {
                     .include(clazz)
                     .resultFormat(ResultFormatType.CSV)
                     .result(file)
+                    .build()).run();
+        } catch (RunnerException e) {
+            log.error(e.getMessage(), e);
+        }
+    }
+
+    /**
+     * This runs the given JMH benchmark with GC profiling and saves the results in a json file.
+     *
+     * @param file the json file to be saved
+     * @param clazz class of the benchmark to be run
+     */
+    public static void runWithGCAndJson(String file, String clazz) {
+        try {
+            new Runner(new OptionsBuilder()
+                    .include(clazz)
+                    .resultFormat(ResultFormatType.JSON)
+                    .result(file)
+                    .addProfiler("gc")
+                    .build()).run();
+        } catch (RunnerException e) {
+            log.error(e.getMessage(), e);
+        }
+    }
+
+    /**
+     * This runs the given JMH benchmark with GC profiling and saves the results in a csv file.
+     *
+     * @param file the csv file to be saved
+     * @param clazz class of the benchmark to be run
+     */
+    public static void runWithCSVAndGC(String file, String clazz) {
+        try {
+            new Runner(new OptionsBuilder()
+                    .include(clazz)
+                    .resultFormat(ResultFormatType.CSV)
+                    .result(file)
+                    .addProfiler("gc")
+                    .build()).run();
+        } catch (RunnerException e) {
+            log.error(e.getMessage(), e);
+        }
+    }
+
+    /**
+     * This runs the given JMH benchmark with GC profiling.
+     *
+     * @param clazz class of the benchmark to be run
+     */
+    public static void runWithGC(String clazz) {
+        try {
+            new Runner(new OptionsBuilder()
+                    .include(clazz)
+                    .addProfiler("gc")
                     .build()).run();
         } catch (RunnerException e) {
             log.error(e.getMessage(), e);
