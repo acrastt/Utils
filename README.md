@@ -108,7 +108,7 @@ public class Main {
 
 ## Documentation
 
-You can find the documentation at [here](javadoc/index.html)
+You can find the documentation at [here](javadoc/index.html).
 
 ## Contributing
 
