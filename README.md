@@ -23,8 +23,9 @@ has a separate file and can be used independently.
 
 ### Requirements
 
-- JDK(Java Development Kit) 14 or higher.
-- Apache Maven 3.2.5 or higher
+- JDK(Java Development Kit) 14 or later^
+- Apache Maven 3.2.5 or later^
+^: This is the minimum requirement, but you should choose an LTS version.
 
 ## Usage
 
@@ -111,7 +112,7 @@ public class Main {
 
 ## Documentation
 
-You can find the documentation at [here](javadoc/index.html).
+You can find the documentation [here](javadoc/index.html).
 
 ## Contributing
 
