@@ -29,7 +29,7 @@ public class JMHUtils {
      *
      * @deprecated Use {@link #runWithJson(String, String)}
      */
-    @Deprecated(since = "1.4", forRemoval = false)
+    @Deprecated(since = "1.4")
     public static void runWithJson() {
         String file = new Exception().getStackTrace()[1].getClassName();
         String[] split = file.split("\\.");
@@ -62,7 +62,7 @@ public class JMHUtils {
      *
      * @deprecated Use {@link #runWithCsv(String, String)}
      */
-    @Deprecated(since = "1.4", forRemoval = false)
+    @Deprecated(since = "1.4")
     public static void runWithCsv() {
         String file = new Exception().getStackTrace()[1].getClassName();
         String[] split = file.split("\\.");
