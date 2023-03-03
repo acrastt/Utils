@@ -54,7 +54,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      * Check if "o" has the same value as this ConcurrentList.
      *
      * @param o the object to be compared for equality with this list
-     * @return returns true if the specified object is equal to this list. Otherwise false
+     * @return true if the specified object is equal to this list. Otherwise false
      */
     @Override
     public boolean equals(Object o) {
@@ -377,7 +377,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      * Remove the first occurrence o from this ConcurrentList.
      *
      * @param o the element to be removed
-     * @return returns true if the list contained the specified element, otherwise false
+     * @return true if the list contained the specified element, otherwise false
      */
     @Override
     public boolean remove(Object o) {
