@@ -31,8 +31,6 @@ O
 src/test/java/JMHUtilsTest.java,a/4/a400d78a57bb4fc19375dfc9c600522996b683be
 U
 %src/test/java/ConcurrentListTest.java,b/a/bab3a47a0e06f14ea7936b74f592715e14952432
-k
-;src/main/java/org/example/acrastt/utils/ConcurrentList.java,5/b/5b8eab5896eccb040c0d6861876c02de65979461
 f
 6src/main/java/org/example/acrastt/utils/Benchmark.java,1/e/1e06ebcb096368c09898892972a0c780f2fee93e
 h
