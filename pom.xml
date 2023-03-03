@@ -43,6 +43,14 @@
     <artifactId>bot-333.Utils</artifactId>
     <version>1.4</version>
 
+    <distributionManagement>
+        <repository>
+            <id>bot-333.Utils</id>
+            <name>bot-333.Utils</name>
+            <url>https://github.com/bot-333/Utils</url>
+        </repository>
+    </distributionManagement>
+
     <scm>
         <connection>
             scm:git:https://github.com/bot-333/Utils.git
