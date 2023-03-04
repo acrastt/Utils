@@ -1,8 +1,12 @@
 package org.example.acrastt.utils;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.Serializable;
 import java.util.*;
+import java.util.concurrent.Callable;
 import java.util.concurrent.locks.StampedLock;
 import java.util.function.Consumer;
 import java.util.function.IntFunction;
@@ -18,8 +22,10 @@ import java.util.stream.Stream;
  * @version 1.0
  * @see java.util.ArrayList
  */
+@SuppressWarnings("boxing")
 public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>, Serializable {
 
+    private static final Logger log = LoggerFactory.getLogger(ConcurrentList.class);
     /**
      * A stamped lock that is used to synchronize access to the list.
      */
@@ -50,6 +56,55 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         super(c);
     }
 
+    private <V> V optimisticRead(Callable<V> c) {
+        long stamp = lock.tryOptimisticRead();
+        if (lock.validate(stamp)) {
+            try {
+                return c.call();
+            } catch (Exception e) {
+                log.error("Exception when trying to read optimistically", e);
+            }
+        } else {
+            return read(c);
+        }
+        return null;
+    }
+
+    private <V> V read(Callable<V> c) {
+        long stamp = lock.readLock();
+        try {
+            try {
+                return c.call();
+            } catch (Exception e) {
+                log.error("Exception when trying to read concurrently", e);
+            }
+        } finally {
+            lock.unlockRead(stamp);
+        }
+        return null;
+    }
+
+    private <V> V write(Callable<V> c) {
+        long stamp = lock.writeLock();
+        try {
+            return c.call();
+        } catch (Exception e) {
+            log.error("Exception while writing concurrently");
+        } finally {
+            lock.unlockWrite(stamp);
+        }
+        return null;
+    }
+
+    private void write(Runnable r) {
+        long stamp = lock.writeLock();
+        try {
+            r.run();
+        } finally {
+            lock.unlockWrite(stamp);
+        }
+    }
+
     /**
      * Check if "o" has the same value as this ConcurrentList.
      *
@@ -58,17 +113,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public boolean equals(Object o) {
-        long stamp = lock.tryOptimisticRead();
-        if (lock.validate(stamp)) {
-            return super.equals(o);
-        } else {
-            stamp = lock.readLock();
-            try {
-                return super.equals(o);
-            } finally {
-                lock.unlockRead(stamp);
-            }
-        }
+        return optimisticRead(() -> super.equals(o));
     }
 
     /**
@@ -78,17 +123,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public int hashCode() {
-        long stamp = lock.tryOptimisticRead();
-        if (lock.validate(stamp)) {
-            return super.hashCode();
-        } else {
-            stamp = lock.readLock();
-            try {
-                return super.hashCode();
-            } finally {
-                lock.unlockRead(stamp);
-            }
-        }
+        return optimisticRead(super::hashCode);
     }
 
 
@@ -97,12 +132,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public void trimToSize() {
-        long stamp = lock.writeLock();
-        try {
-            super.trimToSize();
-        } finally {
-            lock.unlockWrite(stamp);
-        }
+        write(super::trimToSize);
     }
 
     /**
@@ -113,12 +143,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public void ensureCapacity(int minCapacity) {
-        long stamp = lock.writeLock();
-        try {
-            super.ensureCapacity(minCapacity);
-        } finally {
-            lock.unlockWrite(stamp);
-        }
+        write(() -> super.ensureCapacity(minCapacity));
     }
 
     /**
@@ -129,12 +154,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public T remove(int index) {
-        long stamp = lock.writeLock();
-        try {
-            return super.remove(index);
-        } finally {
-            lock.unlockWrite(stamp);
-        }
+        return write(() -> remove(index));
     }
 
     /**
@@ -145,12 +165,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     protected void removeRange(int fromIndex, int toIndex) {
-        long stamp = lock.writeLock();
-        try {
-            super.removeRange(fromIndex, toIndex);
-        } finally {
-            lock.unlockWrite(stamp);
-        }
+        write(() -> super.removeRange(fromIndex, toIndex));
     }
 
     /**
@@ -158,17 +173,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public String toString() {
-        long stamp = lock.tryOptimisticRead();
-        if (lock.validate(stamp)) {
-            return super.toString();
-        } else {
-            stamp = lock.readLock();
-            try {
-                return super.toString();
-            } finally {
-                lock.unlockRead(stamp);
-            }
-        }
+        return optimisticRead(super::toString);
     }
 
 
@@ -179,17 +184,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public int size() {
-        long stamp = lock.tryOptimisticRead();
-        if (lock.validate(stamp)) {
-            return super.size();
-        } else {
-            stamp = lock.readLock();
-            try {
-                return super.size();
-            } finally {
-                lock.unlockRead(stamp);
-            }
-        }
+        return optimisticRead(super::size);
     }
 
 
@@ -200,17 +195,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public boolean isEmpty() {
-        long stamp = lock.tryOptimisticRead();
-        if (lock.validate(stamp)) {
-            return super.isEmpty();
-        } else {
-            stamp = lock.readLock();
-            try {
-                return super.isEmpty();
-            } finally {
-                lock.unlockRead(stamp);
-            }
-        }
+        return optimisticRead(super::isEmpty);
     }
 
     /**
@@ -221,17 +206,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public boolean contains(Object o) {
-        long stamp = lock.tryOptimisticRead();
-        if (lock.validate(stamp)) {
-            return super.contains(o);
-        } else {
-            stamp = lock.readLock();
-            try {
-                return super.contains(o);
-            } finally {
-                lock.unlockRead(stamp);
-            }
-        }
+        return optimisticRead(() -> super.contains(o));
     }
 
     /**
@@ -242,17 +217,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public Iterator<T> iterator() {
-        long stamp = lock.tryOptimisticRead();
-        if (lock.validate(stamp)) {
-            return super.iterator();
-        } else {
-            stamp = lock.readLock();
-            try {
-                return super.iterator();
-            } finally {
-                lock.unlockRead(stamp);
-            }
-        }
+        return optimisticRead(super::iterator);
     }
 
     /**
@@ -263,17 +228,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public void forEach(Consumer<? super T> action) {
-        long stamp = lock.tryOptimisticRead();
-        if (lock.validate(stamp)) {
-            super.forEach(action);
-        } else {
-            stamp = lock.readLock();
-            try {
-                super.forEach(action);
-            } finally {
-                lock.unlockRead(stamp);
-            }
-        }
+        write(() -> super.forEach(action));
     }
 
     /**
@@ -283,17 +238,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public Object[] toArray() {
-        long stamp = lock.tryOptimisticRead();
-        if (lock.validate(stamp)) {
-            return super.toArray();
-        } else {
-            stamp = lock.readLock();
-            try {
-                return super.toArray();
-            } finally {
-                lock.unlockRead(stamp);
-            }
-        }
+        return optimisticRead(super::toArray);
     }
 
     /**
@@ -306,17 +251,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public <V> V[] toArray(V[] a) {
-        long stamp = lock.tryOptimisticRead();
-        if (lock.validate(stamp)) {
-            return super.toArray(a);
-        } else {
-            stamp = lock.readLock();
-            try {
-                return super.toArray(a);
-            } finally {
-                lock.unlockRead(stamp);
-            }
-        }
+        return optimisticRead(() -> super.toArray(a));
     }
 
     /**
@@ -328,17 +263,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public <V> V[] toArray(IntFunction<V[]> generator) {
-        long stamp = lock.tryOptimisticRead();
-        if (lock.validate(stamp)) {
-            return super.toArray(generator);
-        } else {
-            stamp = lock.readLock();
-            try {
-                return super.toArray(generator);
-            } finally {
-                lock.unlockRead(stamp);
-            }
-        }
+        return optimisticRead(() -> super.toArray(generator));
     }
 
     /**
@@ -349,12 +274,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public void add(int index, T element) {
-        long stamp = lock.writeLock();
-        try {
-            super.add(index, element);
-        } finally {
-            lock.unlockWrite(stamp);
-        }
+        write(() -> super.add(index, element));
     }
 
     /**
@@ -365,12 +285,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public boolean add(T t) {
-        long stamp = lock.writeLock();
-        try {
-            return super.add(t);
-        } finally {
-            lock.unlockWrite(stamp);
-        }
+        return write(() -> super.add(t));
     }
 
     /**
@@ -381,12 +296,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public boolean remove(Object o) {
-        long stamp = lock.writeLock();
-        try {
-            return super.remove(o);
-        } finally {
-            lock.unlockWrite(stamp);
-        }
+        return write(() -> super.remove(o));
     }
 
     /**
@@ -397,17 +307,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public boolean containsAll(Collection<?> c) {
-        long stamp = lock.tryOptimisticRead();
-        if (lock.validate(stamp)) {
-            return super.containsAll(c);
-        } else {
-            stamp = lock.readLock();
-            try {
-                return super.containsAll(c);
-            } finally {
-                lock.unlockRead(stamp);
-            }
-        }
+        return optimisticRead(() -> super.containsAll(c));
     }
 
     /**
@@ -418,12 +318,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public boolean addAll(Collection<? extends T> c) {
-        long stamp = lock.writeLock();
-        try {
-            return super.addAll(c);
-        } finally {
-            lock.unlockWrite(stamp);
-        }
+        return write(() -> super.addAll(c));
     }
 
     /**
@@ -435,12 +330,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public boolean addAll(int index, Collection<? extends T> c) {
-        long stamp = lock.writeLock();
-        try {
-            return super.addAll(index, c);
-        } finally {
-            lock.unlockWrite(stamp);
-        }
+        return write(() -> super.addAll(index, c));
     }
 
     /**
@@ -451,12 +341,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public boolean removeAll(Collection<?> c) {
-        long stamp = lock.writeLock();
-        try {
-            return super.removeAll(c);
-        } finally {
-            lock.unlockWrite(stamp);
-        }
+        return write(() -> super.removeAll(c));
     }
 
     /**
@@ -467,12 +352,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public boolean removeIf(Predicate<? super T> filter) {
-        long stamp = lock.writeLock();
-        try {
-            return super.removeIf(filter);
-        } finally {
-            lock.unlockWrite(stamp);
-        }
+        return write(() -> super.removeIf(filter));
     }
 
     /**
@@ -483,12 +363,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public boolean retainAll(Collection<?> c) {
-        long stamp = lock.writeLock();
-        try {
-            return super.retainAll(c);
-        } finally {
-            lock.unlockWrite(stamp);
-        }
+        return write(() -> super.retainAll(c));
     }
 
     /**
@@ -498,12 +373,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public void replaceAll(UnaryOperator<T> operator) {
-        long stamp = lock.writeLock();
-        try {
-            super.replaceAll(operator);
-        } finally {
-            lock.unlockWrite(stamp);
-        }
+        write(() -> super.replaceAll(operator));
     }
 
     /**
@@ -513,12 +383,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public void sort(Comparator<? super T> c) {
-        long stamp = lock.writeLock();
-        try {
-            super.sort(c);
-        } finally {
-            lock.unlockWrite(stamp);
-        }
+        write(() -> super.sort(c));
     }
 
     /**
@@ -526,12 +391,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public void clear() {
-        long stamp = lock.writeLock();
-        try {
-            super.clear();
-        } finally {
-            lock.unlockWrite(stamp);
-        }
+        write(super::clear);
     }
 
     /**
@@ -542,17 +402,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public T get(int index) {
-        long stamp = lock.tryOptimisticRead();
-        if (lock.validate(stamp)) {
-            return super.get(index);
-        } else {
-            stamp = lock.readLock();
-            try {
-                return super.get(index);
-            } finally {
-                lock.unlockRead(stamp);
-            }
-        }
+        return optimisticRead(() -> super.get(index));
     }
 
     /**
@@ -564,12 +414,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public T set(int index, T element) {
-        long stamp = lock.writeLock();
-        try {
-            return super.set(index, element);
-        } finally {
-            lock.unlockWrite(stamp);
-        }
+        return write(() -> super.set(index, element));
     }
 
     /**
@@ -580,17 +425,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public int indexOf(Object o) {
-        long stamp = lock.tryOptimisticRead();
-        if (lock.validate(stamp)) {
-            return super.indexOf(o);
-        } else {
-            stamp = lock.readLock();
-            try {
-                return super.indexOf(o);
-            } finally {
-                lock.unlockRead(stamp);
-            }
-        }
+        return optimisticRead(() -> super.indexOf(o));
     }
 
     /**
@@ -601,17 +436,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public int lastIndexOf(Object o) {
-        long stamp = lock.tryOptimisticRead();
-        if (lock.validate(stamp)) {
-            return super.lastIndexOf(o);
-        } else {
-            stamp = lock.readLock();
-            try {
-                return super.lastIndexOf(o);
-            } finally {
-                lock.unlockRead(stamp);
-            }
-        }
+        return optimisticRead(() -> super.lastIndexOf(o));
     }
 
     /**
@@ -622,17 +447,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public ListIterator<T> listIterator() {
-        long stamp = lock.tryOptimisticRead();
-        if (lock.validate(stamp)) {
-            return super.listIterator();
-        } else {
-            stamp = lock.readLock();
-            try {
-                return super.listIterator();
-            } finally {
-                lock.unlockRead(stamp);
-            }
-        }
+        return optimisticRead(super::listIterator);
     }
 
     /**
@@ -643,17 +458,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public ListIterator<T> listIterator(int index) {
-        long stamp = lock.tryOptimisticRead();
-        if (lock.validate(stamp)) {
-            return super.listIterator(index);
-        } else {
-            stamp = lock.readLock();
-            try {
-                return super.listIterator(index);
-            } finally {
-                lock.unlockRead(stamp);
-            }
-        }
+        return optimisticRead(() -> super.listIterator(index));
     }
 
     /**
@@ -665,17 +470,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public java.util.List<T> subList(int fromIndex, int toIndex) {
-        long stamp = lock.tryOptimisticRead();
-        if (lock.validate(stamp)) {
-            return super.subList(fromIndex, toIndex);
-        } else {
-            stamp = lock.readLock();
-            try {
-                return super.subList(fromIndex, toIndex);
-            } finally {
-                lock.unlockRead(stamp);
-            }
-        }
+        return read(() -> super.subList(fromIndex, toIndex));
     }
 
     /**
@@ -686,17 +481,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public Spliterator<T> spliterator() {
-        long stamp = lock.tryOptimisticRead();
-        if (lock.validate(stamp)) {
-            return super.spliterator();
-        } else {
-            stamp = lock.readLock();
-            try {
-                return super.spliterator();
-            } finally {
-                lock.unlockRead(stamp);
-            }
-        }
+        return optimisticRead(super::spliterator);
     }
 
     /**
@@ -707,17 +492,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public Stream<T> stream() {
-        long stamp = lock.tryOptimisticRead();
-        if (lock.validate(stamp)) {
-            return super.stream();
-        } else {
-            stamp = lock.readLock();
-            try {
-                return super.stream();
-            } finally {
-                lock.unlockRead(stamp);
-            }
-        }
+        return optimisticRead(super::stream);
     }
 
     /**
@@ -728,16 +503,6 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
      */
     @Override
     public Stream<T> parallelStream() {
-        long stamp = lock.tryOptimisticRead();
-        if (lock.validate(stamp)) {
-            return super.parallelStream();
-        } else {
-            stamp = lock.readLock();
-            try {
-                return super.parallelStream();
-            } finally {
-                lock.unlockRead(stamp);
-            }
-        }
+        return read(super::parallelStream);
     }
 }

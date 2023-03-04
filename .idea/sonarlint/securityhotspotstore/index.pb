@@ -15,3 +15,9 @@ J
 javadoc/overview-tree.html,7/1/71406485add504432964b59bd0fbe78a32cd344a
 4
 mvnw,5/d/5d837c4ed85ecaaf932c506e80ff5d7b9f3d590d
+a
+1src/main/java/org/example/acrastt/utils/Main.java,3/9/392e950d676d53e0f7b647dda81148540a03b637
+U
+%.mvn/wrapper/maven-wrapper.properties,3/2/32e074f71d16c1e88ac02aa83592ca6ad1fd98a8
+;
+LICENSE.txt,7/9/79b82ce9b64a924266619555502f890dd80c83b9

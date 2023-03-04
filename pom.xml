@@ -41,7 +41,7 @@
     <packaging>jar</packaging>
     <groupId>org.example.acrastt.utils</groupId>
     <artifactId>bot-333.Utils</artifactId>
-    <version>1.4</version>
+    <version>2.0</version>
 
     <distributionManagement>
         <repository>
@@ -103,13 +103,16 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>5.9.2</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>5.9.2</version>
-            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-samples</artifactId>
+            <version>1.36</version>
         </dependency>
     </dependencies>
 </project>

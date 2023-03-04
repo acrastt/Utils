@@ -51,7 +51,7 @@ public class JMHUtils {
                     .result(file)
                     .build()).run();
         } catch (RunnerException e) {
-            log.error(e.getMessage(), e);
+            log.error("Error when running JMH benchmark with JSON", e);
         }
     }
 
@@ -84,7 +84,7 @@ public class JMHUtils {
                     .result(file)
                     .build()).run();
         } catch (RunnerException e) {
-            log.error(e.getMessage(), e);
+            log.error("Error running JMH benchmark with CSV", e);
         }
     }
 
@@ -92,7 +92,7 @@ public class JMHUtils {
      * This runs the given JMH benchmark with GC profiling(Memory measurement)
      * and saves the results in a json file.
      *
-     * @param file the json file to be saved
+     * @param file  the json file to be saved
      * @param clazz class of the benchmark to be run
      */
     public static void runWithGCAndJson(String file, String clazz) {
@@ -104,7 +104,7 @@ public class JMHUtils {
                     .addProfiler("gc")
                     .build()).run();
         } catch (RunnerException e) {
-            log.error(e.getMessage(), e);
+            log.error("Error when running JMH benchmark with GC and JSON", e);
         }
     }
 
@@ -112,7 +112,7 @@ public class JMHUtils {
      * This runs the given JMH benchmark with GC profiling(Memory measurement)
      * and saves the results in a csv file.
      *
-     * @param file the csv file to be saved
+     * @param file  the csv file to be saved
      * @param clazz class of the benchmark to be run
      */
     public static void runWithGCAndCSV(String file, String clazz) {
@@ -124,7 +124,7 @@ public class JMHUtils {
                     .addProfiler("gc")
                     .build()).run();
         } catch (RunnerException e) {
-            log.error(e.getMessage(), e);
+            log.error("Error when running JMH benchmark with GC and CSV", e);
         }
     }
 
@@ -140,7 +140,7 @@ public class JMHUtils {
                     .addProfiler("gc")
                     .build()).run();
         } catch (RunnerException e) {
-            log.error(e.getMessage(), e);
+            log.error("Error when running JMH benchmark with GC", e);
         }
     }
 }

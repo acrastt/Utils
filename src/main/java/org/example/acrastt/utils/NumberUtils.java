@@ -19,17 +19,17 @@ public class NumberUtils {
      * @return the String with ordinals
      */
     public static String convertToOrdinal(int number) {
-        String end = "th";
-        int lastTwo = Math.abs(number) % 100;
-        if (lastTwo < 11 || lastTwo > 13) {
-            int units = Math.abs(number) % 10;
-            end = switch (units) {
-                case 1 -> "st";
-                case 2 -> "nd";
-                case 3 -> "rd";
-                default -> "th";
-            };
+        int absNumber = Math.abs(number);
+        int lastTwoDigits = absNumber % 100;
+        if (lastTwoDigits == 11 || lastTwoDigits == 13) {
+            return number + "th";
         }
-        return number + end;
+
+        return number + switch (absNumber % 10) {
+            case 1 -> "st";
+            case 2 -> "nd";
+            case 3 -> "rd";
+            default -> "th";
+        };
     }
 }

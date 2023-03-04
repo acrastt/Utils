@@ -11,9 +11,6 @@ various applications. This repository contains the following utilities.
   functions that creates json/csv file when running benchmarks.
 - `NumberUtils`: A utility which processes numbers in Java, it currently has
   a function that converts numbers to string with ordinals.
-- `SerializableObject`: SerializableObject is a class which is serializable,
-  it can be used for testing purposes.
-- `Benchmark`: How dare you?
 
 ## Getting Started
 
@@ -25,7 +22,7 @@ has a separate file and can be used independently.
 
 - JDK(Java Development Kit) 14 or later^
 - Apache Maven 3.2.5 or later^
-^: This is the minimum requirement, but you should choose an LTS version.
+  ^: This is the minimum requirement, but you should choose an LTS version.
 
 ## Usage
 
@@ -77,36 +74,17 @@ NumberUtils is a utility class for numbers. Here are some examples:
 ```java
 import org.example.acrastt.utils.NumberUtils;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class Main {
     public static void main(String[] args) {
-        NumberUtils.convertToOrdinal(1); // 1st
-        NumberUtils.convertToOrdinal(2); // 2nd
-        NumberUtils.convertToOrdinal(3); // 3rd
-        NumberUtils.convertToOrdinal(4); // 4th
-        NumberUtils.convertToOrdinal(5); // 5th
+        assertEquals("1st", NumberUtils.convertToOrdinal(1)); // 1st
+        assertEquals("2nd", NumberUtils.convertToOrdinal(2)); // 2nd
+        assertEquals("3rd", NumberUtils.convertToOrdinal(3)); // 3rd
+        assertEquals("4th", NumberUtils.convertToOrdinal(4)); // 4th
+        assertEquals("5th", NumberUtils.convertToOrdinal(5)); // 5th
         // etc...
     }
-}
-```
-
-### SerializableObject
-
-SerializableObject is a utility class for testing,
-it is a serializable object that can be used in ObjectOutputStreams or others.
-Here are some examples:
-
-```java
-import org.example.acrastt.utils.SerializableObject;
-import java.io.ObjectOutputStream;
-import java.io.FileOutputStream;
-
-public class Main {
-  public static void main(String[] args) {
-    SerializableObject obj = new SerializableObject();
-    try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("yourFileName.txt"))) {
-        out.writeObject(obj);
-    }
-  }
 }
 ```
 
