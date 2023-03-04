@@ -24,20 +24,6 @@ public class JMHUtils {
 
     /**
      * Run a JMH benchmark while saving the results in a json file.
-     * The json file will be saved in the src directory with naming
-     * "JMH" + caller class name + ".json".
-     *
-     * @deprecated Use {@link #runWithJson(String, String)}
-     */
-    @Deprecated(since = "1.4", forRemoval = true)
-    public static void runWithJson() {
-        String file = new Exception().getStackTrace()[1].getClassName();
-        String[] split = file.split("\\.");
-        runWithJson("JMH" + split[split.length - 1], file);
-    }
-
-    /**
-     * Run a JMH benchmark while saving the results in a json file.
      * The json file will be saved with specified directory and name.
      *
      * @param file  the name of the json file to be saved
@@ -46,27 +32,17 @@ public class JMHUtils {
     public static void runWithJson(String file, String clazz) {
         try {
             new Runner(new OptionsBuilder()
+                    // Specify the class to be called for the benchmark
                     .include(clazz)
+                    // Use JSON to save the benchmark results
                     .resultFormat(ResultFormatType.JSON)
+                    // Specify the file of the results
                     .result(file)
+                    // Build and runs the benchmark
                     .build()).run();
         } catch (RunnerException e) {
             log.error("Error when running JMH benchmark with JSON", e);
         }
-    }
-
-    /**
-     * Run a JMH benchmark while saving the results in a csv file.
-     * The json file will be saved in the src directory with naming
-     * "JMH" + caller class name + ".csv".
-     *
-     * @deprecated Use {@link #runWithCsv(String, String)}
-     */
-    @Deprecated(since = "1.4", forRemoval = true)
-    public static void runWithCsv() {
-        String file = new Exception().getStackTrace()[1].getClassName();
-        String[] split = file.split("\\.");
-        runWithCsv("JMH" + split[split.length - 1], file);
     }
 
     /**
@@ -79,9 +55,13 @@ public class JMHUtils {
     public static void runWithCsv(String file, String clazz) {
         try {
             new Runner(new OptionsBuilder()
+                    // Specify the class to be called for the benchmark
                     .include(clazz)
+                    // Use CSV to save the benchmark results
                     .resultFormat(ResultFormatType.CSV)
+                    // Specify the file of the results
                     .result(file)
+                    // Build and runs the benchmark
                     .build()).run();
         } catch (RunnerException e) {
             log.error("Error running JMH benchmark with CSV", e);
@@ -98,10 +78,15 @@ public class JMHUtils {
     public static void runWithGCAndJson(String file, String clazz) {
         try {
             new Runner(new OptionsBuilder()
+                    // Specify the class to be called for the benchmark
                     .include(clazz)
+                    // Use JSON to save the benchmark results
                     .resultFormat(ResultFormatType.JSON)
+                    // Specify the file of the results
                     .result(file)
+                    // Adds the GC profiler
                     .addProfiler("gc")
+                    // Build and runs the benchmark
                     .build()).run();
         } catch (RunnerException e) {
             log.error("Error when running JMH benchmark with GC and JSON", e);
@@ -118,10 +103,15 @@ public class JMHUtils {
     public static void runWithGCAndCSV(String file, String clazz) {
         try {
             new Runner(new OptionsBuilder()
+                    // Specify the class to be called for the benchmark
                     .include(clazz)
+                    // Use CSV to save the benchmark results
                     .resultFormat(ResultFormatType.CSV)
+                    // Specify the file of the results
                     .result(file)
+                    // Adds the GC profiler
                     .addProfiler("gc")
+                    // Build and runs the benchmark
                     .build()).run();
         } catch (RunnerException e) {
             log.error("Error when running JMH benchmark with GC and CSV", e);
@@ -136,8 +126,11 @@ public class JMHUtils {
     public static void runWithGC(String clazz) {
         try {
             new Runner(new OptionsBuilder()
+                    // Specify the class to be called for the benchmark
                     .include(clazz)
+                    // Adds the GC profiler
                     .addProfiler("gc")
+                    // Build and runs the benchmark
                     .build()).run();
         } catch (RunnerException e) {
             log.error("Error when running JMH benchmark with GC", e);

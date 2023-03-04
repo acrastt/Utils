@@ -25,6 +25,8 @@ import java.util.stream.Stream;
 @SuppressWarnings("boxing")
 public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>, Serializable {
 
+    private static final String UNREACHABLE = "Reached an unreachable state while trying to ";
+
     private static final Logger log = LoggerFactory.getLogger(ConcurrentList.class);
     /**
      * A stamped lock that is used to synchronize access to the list.
@@ -56,8 +58,17 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         super(c);
     }
 
+    /**
+     * Runs a method with optimistic reading technique.
+     *
+     * @param c the method to execute
+     * @return the result of the method
+     * @param <V> the type of the result
+     */
     private <V> V optimisticRead(Callable<V> c) {
+        // Gets the optimistic read lock
         long stamp = lock.tryOptimisticRead();
+        // If there is no one writing, call the method. Otherwise, use normal read lock
         if (lock.validate(stamp)) {
             try {
                 return c.call();
@@ -67,11 +78,21 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         } else {
             return read(c);
         }
-        return null;
+        // This shouldn't happen
+        throw new IllegalStateException(UNREACHABLE + "read optimistically");
     }
 
+    /**
+     * Runs a method with read lock technique.
+     *
+     * @param c the method to execute
+     * @return the result of the method
+     * @param <V> the type of the result
+     */
     private <V> V read(Callable<V> c) {
+        // Gets the read lock
         long stamp = lock.readLock();
+        // Calls the method and releases the lock
         try {
             try {
                 return c.call();
@@ -81,11 +102,21 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         } finally {
             lock.unlockRead(stamp);
         }
-        return null;
+        // This shouldn't happen
+        throw new IllegalStateException(UNREACHABLE + "read");
     }
 
+    /**
+     * Runs a method with write lock technique.
+     *
+     * @param c the method to execute
+     * @return the result of the method
+     * @param <V> the type of the result
+     */
     private <V> V write(Callable<V> c) {
+        // Gets the write lock
         long stamp = lock.writeLock();
+        // Calls the method and releases the lock
         try {
             return c.call();
         } catch (Exception e) {
@@ -93,11 +124,19 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         } finally {
             lock.unlockWrite(stamp);
         }
-        return null;
+        // This shouldn't happen
+        throw new IllegalStateException(UNREACHABLE + "write");
     }
 
+    /**
+     * Runs a method without a result with write lock technique.
+     *
+     * @param r the method to execute
+     */
     private void write(Runnable r) {
+        // Gets the write lock
         long stamp = lock.writeLock();
+        // Runs the method and releases the lock
         try {
             r.run();
         } finally {
