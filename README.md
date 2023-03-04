@@ -1,4 +1,5 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=bot-333_Utils&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=bot-333_Utils)
+
 # Utils
 
 This is a collection of different utility functions that can be used in

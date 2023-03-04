@@ -61,9 +61,9 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
     /**
      * Runs a method with optimistic reading technique.
      *
-     * @param c the method to execute
-     * @return the result of the method
+     * @param c   the method to execute
      * @param <V> the type of the result
+     * @return the result of the method
      */
     private <V> V optimisticRead(Callable<V> c) {
         // Gets the optimistic read lock
@@ -85,9 +85,9 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
     /**
      * Runs a method with read lock technique.
      *
-     * @param c the method to execute
-     * @return the result of the method
+     * @param c   the method to execute
      * @param <V> the type of the result
+     * @return the result of the method
      */
     private <V> V read(Callable<V> c) {
         // Gets the read lock
@@ -109,9 +109,9 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
     /**
      * Runs a method with write lock technique.
      *
-     * @param c the method to execute
-     * @return the result of the method
+     * @param c   the method to execute
      * @param <V> the type of the result
+     * @return the result of the method
      */
     private <V> V write(Callable<V> c) {
         // Gets the write lock
