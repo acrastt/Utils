@@ -115,10 +115,5 @@
             <artifactId>junit-jupiter-engine</artifactId>
             <version>5.9.2</version>
         </dependency>
-        <dependency>
-            <groupId>org.openjdk.jmh</groupId>
-            <artifactId>jmh-samples</artifactId>
-            <version>1.36</version>
-        </dependency>
     </dependencies>
 </project>
