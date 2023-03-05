@@ -1,0 +1,7 @@
+exclude_patterns:
+- ".github/"
+- ".idea/"
+- ".mvn/"
+- "javadoc/"
+- "target/"
+- "utils/"
