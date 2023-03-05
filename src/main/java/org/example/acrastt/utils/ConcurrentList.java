@@ -94,11 +94,9 @@ public class ConcurrentList<T> extends ArrayList<T> {
         long stamp = lock.readLock();
         // Calls the method and releases the lock
         try {
-            try {
-                return c.call();
-            } catch (Exception e) {
-                LOG.error("Exception when trying to read concurrently", e);
-            }
+            return c.call();
+        } catch (Exception e) {
+            LOG.error("Exception while trying to read", e);
         } finally {
             lock.unlockRead(stamp);
         }

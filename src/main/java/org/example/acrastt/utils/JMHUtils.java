@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
  * The utility class for JMH.
  *
  * @author Bohan Du
- * @version 1.1
+ * @version 1.2
  * @since 1.0
  */
 public final class JMHUtils {
@@ -47,7 +47,7 @@ public final class JMHUtils {
      * @param file  the name of the csv file to be saved
      * @param clazz the class to be called for the benchmark
      */
-    public static void runWithCsv(String file, String clazz) {
+    public static void runWithCSV(String file, String clazz) {
         try {
             new Runner(getCSVBuilder(file, clazz)
                     // Build and runs the benchmark
