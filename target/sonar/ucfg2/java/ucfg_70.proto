@@ -1,0 +1,32 @@
+
+:__sonar_lambda_23$org.example.acrastt.utils.ConcurrentListo
+c/Users/Bohan/IdeaProjects/bot-333.Utils/src/main/java/org/example/acrastt/utils/ConcurrentList.javaô ô(="startingBlock*ê
+startingBlock
+ô ô(=Ç
+Ä
+
+__unknown_file (?
+ConcurrentList.this(org.example.acrastt.utils.ConcurrentList"__id*a
+
+__unknown_file (E*C*
+(org.example.acrastt.utils.ConcurrentList"
+ConcurrentList.this*
+1*Š
+1
+ô$ ô()Ê
+Ç
+
+ô$ ô(=
+%1java.util.ListIterator";java.util.ArrayList#listIterator(I)Ljava/util/ListIterator;*:
+
+__unknown_file (
+
+superjava.util.ArrayList*"
+
+__unknown_file (
+""",
+
+ô$ ô(=
+
+%1java.util.ListIteratorB!
+java.util.concurrent.Callable

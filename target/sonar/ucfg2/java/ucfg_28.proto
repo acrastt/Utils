@@ -1,0 +1,41 @@
+
+9__sonar_lambda_4$org.example.acrastt.utils.ConcurrentListo
+c/Users/Bohan/IdeaProjects/bot-333.Utils/src/main/java/org/example/acrastt/utils/ConcurrentList.javaø ø(5"startingBlock*ø
+startingBlock
+ø ø(5‹
+ˆ
+
+__unknown_file (
+ojava.lang.Object"__id*O
+
+__unknown_file (3*1*
+(org.example.acrastt.utils.ConcurrentList"
+oÇ
+Ä
+
+__unknown_file (?
+ConcurrentList.this(org.example.acrastt.utils.ConcurrentList"__id*a
+
+__unknown_file (E*C*
+(org.example.acrastt.utils.ConcurrentList"
+ConcurrentList.this*
+1*ó
+1
+ø$ ø()Â
+¿
+
+ø$ ø(5
+%1boolean"1java.util.ArrayList#contains(Ljava/lang/Object;)Z*:
+
+__unknown_file (
+
+superjava.util.ArrayList*3
+
+__unknown_file (
+
+ojava.lang.Object"
+
+ø$ ø(5
+
+%1booleanB!
+java.util.concurrent.Callable

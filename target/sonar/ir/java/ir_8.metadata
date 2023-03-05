@@ -1,0 +1,2 @@
+org.example.acrastt.utils.ConcurrentList#equals(Ljava/lang/Object;)Z
+org.example.acrastt.utils.ConcurrentList#optimisticRead(Ljava/util/concurrent/Callable;)Ljava/lang/Object;

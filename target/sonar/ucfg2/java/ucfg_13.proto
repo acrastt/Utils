@@ -1,0 +1,34 @@
+
+aorg.example.acrastt.utils.ConcurrentList#write(Ljava/util/concurrent/Callable;)Ljava/lang/Object;m
+c/Users/Bohan/IdeaProjects/bot-333.Utils/src/main/java/org/example/acrastt/utils/ConcurrentList.javat t("6*$
+4y y("
+y y(	
+
+%2V*­
+5y y(˜•
+y y(
+%2V"6java.util.concurrent.Callable#call()Ljava/lang/Object;*@
+
+__unknown_file ($
+"
+cjava.util.concurrent.Callable2call()*
+4*Ô
+6v v(•
+’
+v v(,
+%0&java.util.concurrent.locks.StampedLock"__id*R
+
+__unknown_file (6*4*
+(org.example.acrastt.utils.ConcurrentList"
+lock§¤
+v v(%
+
+%1long"3java.util.concurrent.locks.StampedLock#writeLock()J*J
+
+__unknown_file (.
+,
+%0&java.util.concurrent.locks.StampedLock2writeLock()*
+5:.
+t t(%"
+cjava.util.concurrent.CallableB,*
+(org.example.acrastt.utils.ConcurrentList

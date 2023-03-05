@@ -1,0 +1,2 @@
+org.example.acrastt.utils.ConcurrentList#replaceAll(Ljava/util/function/UnaryOperator;)V
+org.example.acrastt.utils.ConcurrentList#write(Ljava/lang/Runnable;)V

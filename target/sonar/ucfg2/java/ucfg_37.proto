@@ -1,0 +1,73 @@
+
+eorg.example.acrastt.utils.ConcurrentList#toArray(Ljava/util/function/IntFunction;)[Ljava/lang/Object;o
+c/Users/Bohan/IdeaProjects/bot-333.Utils/src/main/java/org/example/acrastt/utils/ConcurrentList.java∞ ∞("startingBlock*≤
+startingBlock
+∞ ∞(6†
+ù
+
+Ø Ø(
+%3"
+__annotate*2
+
+__unknown_file (
+java.lang.Override*I
+
+__unknown_file (-
++
+	generatorjava.util.function.IntFunctionm
+k
+
+∞, ∞(5+
+	generatorjava.util.function.IntFunction"__annotation*"
+
+__unknown_file (
+
+%3*
+1*∏
+1
+± ±(¢
+ü
+
+± ±(<#
+%0java.util.concurrent.Callable"__declareFunction*Y
+
+__unknown_file (=;
+9__sonar_lambda_7$org.example.acrastt.utils.ConcurrentList¢
+ü
+
+__unknown_file (2
+#
+%0java.util.concurrent.Callable"
+	generator"__id*I
+
+__unknown_file (-
++
+	generatorjava.util.function.IntFunction´
+®
+
+__unknown_file (<
+#
+%0java.util.concurrent.Callable"
+ConcurrentList.this"__id*H
+
+__unknown_file (,*
+(org.example.acrastt.utils.ConcurrentListì
+ê
+
+± ±(=	
+%2V[]"jorg.example.acrastt.utils.ConcurrentList#optimisticRead(Ljava/util/concurrent/Callable;)Ljava/lang/Object;*H
+
+__unknown_file (,*
+(org.example.acrastt.utils.ConcurrentList*A
+
+__unknown_file (%
+#
+%0java.util.concurrent.Callable"
+
+± ±(>
+	
+%2V[]:9
+
+∞ ∞(5+
+	generatorjava.util.function.IntFunctionB,*
+(org.example.acrastt.utils.ConcurrentListH

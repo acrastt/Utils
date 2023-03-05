@@ -1,0 +1,75 @@
+
+Xorg.example.acrastt.utils.ConcurrentList#toArray([Ljava/lang/Object;)[Ljava/lang/Object;o
+c/Users/Bohan/IdeaProjects/bot-333.Utils/src/main/java/org/example/acrastt/utils/ConcurrentList.java¤ ¤("startingBlock*ê
+startingBlock
+¤ ¤(!|
+z
+
+£ £(
+%3"
+__annotate*2
+
+__unknown_file (
+java.lang.Override*&
+
+__unknown_file (
+
+
+aV[]J
+H
+
+¤ ¤( 
+aV[]"__annotation*"
+
+__unknown_file (
+
+%3*
+1*‹
+1
+¥ ¥(¢
+Ÿ
+
+¥ ¥(4#
+%0java.util.concurrent.Callable"__declareFunction*Y
+
+__unknown_file (=;
+9__sonar_lambda_6$org.example.acrastt.utils.ConcurrentListv
+t
+
+__unknown_file (*
+#
+%0java.util.concurrent.Callable"
+a"__id*&
+
+__unknown_file (
+
+
+aV[]«
+¨
+
+__unknown_file (<
+#
+%0java.util.concurrent.Callable"
+ConcurrentList.this"__id*H
+
+__unknown_file (,*
+(org.example.acrastt.utils.ConcurrentList“
+
+
+¥ ¥(5	
+%2V[]"jorg.example.acrastt.utils.ConcurrentList#optimisticRead(Ljava/util/concurrent/Callable;)Ljava/lang/Object;*H
+
+__unknown_file (,*
+(org.example.acrastt.utils.ConcurrentList*A
+
+__unknown_file (%
+#
+%0java.util.concurrent.Callable"
+
+¥ ¥(6
+	
+%2V[]:
+
+¤ ¤( 
+aV[]B,*
+(org.example.acrastt.utils.ConcurrentListH

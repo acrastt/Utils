@@ -1,0 +1,72 @@
+
+Korg.example.acrastt.utils.ConcurrentList#removeAll(Ljava/util/Collection;)Zo
+c/Users/Bohan/IdeaProjects/bot-333.Utils/src/main/java/org/example/acrastt/utils/ConcurrentList.javaþ þ("startingBlock*Ž
+startingBlock
+þ þ(-Ž
+‹
+
+ý ý(
+%3"
+__annotate*2
+
+__unknown_file (
+java.lang.Override*7
+
+__unknown_file (
+
+cjava.util.Collection[
+Y
+
+þ+ þ(,
+cjava.util.Collection"__annotation*"
+
+__unknown_file (
+
+%3*
+1*Ÿ
+1
+ÿ ÿ(£
+ 
+
+ÿ ÿ(-#
+%0java.util.concurrent.Callable"__declareFunction*Z
+
+__unknown_file (><
+:__sonar_lambda_14$org.example.acrastt.utils.ConcurrentListˆ
+…
+
+__unknown_file (*
+#
+%0java.util.concurrent.Callable"
+c"__id*7
+
+__unknown_file (
+
+cjava.util.Collection«
+¨
+
+__unknown_file (<
+#
+%0java.util.concurrent.Callable"
+ConcurrentList.this"__id*H
+
+__unknown_file (,*
+(org.example.acrastt.utils.ConcurrentList˜
+•
+
+ÿ ÿ(.
+%2java.lang.Boolean"aorg.example.acrastt.utils.ConcurrentList#write(Ljava/util/concurrent/Callable;)Ljava/lang/Object;*H
+
+__unknown_file (,*
+(org.example.acrastt.utils.ConcurrentList*A
+
+__unknown_file (%
+#
+%0java.util.concurrent.Callable"
+
+ÿ ÿ(/
+"":'
+
+þ þ(,
+cjava.util.CollectionB,*
+(org.example.acrastt.utils.ConcurrentListHP

@@ -1,0 +1,2 @@
+org.example.acrastt.utils.ConcurrentList#remove(I)Ljava/lang/Object;
+org.example.acrastt.utils.ConcurrentList#write(Ljava/util/concurrent/Callable;)Ljava/lang/Object;

@@ -1,0 +1,72 @@
+
+Rorg.example.acrastt.utils.ConcurrentList#removeIf(Ljava/util/function/Predicate;)Zo
+c/Users/Bohan/IdeaProjects/bot-333.Utils/src/main/java/org/example/acrastt/utils/ConcurrentList.java‰ ‰("startingBlock*¨
+startingBlock
+‰ ‰(8›
+˜
+
+ˆ ˆ(
+%3"
+__annotate*2
+
+__unknown_file (
+java.lang.Override*D
+
+__unknown_file ((
+&
+filterjava.util.function.Predicateh
+f
+
+‰1 ‰(7&
+filterjava.util.function.Predicate"__annotation*"
+
+__unknown_file (
+
+%3*
+1*±
+1
+Š Š(£
+ 
+
+Š Š(1#
+%0java.util.concurrent.Callable"__declareFunction*Z
+
+__unknown_file (><
+:__sonar_lambda_15$org.example.acrastt.utils.ConcurrentListš
+—
+
+__unknown_file (/
+#
+%0java.util.concurrent.Callable"
+filter"__id*D
+
+__unknown_file ((
+&
+filterjava.util.function.Predicate«
+¨
+
+__unknown_file (<
+#
+%0java.util.concurrent.Callable"
+ConcurrentList.this"__id*H
+
+__unknown_file (,*
+(org.example.acrastt.utils.ConcurrentList˜
+•
+
+Š Š(2
+%2java.lang.Boolean"aorg.example.acrastt.utils.ConcurrentList#write(Ljava/util/concurrent/Callable;)Ljava/lang/Object;*H
+
+__unknown_file (,*
+(org.example.acrastt.utils.ConcurrentList*A
+
+__unknown_file (%
+#
+%0java.util.concurrent.Callable"
+
+Š Š(3
+"":4
+
+‰ ‰(7&
+filterjava.util.function.PredicateB,*
+(org.example.acrastt.utils.ConcurrentListHP

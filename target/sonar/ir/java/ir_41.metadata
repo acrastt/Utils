@@ -1,0 +1,2 @@
+org.example.acrastt.utils.ConcurrentList#subList(II)Ljava/util/List;
+org.example.acrastt.utils.ConcurrentList#read(Ljava/util/concurrent/Callable;)Ljava/lang/Object;
