@@ -1,5 +1,3 @@
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=bot-333_Utils&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=bot-333_Utils)
-
 # Utils
 
 This is a collection of different utility functions that can be used in
@@ -22,8 +20,9 @@ has a separate file and can be used independently.
 
 ### Requirements
 
-- JDK(Java Development Kit) 14 or later^
+- JDK(Java Development Kit) ~~14~~11 or later^
 - Apache Maven 3.2.5 or later^
+
   ^: This is the minimum requirement, but you should choose an LTS version.
 
 ## Usage

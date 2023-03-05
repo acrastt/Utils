@@ -4,7 +4,7 @@ package org.example.acrastt.utils;
  * The utility class for numbers(int, double, long, etc.).
  *
  * @author Bohan Du
- * @version 1.0
+ * @version 1.1
  * @since 1.0
  */
 public class NumberUtils {
@@ -28,11 +28,17 @@ public class NumberUtils {
             return number + "th";
         }
         // Return the number and suffix depending on the last digit
-        return number + switch (absNumber % 10) {
-            case 1 -> "st";
-            case 2 -> "nd";
-            case 3 -> "rd";
-            default -> "th";
-        };
+        int lastDigit = absNumber % 10;
+        String suffix;
+        if (lastDigit == 1) {
+            suffix = "st";
+        } else if (lastDigit == 2) {
+            suffix = "nd";
+        } else if (lastDigit == 3) {
+            suffix = "rd";
+        } else {
+            suffix = "th";
+        }
+        return number + suffix;
     }
 }

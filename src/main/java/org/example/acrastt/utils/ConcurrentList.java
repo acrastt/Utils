@@ -19,7 +19,7 @@ import java.util.stream.Stream;
  *
  * @param <T> The type of the elements in this collection.
  * @author Bohan Du
- * @version 1.0
+ * @version 2.0
  * @see java.util.ArrayList
  */
 @SuppressWarnings("boxing")

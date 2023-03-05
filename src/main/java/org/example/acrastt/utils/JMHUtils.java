@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
  * The utility class for JMH.
  *
  * @author Bohan Du
- * @version 1.0
+ * @version 1.1
  * @since 1.0
  */
 public class JMHUtils {

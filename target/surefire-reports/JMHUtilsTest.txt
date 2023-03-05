@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: JMHUtilsTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.008 s <<< FAILURE! - in JMHUtilsTest
-JMHUtilsTest.test  Time elapsed: 0.002 s  <<< ERROR!
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.061 s <<< FAILURE! - in JMHUtilsTest
+JMHUtilsTest.test  Time elapsed: 0.006 s  <<< ERROR!
 java.lang.NoClassDefFoundError: org/openjdk/jmh/samples/JMHSample_08_DeadCode
 	at JMHUtilsTest.test(JMHUtilsTest.java:14)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
