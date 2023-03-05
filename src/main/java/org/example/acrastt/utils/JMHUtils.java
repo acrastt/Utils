@@ -32,11 +32,7 @@ public final class JMHUtils {
      */
     public static void runWithJson(String file, String clazz) {
         try {
-            new Runner(getBuilder(clazz)
-                    // Use JSON to save the benchmark results
-                    .resultFormat(ResultFormatType.JSON)
-                    // Specify the file of the results
-                    .result(file)
+            new Runner(getJSONBuilder(file, clazz)
                     // Build and runs the benchmark
                     .build()).run();
         } catch (RunnerException e) {
@@ -53,11 +49,7 @@ public final class JMHUtils {
      */
     public static void runWithCsv(String file, String clazz) {
         try {
-            new Runner(getBuilder(clazz)
-                    // Use CSV to save the benchmark results
-                    .resultFormat(ResultFormatType.CSV)
-                    // Specify the file of the results
-                    .result(file)
+            new Runner(getCSVBuilder(file, clazz)
                     // Build and runs the benchmark
                     .build()).run();
         } catch (RunnerException e) {
@@ -74,11 +66,7 @@ public final class JMHUtils {
      */
     public static void runWithGCAndJson(String file, String clazz) {
         try {
-            new Runner(getBuilder(clazz)
-                    // Use JSON to save the benchmark results
-                    .resultFormat(ResultFormatType.JSON)
-                    // Specify the file of the results
-                    .result(file)
+            new Runner(getJSONBuilder(file, clazz)
                     // Adds the GC profiler
                     .addProfiler("gc")
                     // Build and runs the benchmark
@@ -97,11 +85,7 @@ public final class JMHUtils {
      */
     public static void runWithGCAndCSV(String file, String clazz) {
         try {
-            new Runner(getBuilder(clazz)
-                    // Use CSV to save the benchmark results
-                    .resultFormat(ResultFormatType.CSV)
-                    // Specify the file of the results
-                    .result(file)
+            new Runner(getCSVBuilder(file, clazz)
                     // Adds the GC profiler
                     .addProfiler("gc")
                     // Build and runs the benchmark
@@ -129,7 +113,20 @@ public final class JMHUtils {
     }
 
     /**
-     * Gets the option builder for the class clazz
+     * Gets the option builder for the result in file and the class clazz
+     *
+     * @param file the file of the result to be stored
+     * @param clazz the class to get the option builder
+     * @return the option builder
+     */
+    private static ChainedOptionsBuilder getBuilder(String file, String clazz) {
+        return getBuilder(clazz)
+                // Specify the file of the results
+                .result(file);
+    }
+
+    /**
+     * Return the builder for the class clazz
      *
      * @param clazz the class to get the option builder
      * @return the option builder
@@ -138,5 +135,30 @@ public final class JMHUtils {
         return new OptionsBuilder()
                 // Specify the class to be called for the benchmark
                 .include(clazz);
+    }
+
+    /**
+     * Return the builder for the CSV result in file and the class clazz
+     * @param file the file of the result in CSV to be stored
+     * @param clazz the class to get the option builder
+     * @return the option builder
+     */
+    private static ChainedOptionsBuilder getCSVBuilder(String file, String clazz) {
+        return getBuilder(file, clazz)
+                // Specify the result format
+                .resultFormat(ResultFormatType.CSV);
+    }
+
+    /**
+     * Return the builder for the JSON result in file and the class clazz
+     *
+     * @param file the file of the result in JSON to be stored
+     * @param clazz the class to get the option builder
+     * @return the option builder
+     */
+    private static ChainedOptionsBuilder getJSONBuilder(String file, String clazz) {
+        return getBuilder(file, clazz)
+                // Specify the result format
+                .resultFormat(ResultFormatType.JSON);
     }
 }
