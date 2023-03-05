@@ -14,3 +14,6 @@ plugins:
     config:
       sonar.java.source: "11"
       minimum_severity: minor
+  pmd:
+      enabled: true
+      channel: "beta"
