@@ -66,9 +66,7 @@ public final class JMHUtils {
      */
     public static void runWithGCAndJson(String file, String clazz) {
         try {
-            new Runner(getJSONBuilder(file, clazz)
-                    // Adds the GC profiler
-                    .addProfiler("gc")
+            new Runner(getJSONAndGCProfiler(file, clazz)
                     // Build and runs the benchmark
                     .build()).run();
         } catch (RunnerException e) {
@@ -85,9 +83,7 @@ public final class JMHUtils {
      */
     public static void runWithGCAndCSV(String file, String clazz) {
         try {
-            new Runner(getCSVBuilder(file, clazz)
-                    // Adds the GC profiler
-                    .addProfiler("gc")
+            new Runner(getCSVAndGCProfiler(file, clazz)
                     // Build and runs the benchmark
                     .build()).run();
         } catch (RunnerException e) {
@@ -115,7 +111,7 @@ public final class JMHUtils {
     /**
      * Gets the option builder for the result in file and the class clazz
      *
-     * @param file the file of the result to be stored
+     * @param file  the file of the result to be stored
      * @param clazz the class to get the option builder
      * @return the option builder
      */
@@ -139,7 +135,8 @@ public final class JMHUtils {
 
     /**
      * Return the builder for the CSV result in file and the class clazz
-     * @param file the file of the result in CSV to be stored
+     *
+     * @param file  the file of the result in CSV to be stored
      * @param clazz the class to get the option builder
      * @return the option builder
      */
@@ -152,7 +149,7 @@ public final class JMHUtils {
     /**
      * Return the builder for the JSON result in file and the class clazz
      *
-     * @param file the file of the result in JSON to be stored
+     * @param file  the file of the result in JSON to be stored
      * @param clazz the class to get the option builder
      * @return the option builder
      */
@@ -160,5 +157,17 @@ public final class JMHUtils {
         return getBuilder(file, clazz)
                 // Specify the result format
                 .resultFormat(ResultFormatType.JSON);
+    }
+
+    private static ChainedOptionsBuilder getCSVAndGCProfiler(String file, String clazz) {
+        return getCSVBuilder(file, clazz)
+                // Specify the profiler
+                .addProfiler("gc");
+    }
+
+    private static ChainedOptionsBuilder getJSONAndGCProfiler(String file, String clazz) {
+        return getJSONBuilder(file, clazz)
+                // Specify the profiler
+                .addProfiler("gc");
     }
 }
