@@ -4,7 +4,7 @@ package org.example.acrastt.utils;
  * The utility class for numbers(int, double, long, etc.).
  *
  * @author Bohan Du
- * @version 1.1
+ * @version 1.2
  * @since 1.0
  */
 public class NumberUtils {
