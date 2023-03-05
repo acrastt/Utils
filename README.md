@@ -1,3 +1,7 @@
+[![Maintainability]
+(https://api.codeclimate.com/v1/badges/561e0b73622ac6ed9e2f/maintainability)]
+(https://codeclimate.com/github/bot-333/Utils/maintainability)
+
 # Utils
 
 This is a collection of different utility functions that can be used in
