@@ -120,7 +120,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         try {
             return c.call();
         } catch (Exception e) {
-            log.error("Exception while writing concurrently");
+            log.error("Exception while writing concurrently", e);
         } finally {
             lock.unlockWrite(stamp);
         }
