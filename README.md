@@ -20,10 +20,10 @@ has a separate file and can be used independently.
 
 ### Requirements
 
-- JDK(Java Development Kit) ~~14~~11 or later^
+- JDK(Java Development Kit) ~~14~~8 or later^
 - Apache Maven 3.2.5 or later^
 
-  ^: This is the minimum requirement, but you should choose an LTS version.
+  ^: This is the minimum requirement, but you should consider an LTS version.
 
 ## Usage
 
