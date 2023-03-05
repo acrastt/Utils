@@ -3,6 +3,7 @@ package org.example.acrastt.utils;
 import org.openjdk.jmh.results.format.ResultFormatType;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
+import org.openjdk.jmh.runner.options.ChainedOptionsBuilder;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,9 +32,7 @@ public final class JMHUtils {
      */
     public static void runWithJson(String file, String clazz) {
         try {
-            new Runner(new OptionsBuilder()
-                    // Specify the class to be called for the benchmark
-                    .include(clazz)
+            new Runner(getBuilder(clazz)
                     // Use JSON to save the benchmark results
                     .resultFormat(ResultFormatType.JSON)
                     // Specify the file of the results
@@ -54,9 +53,7 @@ public final class JMHUtils {
      */
     public static void runWithCsv(String file, String clazz) {
         try {
-            new Runner(new OptionsBuilder()
-                    // Specify the class to be called for the benchmark
-                    .include(clazz)
+            new Runner(getBuilder(clazz)
                     // Use CSV to save the benchmark results
                     .resultFormat(ResultFormatType.CSV)
                     // Specify the file of the results
@@ -77,9 +74,7 @@ public final class JMHUtils {
      */
     public static void runWithGCAndJson(String file, String clazz) {
         try {
-            new Runner(new OptionsBuilder()
-                    // Specify the class to be called for the benchmark
-                    .include(clazz)
+            new Runner(getBuilder(clazz)
                     // Use JSON to save the benchmark results
                     .resultFormat(ResultFormatType.JSON)
                     // Specify the file of the results
@@ -102,9 +97,7 @@ public final class JMHUtils {
      */
     public static void runWithGCAndCSV(String file, String clazz) {
         try {
-            new Runner(new OptionsBuilder()
-                    // Specify the class to be called for the benchmark
-                    .include(clazz)
+            new Runner(getBuilder(clazz)
                     // Use CSV to save the benchmark results
                     .resultFormat(ResultFormatType.CSV)
                     // Specify the file of the results
@@ -125,9 +118,7 @@ public final class JMHUtils {
      */
     public static void runWithGC(String clazz) {
         try {
-            new Runner(new OptionsBuilder()
-                    // Specify the class to be called for the benchmark
-                    .include(clazz)
+            new Runner(getBuilder(clazz)
                     // Adds the GC profiler
                     .addProfiler("gc")
                     // Build and runs the benchmark
@@ -135,5 +126,17 @@ public final class JMHUtils {
         } catch (RunnerException e) {
             LOG.error("Error when running JMH benchmark with GC", e);
         }
+    }
+
+    /**
+     * Gets the option builder for the class clazz
+     *
+     * @param clazz the class to get the option builder
+     * @return the option builder
+     */
+    private static ChainedOptionsBuilder getBuilder(String clazz) {
+        return new OptionsBuilder()
+                // Specify the class to be called for the benchmark
+                .include(clazz);
     }
 }

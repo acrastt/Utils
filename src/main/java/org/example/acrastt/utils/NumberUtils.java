@@ -28,7 +28,18 @@ public final class NumberUtils {
             return number + "th";
         }
         // Return the number and suffix depending on the last digit
-        int lastDigit = absNumber % 10;
+        return returnOrdinal(number);
+    }
+
+    /**
+     * Returns the number with suffix(Will not exclude exceptions like when
+     * the number ends with 11 or 13
+     *
+     * @param number the number to be calculated
+     * @return the number with suffix(Will not exclude exceptions)
+     */
+    private static String returnOrdinal(int number) {
+        int lastDigit = Math.abs(number) % 10;
         String suffix;
         if (lastDigit == 1) {
             suffix = "st";
