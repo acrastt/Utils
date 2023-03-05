@@ -1,0 +1,26 @@
+version: "2"
+
+exclude_patterns:
+- ".github/"
+- ".idea/"
+- ".mvn/"
+- "javadoc/"
+- "target/"
+- "utils/"
+
+plugins:
+  sonar-java:
+    enabled: true
+    config:
+      sonar.java.source: "11"
+      minimum_severity: minor
+  pmd:
+      enabled: true
+      channel: "beta"
+  plugins:
+    checkstyle:
+      enabled: true
+      channel: "beta"
+  plugins:
+    editorconfig:
+      enabled: true
