@@ -3,4 +3,5 @@ exclude_patterns:
 - ".idea/"
 - ".mvn/"
 - "javadoc/"
+- "target/"
 - "utils/"
