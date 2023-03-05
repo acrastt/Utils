@@ -12,5 +12,5 @@ plugins:
   sonar-java:
     enabled: true
     config:
-      sonar.java.source: "7"
+      sonar.java.source: "11"
       minimum_severity: minor
