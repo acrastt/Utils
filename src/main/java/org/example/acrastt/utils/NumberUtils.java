@@ -7,7 +7,7 @@ package org.example.acrastt.utils;
  * @version 1.2
  * @since 1.0
  */
-public class NumberUtils {
+public final class NumberUtils {
 
     private NumberUtils() {
     }

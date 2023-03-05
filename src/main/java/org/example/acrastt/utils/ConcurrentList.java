@@ -4,7 +4,6 @@ package org.example.acrastt.utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.Serializable;
 import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.locks.StampedLock;
@@ -22,12 +21,13 @@ import java.util.stream.Stream;
  * @version 2.0
  * @see java.util.ArrayList
  */
-@SuppressWarnings("boxing")
-public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>, Serializable {
+public class ConcurrentList<T> extends ArrayList<T> {
+
+    private static final long serialVersionUID = 5560587813010361548L;
 
     private static final String UNREACHABLE = "Reached an unreachable state while trying to ";
 
-    private static final Logger log = LoggerFactory.getLogger(ConcurrentList.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ConcurrentList.class);
     /**
      * A stamped lock that is used to synchronize access to the list.
      */
@@ -73,7 +73,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
             try {
                 return c.call();
             } catch (Exception e) {
-                log.error("Exception when trying to read optimistically", e);
+                LOG.error("Exception when trying to read optimistically", e);
             }
         } else {
             return read(c);
@@ -97,7 +97,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
             try {
                 return c.call();
             } catch (Exception e) {
-                log.error("Exception when trying to read concurrently", e);
+                LOG.error("Exception when trying to read concurrently", e);
             }
         } finally {
             lock.unlockRead(stamp);
@@ -120,7 +120,7 @@ public class ConcurrentList<T> extends ArrayList<T> implements java.util.List<T>
         try {
             return c.call();
         } catch (Exception e) {
-            log.error("Exception while writing concurrently", e);
+            LOG.error("Exception while writing concurrently", e);
         } finally {
             lock.unlockWrite(stamp);
         }

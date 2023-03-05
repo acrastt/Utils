@@ -14,9 +14,9 @@ import org.slf4j.LoggerFactory;
  * @version 1.1
  * @since 1.0
  */
-public class JMHUtils {
+public final class JMHUtils {
 
-    private static final Logger log = LoggerFactory.getLogger(JMHUtils.class);
+    private static final Logger LOG = LoggerFactory.getLogger(JMHUtils.class);
 
 
     private JMHUtils() {
@@ -41,7 +41,7 @@ public class JMHUtils {
                     // Build and runs the benchmark
                     .build()).run();
         } catch (RunnerException e) {
-            log.error("Error when running JMH benchmark with JSON", e);
+            LOG.error("Error when running JMH benchmark with JSON", e);
         }
     }
 
@@ -64,7 +64,7 @@ public class JMHUtils {
                     // Build and runs the benchmark
                     .build()).run();
         } catch (RunnerException e) {
-            log.error("Error running JMH benchmark with CSV", e);
+            LOG.error("Error running JMH benchmark with CSV", e);
         }
     }
 
@@ -89,7 +89,7 @@ public class JMHUtils {
                     // Build and runs the benchmark
                     .build()).run();
         } catch (RunnerException e) {
-            log.error("Error when running JMH benchmark with GC and JSON", e);
+            LOG.error("Error when running JMH benchmark with GC and JSON", e);
         }
     }
 
@@ -114,7 +114,7 @@ public class JMHUtils {
                     // Build and runs the benchmark
                     .build()).run();
         } catch (RunnerException e) {
-            log.error("Error when running JMH benchmark with GC and CSV", e);
+            LOG.error("Error when running JMH benchmark with GC and CSV", e);
         }
     }
 
@@ -133,7 +133,7 @@ public class JMHUtils {
                     // Build and runs the benchmark
                     .build()).run();
         } catch (RunnerException e) {
-            log.error("Error when running JMH benchmark with GC", e);
+            LOG.error("Error when running JMH benchmark with GC", e);
         }
     }
 }
