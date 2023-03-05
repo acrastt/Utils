@@ -115,7 +115,7 @@ public final class JMHUtils {
      * @param clazz the class to get the option builder
      * @return the option builder
      */
-    private static ChainedOptionsBuilder getBuilder(String file, String clazz) {
+    public static ChainedOptionsBuilder getBuilder(String file, String clazz) {
         return getBuilder(clazz)
                 // Specify the file of the results
                 .result(file);
@@ -127,7 +127,7 @@ public final class JMHUtils {
      * @param clazz the class to get the option builder
      * @return the option builder
      */
-    private static ChainedOptionsBuilder getBuilder(String clazz) {
+    public static ChainedOptionsBuilder getBuilder(String clazz) {
         return new OptionsBuilder()
                 // Specify the class to be called for the benchmark
                 .include(clazz);
@@ -140,7 +140,7 @@ public final class JMHUtils {
      * @param clazz the class to get the option builder
      * @return the option builder
      */
-    private static ChainedOptionsBuilder getCSVBuilder(String file, String clazz) {
+    public static ChainedOptionsBuilder getCSVBuilder(String file, String clazz) {
         return getBuilder(file, clazz)
                 // Specify the result format
                 .resultFormat(ResultFormatType.CSV);
@@ -153,19 +153,19 @@ public final class JMHUtils {
      * @param clazz the class to get the option builder
      * @return the option builder
      */
-    private static ChainedOptionsBuilder getJSONBuilder(String file, String clazz) {
+    public static ChainedOptionsBuilder getJSONBuilder(String file, String clazz) {
         return getBuilder(file, clazz)
                 // Specify the result format
                 .resultFormat(ResultFormatType.JSON);
     }
 
-    private static ChainedOptionsBuilder getCSVAndGCProfiler(String file, String clazz) {
+    public static ChainedOptionsBuilder getCSVAndGCProfiler(String file, String clazz) {
         return getCSVBuilder(file, clazz)
                 // Specify the profiler
                 .addProfiler("gc");
     }
 
-    private static ChainedOptionsBuilder getJSONAndGCProfiler(String file, String clazz) {
+    public static ChainedOptionsBuilder getJSONAndGCProfiler(String file, String clazz) {
         return getJSONBuilder(file, clazz)
                 // Specify the profiler
                 .addProfiler("gc");
