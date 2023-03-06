@@ -1,4 +1,5 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/7063b3099b7b5d83f7ec/maintainability)](https://codeclimate.com/github/acrastt/Utils/maintainability)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=bot-333_Utils&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=bot-333_Utils)
 
 # Utils
 
