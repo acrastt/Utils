@@ -17,9 +17,6 @@ plugins:
   pmd:
       enabled: true
       channel: "beta"
-  checkstyle:
-      enabled: true
-      channel: "beta"
   editorconfig:
       enabled: true
   markdownlint:
