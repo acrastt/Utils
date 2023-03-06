@@ -83,7 +83,7 @@ public final class JMHUtils {
      */
     public static void runWithGCAndCSV(String file, String clazz) {
         try {
-            new Runner(getCSVAndGCProfiler(file, clazz)
+            new Runner(getCSVAndGCBuilder(file, clazz)
                     // Build and runs the benchmark
                     .build()).run();
         } catch (RunnerException e) {
@@ -159,12 +159,26 @@ public final class JMHUtils {
                 .resultFormat(ResultFormatType.JSON);
     }
 
-    public static ChainedOptionsBuilder getCSVAndGCProfiler(String file, String clazz) {
+    /**
+     * Returns the option builder for the CSV result in file and the class clazz
+     *
+     * @param file the file of the result in CSV to be stored
+     * @param clazz the class to get the option builder
+     * @return the option builder
+     */
+    public static ChainedOptionsBuilder getCSVAndGCBuilder(String file, String clazz) {
         return getCSVBuilder(file, clazz)
                 // Specify the profiler
                 .addProfiler("gc");
     }
 
+    /**
+     * Returns the option builder for the JSON result in file and the class clazz
+     *
+     * @param file the file of the result in JSON to be stored
+     * @param clazz the class to get the option builder
+     * @return the option builder
+     */
     public static ChainedOptionsBuilder getJSONAndGCProfiler(String file, String clazz) {
         return getJSONBuilder(file, clazz)
                 // Specify the profiler
