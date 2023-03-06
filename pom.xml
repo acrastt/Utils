@@ -63,6 +63,11 @@
         </url>
     </scm>
 
+    <properties>
+        <sonar.organization>bot-333</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.apache.commons</groupId>

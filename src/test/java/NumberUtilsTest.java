@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 import static org.example.acrastt.utils.NumberUtils.convertToOrdinal;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class NumberUtilsTest {
+class NumberUtilsTest {
     @Test
     void test() {
         // Test the convertToOrdinal method
