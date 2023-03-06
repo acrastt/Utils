@@ -9,16 +9,13 @@ exclude_patterns:
 - "utils/"
 
 plugins:
-  java:
+  checkstyle:
     enabled: true
-    config:
-      checkstyle:
-        enabled: true
-      pmd:
-        enabled: true
-      findbugs:
-        enabled: true
-      junit:
-        enabled: true
-      jacoco:
-        enabled: true
+  pmd:
+    enabled: true
+  findbugs:
+    enabled: true
+  junit:
+    enabled: true
+  jacoco:
+    enabled: true
