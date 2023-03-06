@@ -1,2 +1,0 @@
-org.example.acrastt.utils.ConcurrentList#toArray(Ljava/util/function/IntFunction;)[Ljava/lang/Object;
-org.example.acrastt.utils.ConcurrentList#optimisticRead(Ljava/util/concurrent/Callable;)Ljava/lang/Object;

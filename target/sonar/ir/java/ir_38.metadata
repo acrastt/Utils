@@ -1,2 +1,0 @@
-org.example.acrastt.utils.ConcurrentList#lastIndexOf(Ljava/lang/Object;)I
-org.example.acrastt.utils.ConcurrentList#optimisticRead(Ljava/util/concurrent/Callable;)Ljava/lang/Object;

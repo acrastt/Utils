@@ -1,2 +1,0 @@
-org.example.acrastt.utils.ConcurrentList#hashCode()I
-org.example.acrastt.utils.ConcurrentList#optimisticRead(Ljava/util/concurrent/Callable;)Ljava/lang/Object;

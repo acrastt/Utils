@@ -1,2 +1,0 @@
-org.example.acrastt.utils.ConcurrentList#retainAll(Ljava/util/Collection;)Z
-org.example.acrastt.utils.ConcurrentList#write(Ljava/util/concurrent/Callable;)Ljava/lang/Object;

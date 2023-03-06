@@ -1,42 +1,0 @@
-
-9__sonar_lambda_6$org.example.acrastt.utils.ConcurrentListo
-c/Users/Bohan/IdeaProjects/bot-333.Utils/src/main/java/org/example/acrastt/utils/ConcurrentList.java¥ ¥(4"startingBlock*é
-startingBlock
-¥ ¥(4}
-{
-
-__unknown_file (
-aV[]"__id*O
-
-__unknown_file (3*1*
-(org.example.acrastt.utils.ConcurrentList"
-aÇ
-Ä
-
-__unknown_file (?
-ConcurrentList.this(org.example.acrastt.utils.ConcurrentList"__id*a
-
-__unknown_file (E*C*
-(org.example.acrastt.utils.ConcurrentList"
-ConcurrentList.this*
-1*ð
-1
-¥$ ¥()Ã
-À
-
-¥$ ¥(4	
-%1V[]"Cjava.util.ArrayList#toArray([Ljava/lang/Object;)[Ljava/lang/Object;*:
-
-__unknown_file (
-
-superjava.util.ArrayList*&
-
-__unknown_file (
-
-
-aV[]"
-
-¥$ ¥(4
-	
-%1V[]B!
-java.util.concurrent.Callable

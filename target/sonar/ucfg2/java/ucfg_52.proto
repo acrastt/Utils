@@ -1,41 +1,0 @@
-
-:__sonar_lambda_15$org.example.acrastt.utils.ConcurrentListo
-c/Users/Bohan/IdeaProjects/bot-333.Utils/src/main/java/org/example/acrastt/utils/ConcurrentList.javaä ä(1"startingBlock*é
-startingBlock
-ä ä(1°
-û
-
-__unknown_file (&
-filterjava.util.function.Predicate"__id*T
-
-__unknown_file (8*6*
-(org.example.acrastt.utils.ConcurrentList"
-filter«
-ƒ
-
-__unknown_file (?
-ConcurrentList.this(org.example.acrastt.utils.ConcurrentList"__id*a
-
-__unknown_file (E*C*
-(org.example.acrastt.utils.ConcurrentList"
-ConcurrentList.this*
-1*ê
-1
-ä ä( ﬂ
-‹
-
-ä ä(1
-%1boolean"=java.util.ArrayList#removeIf(Ljava/util/function/Predicate;)Z*:
-
-__unknown_file (
-
-superjava.util.ArrayList*D
-
-__unknown_file ((
-&
-filterjava.util.function.Predicate"
-
-ä ä(1
-
-%1booleanB!
-java.util.concurrent.Callable

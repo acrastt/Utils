@@ -1,2 +1,0 @@
-org.example.acrastt.utils.ConcurrentList#listIterator(I)Ljava/util/ListIterator;
-org.example.acrastt.utils.ConcurrentList#optimisticRead(Ljava/util/concurrent/Callable;)Ljava/lang/Object;

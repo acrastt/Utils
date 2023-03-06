@@ -1,2 +1,0 @@
-org.example.acrastt.utils.ConcurrentList#sort(Ljava/util/Comparator;)V
-org.example.acrastt.utils.ConcurrentList#write(Ljava/lang/Runnable;)V

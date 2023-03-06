@@ -1,37 +1,0 @@
-
-9__sonar_lambda_3$org.example.acrastt.utils.ConcurrentListo
-c/Users/Bohan/IdeaProjects/bot-333.Utils/src/main/java/org/example/acrastt/utils/ConcurrentList.javaÏ Ï(9"startingBlock*ê
-startingBlock
-Ï Ï(9Ç
-Ä
-
-__unknown_file (?
-ConcurrentList.this(org.example.acrastt.utils.ConcurrentList"__id*a
-
-__unknown_file (E*C*
-(org.example.acrastt.utils.ConcurrentList"
-ConcurrentList.this*
-1*ó
-1
-Ï Ï(Å
-Â
-
-Ï Ï(9
-
-%1void"$java.util.ArrayList#removeRange(II)V*:
-
-__unknown_file (
-
-superjava.util.ArrayList*"
-
-__unknown_file (
-""*"
-
-__unknown_file (
-"""
-
-Ï Ï(9
-
-
-%1voidB
-java.lang.Runnable

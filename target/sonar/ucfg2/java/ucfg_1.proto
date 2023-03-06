@@ -1,42 +1,0 @@
-
-Korg.example.acrastt.utils.NumberUtils#convertToOrdinal(I)Ljava/lang/String;j
-`/Users/Bohan/IdeaProjects/bot-333.Utils/src/main/java/org/example/acrastt/utils/NumberUtils.java ()"9*ã
-7 (V
-T
- ( 
-%1java.lang.String"__concat*
- (
-""*
- ( 
-th"$
- (!
-
-%1java.lang.String*ú
-9 (Ñ
-Å
- ((	
-%0int"java.lang.Math#abs(I)I*.
-
-__unknown_file ("
-java.lang.Math*"
-
-__unknown_file (
-""*
-7
-1*ã
-1 $(	V
-T
- $(	
-%2java.lang.String"__concat*
- (
-""*
- $(	
-"""$
- $(
-
-
-%2java.lang.String: 
-
-__unknown_file (
-""B)"'
-%org.example.acrastt.utils.NumberUtilsH

@@ -1,72 +1,0 @@
-
-Dorg.example.acrastt.utils.ConcurrentList#equals(Ljava/lang/Object;)Zo
-c/Users/Bohan/IdeaProjects/bot-333.Utils/src/main/java/org/example/acrastt/utils/ConcurrentList.javaö ö("startingBlock*Ü
-startingBlock
-ö ö(#ä
-á
-
-ô ô(
-%3"
-__annotate*2
-
-__unknown_file (
-java.lang.Override*3
-
-__unknown_file (
-
-ojava.lang.ObjectW
-U
-
-ö! ö("
-ojava.lang.Object"__annotation*"
-
-__unknown_file (
-
-%3*
-1*£
-1
-õ õ(¢
-ü
-
-õ õ(3#
-%0java.util.concurrent.Callable"__declareFunction*Y
-
-__unknown_file (=;
-9__sonar_lambda_0$org.example.acrastt.utils.ConcurrentListÑ
-Å
-
-__unknown_file (*
-#
-%0java.util.concurrent.Callable"
-o"__id*3
-
-__unknown_file (
-
-ojava.lang.Object´
-®
-
-__unknown_file (<
-#
-%0java.util.concurrent.Callable"
-ConcurrentList.this"__id*H
-
-__unknown_file (,*
-(org.example.acrastt.utils.ConcurrentList°
-û
-
-õ õ(4
-%2java.lang.Boolean"jorg.example.acrastt.utils.ConcurrentList#optimisticRead(Ljava/util/concurrent/Callable;)Ljava/lang/Object;*H
-
-__unknown_file (,*
-(org.example.acrastt.utils.ConcurrentList*A
-
-__unknown_file (%
-#
-%0java.util.concurrent.Callable"
-
-õ õ(5
-"":#
-
-ö ö("
-ojava.lang.ObjectB,*
-(org.example.acrastt.utils.ConcurrentListHP

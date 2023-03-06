@@ -1,43 +1,0 @@
-
-Dorg.example.acrastt.utils.ConcurrentList#subList(II)Ljava/util/List;o
-c/Users/Bohan/IdeaProjects/bot-333.Utils/src/main/java/org/example/acrastt/utils/ConcurrentList.javaÿ ÿ($"1* 
-1
-€ €(£
- 
-
-€ €(;#
-%0java.util.concurrent.Callable"__declareFunction*Z
-
-__unknown_file (><
-:__sonar_lambda_24$org.example.acrastt.utils.ConcurrentList«
-¨
-
-__unknown_file (<
-#
-%0java.util.concurrent.Callable"
-ConcurrentList.this"__id*H
-
-__unknown_file (,*
-(org.example.acrastt.utils.ConcurrentList”
-‘
-
-€ €(<
-%2java.util.List"`org.example.acrastt.utils.ConcurrentList#read(Ljava/util/concurrent/Callable;)Ljava/lang/Object;*H
-
-__unknown_file (,*
-(org.example.acrastt.utils.ConcurrentList*A
-
-__unknown_file (%
-#
-%0java.util.concurrent.Callable"$
-
-€ €(=
-
-%2java.util.List: 
-
-__unknown_file (
-"": 
-
-__unknown_file (
-""B,*
-(org.example.acrastt.utils.ConcurrentListH
