@@ -1,5 +1,5 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/7063b3099b7b5d83f7ec/maintainability)](https://codeclimate.com/github/acrastt/Utils/maintainability)
-[![Issues](https://img.shields.io/codeclimate/issues/acrastt/Utils)](https://codeclimate.com/repos/{your-repo-id}/maintainability)
+[![Issues](https://img.shields.io/codeclimate/issues/acrastt/Utils)](https://codeclimate.com/github/acrastt/Utils/issues)
 
 # Utils
 
