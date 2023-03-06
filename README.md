@@ -1,5 +1,4 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/7063b3099b7b5d83f7ec/maintainability)](https://codeclimate.com/github/acrastt/Utils/maintainability)
-[![Issues](https://img.shields.io/codeclimate/issues/acrastt/Utils)](https://codeclimate.com/github/acrastt/Utils/issues)
 
 # Utils
 
@@ -18,8 +17,9 @@ various applications. This repository contains the following utilities.
 ## Getting Started
 
 To use this library, simply clone the repository using a tool such as GitHub CLI
-and add necessary files to your application's source code. Each utility
-has a separate file and can be used independently.
+and either add necessary files to your application's source code or
+add this to your `.m2` file in your root folder.
+Each utility has a separate file and can be used independently.
 
 ### Requirements
 
