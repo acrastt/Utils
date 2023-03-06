@@ -16,13 +16,12 @@ plugins:
       enabled: true
       config:
         sonar.java.source: "7"
-        minimum_severity: critical
+        minimum_severity: minor
+      tests_patterns:
+          - src/test/**
+
   editorconfig:
       enabled: true
       channel: beta
-  fixme:
-      enabled: true
-  git-legal:
-      enabled: true
   markdownlint:
       enabled: true
