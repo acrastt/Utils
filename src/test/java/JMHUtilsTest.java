@@ -11,7 +11,7 @@ import java.nio.file.Files;
 
 public class JMHUtilsTest {
 
-    Logger LOG = LoggerFactory.getLogger(JMHUtilsTest.class);
+    private static final Logger LOG = LoggerFactory.getLogger(JMHUtilsTest.class);
 
     @Test
     void test() {
