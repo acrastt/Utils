@@ -16,7 +16,6 @@ plugins:
       minimum_severity: minor
   pmd:
       enabled: true
-      channel: "beta"
   editorconfig:
       enabled: true
   markdownlint:
