@@ -16,10 +16,8 @@ public class JMHUtilsTest {
     @Test
     void test() {
         // Runs HelloWorld benchmark with JSON and CSV
-        JMHUtils.runWithJson("src/test/java/JMH.json",
-                JMHSample_01_HelloWorld.class.getName());
-        JMHUtils.runWithCSV("src/test/java/JMH.csv",
-                JMHSample_01_HelloWorld.class.getName());
+        JMHUtils.runWithJson("src/test/java/JMH.json", JMHSample_01_HelloWorld.class.getName());
+        JMHUtils.runWithCSV("src/test/java/JMH.csv", JMHSample_01_HelloWorld.class.getName());
         // Assert that the files exist and delete them
         try {
             Files.delete(new File("src/test/java/JMH.json").toPath());
@@ -27,8 +25,7 @@ public class JMHUtilsTest {
         } catch (FileNotFoundException e) {
             LOG.error("JMHUtils not working properly", e);
         } catch (IOException e) {
-            LOG.error("Error when deleting `src/test/java/JMH.json` " +
-                    "or `src/test/java/JMH.csv`", e);
+            LOG.error("Error when deleting `src/test/java/JMH.json` " + "or `src/test/java/JMH.csv`", e);
         }
 
     }
