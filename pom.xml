@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <name>Utils</name>
+    <name>acrastt.Utils</name>
     <build>
         <plugins>
             <plugin>
@@ -40,14 +40,14 @@
     </build>
     <packaging>jar</packaging>
     <groupId>org.example.acrastt.utils</groupId>
-    <artifactId>bot-333.Utils</artifactId>
+    <artifactId>Utils</artifactId>
     <version>3.1</version>
 
     <distributionManagement>
         <repository>
-            <id>bot-333.Utils</id>
-            <name>bot-333.Utils</name>
-            <url>https://github.com/bot-333/Utils</url>
+            <id>acrastt.Utils</id>
+            <name>acrastt.Utils</name>
+            <url>https://github.com/acrastt/Utils</url>
         </repository>
     </distributionManagement>
 
@@ -62,12 +62,6 @@
             scm:git:https://github.com/bot-333/Utils.git
         </url>
     </scm>
-
-    <properties>
-        <sonar.projectKey>Utils</sonar.projectKey>
-        <sonar.organization>bot-333</sonar.organization>
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-    </properties>
 
     <dependencies>
         <dependency>

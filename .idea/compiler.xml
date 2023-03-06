@@ -6,8 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="bot-333.Utils" />
+        <module name="Utils" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="acrastt.Utils" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
