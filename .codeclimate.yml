@@ -12,9 +12,6 @@ plugins:
   pmd:
     enabled: true
     channel: "beta"
-  checkstyle:
-      enabled: true
-      channel: "beta"
   sonar-java:
       enabled: true
       config:
