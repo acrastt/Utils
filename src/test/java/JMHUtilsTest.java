@@ -12,22 +12,31 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class JMHUtilsTest {
 
+    private static final String JSON = "src/test/java/JMH.json";
+    private static final String CSV = "src/test/java/JMH.csv";
+
     private static final Logger LOG = LoggerFactory.getLogger(JMHUtilsTest.class);
 
     @Test
     void test() {
         // Runs HelloWorld benchmark with JSON and CSV
-        JMHUtils.runWithJson("src/test/java/JMH.json", JMHSample_01_HelloWorld.class.getName());
-        JMHUtils.runWithCSV("src/test/java/JMH.csv", JMHSample_01_HelloWorld.class.getName());
-        assertTrue(Files.exists(new File("src/test/java/JMH.json").toPath()));
-        assertTrue(Files.exists(new File("src/test/java/JMH.csv").toPath()));
+        JMHUtils.runWithJson(JSON, JMHSample_01_HelloWorld.class.getName());
+        JMHUtils.runWithCSV(CSV, JMHSample_01_HelloWorld.class.getName());
+        assertTrue(Files.exists(new File(JSON).toPath()));
+        assertTrue(Files.exists(new File(CSV).toPath()));
 
         // Assert that the files exist and delete them
         try {
-            Files.delete(new File("src/test/java/JMH.json").toPath());
-            Files.delete(new File("src/test/java/JMH.csv").toPath());
+            Files.delete(new File(JSON).toPath());
+            Files.delete(new File(CSV).toPath());
         } catch (IOException e) {
-            LOG.error("Error when deleting `src/test/java/JMH.json` " + "or `src/test/java/JMH.csv`", e);
+            LOG.error("Error when deleting '" +
+                            JSON
+                            + "'"
+                            + " or '"
+                            + CSV
+                            + "'"
+                    , e);
         }
     }
 }
