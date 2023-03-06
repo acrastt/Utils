@@ -1,9 +1,9 @@
 import org.example.acrastt.utils.ConcurrentList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -11,31 +11,24 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ConcurrentListTest {
-    private static final ArrayList<Integer> expected = new ArrayList<>();
     private ConcurrentList<Integer> actual;
     private ExecutorService exec;
 
     @BeforeEach
     public void setup() {
-        // Initialize the expected list
-        expected.clear();
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 100; j++) {
-                expected.add(j);
-            }
-        }
         // Initialize the actual list and the executor
         actual = new ConcurrentList<>();
         exec = Executors.newCachedThreadPool();
     }
 
-    @Test
+    @RepeatedTest(5)
     void test() throws InterruptedException {
         // Write integers concurrently
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
+            int finalI = i;
             exec.execute(() -> {
                 for (int j = 0; j < 100; j++) {
-                    actual.add(j);
+                    actual.add(finalI);
                 }
             });
         }
@@ -43,7 +36,7 @@ class ConcurrentListTest {
         exec.shutdown();
         exec.awaitTermination(Long.MAX_VALUE, TimeUnit.DAYS);
         // Compare the results
-        assertEquals(expected.toString(), actual.toString());
+        assertEquals(10000, actual.size());
     }
 
     @AfterEach
