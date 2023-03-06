@@ -1,7 +1,6 @@
 import org.example.acrastt.utils.ConcurrentList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -13,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ConcurrentListTest {
     private static final ArrayList<Integer> expected = new ArrayList<>();
-    private static ConcurrentList<Integer> actual;
-    private static ExecutorService exec;
+    private ConcurrentList<Integer> actual;
+    private ExecutorService exec;
 
     @BeforeEach
     public void setup() {
