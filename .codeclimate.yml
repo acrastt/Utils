@@ -17,10 +17,10 @@ plugins:
   pmd:
       enabled: true
       channel: "beta"
-  plugins:
-    checkstyle:
+  checkstyle:
       enabled: true
       channel: "beta"
-  plugins:
-    editorconfig:
+  editorconfig:
+      enabled: true
+  markdownlint:
       enabled: true
