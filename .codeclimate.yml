@@ -9,14 +9,16 @@ exclude_patterns:
 - "utils/"
 
 plugins:
-  sonar-java:
+  java:
     enabled: true
     config:
-      sonar.java.source: "11"
-      minimum_severity: minor
-  pmd:
-      enabled: true
-  editorconfig:
-      enabled: true
-  markdownlint:
-      enabled: true
+      checkstyle:
+        enabled: true
+      pmd:
+        enabled: true
+      findbugs:
+        enabled: true
+      junit:
+        enabled: true
+      jacoco:
+        enabled: true

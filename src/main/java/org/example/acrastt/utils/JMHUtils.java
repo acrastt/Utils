@@ -162,7 +162,7 @@ public final class JMHUtils {
     /**
      * Returns the option builder for the CSV result in file and the class clazz
      *
-     * @param file the file of the result in CSV to be stored
+     * @param file  the file of the result in CSV to be stored
      * @param clazz the class to get the option builder
      * @return the option builder
      */
@@ -175,7 +175,7 @@ public final class JMHUtils {
     /**
      * Returns the option builder for the JSON result in file and the class clazz
      *
-     * @param file the file of the result in JSON to be stored
+     * @param file  the file of the result in JSON to be stored
      * @param clazz the class to get the option builder
      * @return the option builder
      */
