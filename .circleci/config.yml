@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build-and-test:
     docker:
-      - image: circleci/maven:3.9.0-jdk-19.0.2
+      - image: maven:3.8.1-openjdk-19.0.2-slim
     steps:
       - checkout
       - run:
