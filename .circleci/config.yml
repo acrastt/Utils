@@ -14,6 +14,7 @@ jobs:
           command: mvn test
 
 workflows:
+  version: 2
   build:
     jobs:
       - build-and-test:
@@ -21,10 +22,10 @@ workflows:
             branches:
               only:
                 - master
-    schedules:
-      build-every-3-hours:
-        cron: "0 */3 * * *"
-        filters:
-          branches:
-            only:
-              - master
+
+workflows:
+  version: 2
+  build-and-test:
+    triggers:
+      - schedule:
+          cron: "0 */3 * * *"
