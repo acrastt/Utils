@@ -1,4 +1,5 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/7063b3099b7b5d83f7ec/maintainability)](https://codeclimate.com/github/acrastt/Utils/maintainability)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/acrastt/Utils/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/acrastt/Utils/tree/master)
 
 # Utils
 
