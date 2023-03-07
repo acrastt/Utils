@@ -3,7 +3,10 @@ version: 2.1
 jobs:
   build-and-test:
     docker:
-      - image: maven:3.8.1-openjdk-19.0.2-slim
+      - image: circleci/maven:3.9.0-jdk-19.0.2
+      auth:
+        username: acrastt
+        password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
       - run:
@@ -12,7 +15,6 @@ jobs:
       - run:
           name: Test
           command: mvn test
-          triggers:
 workflows:
   test_utilities:
     jobs:
