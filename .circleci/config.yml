@@ -12,14 +12,11 @@ jobs:
       - run:
           name: Test
           command: mvn test
+          triggers:
 workflows:
-  version: 2
-  build:
+  test_utilities:
     jobs:
-      - build-and-test:
-          filters:
-            branches:
-              only:
-                - main
-          schedule:
-            cron: "0 */3 * * *"
+      - build-and-test
+        triggers:
+            - schedule:
+                cron: "0 */3 * * *"
