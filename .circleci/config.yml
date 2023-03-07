@@ -14,14 +14,13 @@ jobs:
           command: mvn test
 workflows:
   version: 2
-  build:
-      jobs:
-        - build-and-test:
-            filters:
-              branches:
-                only:
-                  - master
   build-and-test:
+    jobs:
+      - build-and-test:
+          filters:
+            branches:
+              only:
+                - master
     triggers:
       - schedule:
           cron: "0 */3 * * *"
