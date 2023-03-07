@@ -7,6 +7,7 @@ exclude_patterns:
 - "javadoc/"
 - "target/"
 - "utils/"
+- ".circleci"
 
 plugins:
   pmd:
@@ -15,7 +16,7 @@ plugins:
   sonar-java:
       enabled: true
       config:
-        sonar.java.source: "7"
+        sonar.java.source: "11"
         minimum_severity: minor
       tests_patterns:
           - src/test/**
