@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/maven:3.9.0-jdk-19.0.2
         auth:
-            username: acrastt
+            username: $DOCKERHUB_USERNAME
             password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
