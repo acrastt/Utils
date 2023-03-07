@@ -17,6 +17,6 @@ workflows:
   test_utilities:
     jobs:
       - build-and-test
-        triggers:
-            - schedule:
-                cron: "0 */3 * * *"
+      triggers:
+          - schedule:
+              cron: "0 */3 * * *"
