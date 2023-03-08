@@ -11,10 +11,11 @@ jobs:
   test:
     docker:
       - image: cimg/openjdk:19.0.2
-    - checkout
-    - run:
-        name: Test
-        command: mvn test
+    steps:
+      - checkout
+      - run:
+          name: Test
+          command: mvn test
   sonarcloud:
     docker:
       - image: cimg/openjdk:19.0.2
