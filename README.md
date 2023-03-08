@@ -1,5 +1,4 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=acrastt_Utils&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=acrastt_Utils)
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/acrastt/Utils/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/acrastt/Utils/tree/master)
 
 # Utils
 
