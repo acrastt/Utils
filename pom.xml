@@ -103,11 +103,6 @@
 
   <packaging>jar</packaging>
 
-  <properties>
-    <sonar.organization>acrastt</sonar.organization>
-    <sonar.projectKey>acrastt_Utils</sonar.projectKey>
-  </properties>
-
   <scm>
     <connection>
       scm:git:https://github.com/bot-333/Utils.git

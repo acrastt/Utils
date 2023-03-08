@@ -1,5 +1,7 @@
 version: 2.1
-
+orbs:
+  sonarcloud: sonarsource/sonarcloud@1.1.1
+  maven: circleci/maven@1.4.1
 jobs:
   build:
     docker:
@@ -9,14 +11,6 @@ jobs:
       - run:
           name: Build
           command: mvn -B -DskipTests clean install
-  test:
-    docker:
-      - image: cimg/openjdk:19.0.2
-    steps:
-      - checkout
-      - run:
-          name: Test
-          command: mvn test
   sonarcloud:
     docker:
       - image: cimg/openjdk:19.0.2
@@ -24,11 +18,10 @@ jobs:
       - checkout
       - run:
           name: SonarCloud
-          command: mvn -e verify sonar:sonar -Dsonar.projectKey=acrastt_Utils
-
+          command: sonarcloud/scan
 workflows:
   main:
     jobs:
       - build
-      - test
+      - maven/test
       - sonarcloud
