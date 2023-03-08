@@ -1,18 +1,34 @@
 version: 2.1
 
 jobs:
-  build-and-test:
+  build:
     docker:
       - image: cimg/openjdk:19.0.2
     steps:
       - checkout
       - run:
           name: Build
-          command: mvn -B -DskipTests clean package
+          command: mvn -B -DskipTests clean install
+  test:
+    docker:
+      - image: cimg/openjdk:19.0.2
+    steps:
+      - checkout
       - run:
           name: Test
           command: mvn test
+  sonarcloud:
+    docker:
+      - image: cimg/openjdk:19.0.2
+    steps:
+      - checkout
+      - run:
+          name: SonarCloud
+          command: mvn verify sonar:sonar -Dsonar.projectKey=acrastt_Utils
+
 workflows:
-  test_utilities:
+  main:
     jobs:
-      - build-and-test
+      - build
+      - test
+      - sonarcloud
