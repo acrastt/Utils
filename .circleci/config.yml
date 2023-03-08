@@ -22,8 +22,8 @@ jobs:
     steps:
       - checkout
       - run:
-        name: SonarCloud
-        command: mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=acrastt_Utils
+          name: SonarCloud
+          command: mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=acrastt_Utils
 workflows:
   main:
     jobs:
