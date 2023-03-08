@@ -40,15 +40,16 @@ like a normal ArrayList. There is an example:
 import org.example.acrastt.utils.ConcurrentList;
 
 public class Main {
-    public static void main(String[] args) {
-        List<String> list = new ConcurrentList<>();
-        list.add("foo");
-        list.add("bar");
-        list.add("baz");
-        list.remove("baz");
-        list.get(0);
-        // etc...
-    }
+
+  public static void main(String[] args) {
+    List<String> list = new ConcurrentList<>();
+    list.add("foo");
+    list.add("bar");
+    list.add("baz");
+    list.remove("baz");
+    list.get(0);
+    // etc...
+  }
 }
 ```
 
@@ -82,14 +83,15 @@ import org.example.acrastt.utils.NumberUtils;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Main {
-    public static void main(String[] args) {
-        assertEquals("1st", NumberUtils.convertToOrdinal(1)); // 1st
-        assertEquals("2nd", NumberUtils.convertToOrdinal(2)); // 2nd
-        assertEquals("3rd", NumberUtils.convertToOrdinal(3)); // 3rd
-        assertEquals("4th", NumberUtils.convertToOrdinal(4)); // 4th
-        assertEquals("5th", NumberUtils.convertToOrdinal(5)); // 5th
-        // etc...
-    }
+
+  public static void main(String[] args) {
+    assertEquals("1st", NumberUtils.convertToOrdinal(1)); // 1st
+    assertEquals("2nd", NumberUtils.convertToOrdinal(2)); // 2nd
+    assertEquals("3rd", NumberUtils.convertToOrdinal(3)); // 3rd
+    assertEquals("4th", NumberUtils.convertToOrdinal(4)); // 4th
+    assertEquals("5th", NumberUtils.convertToOrdinal(5)); // 5th
+    // etc...
+  }
 }
 ```
 
