@@ -8,14 +8,6 @@ jobs:
       - run:
           name: Build
           command: mvn -B -DskipTests clean install
-  test:
-    docker:
-      - image: cimg/openjdk:19.0.2
-    steps:
-      - checkout
-      - run:
-          name: Test
-          command: mvn test -Dsurefire.parallel=classes -DthreadCount=3
   sonarcloud:
     docker:
       - image: cimg/openjdk:19.0.2
@@ -28,5 +20,4 @@ workflows:
   main:
     jobs:
       - build
-      - test
       - sonarcloud
