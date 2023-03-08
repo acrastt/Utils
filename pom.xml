@@ -38,47 +38,24 @@
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
-          <parallel>classes</parallel>
-          <threadCount>5</threadCount>
           <includes>
             <include>**/*Test.java</include>
           </includes>
+          <parallel>classes</parallel>
           <properties>
             <configurationParameters>
               junit.jupiter.conditions.deactivate=org.junit.*DisabledCondition
             </configurationParameters>
           </properties>
           <testFailureIgnore>true</testFailureIgnore>
+          <threadCount>5</threadCount>
         </configuration>
         <groupId>org.apache.maven.plugins</groupId>
         <version>3.0.0-M9</version>
       </plugin>
-      <plugin>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.8.8</version>
-        <executions>
-          <execution>
-            <id>prepare-agent</id>
-            <goals>
-              <goal>prepare-agent</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>report</id>
-            <goals>
-              <goal>report</goal>
-            </goals>
-            <configuration>
-              <formats>
-                <format>XML</format>
-              </formats>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
     </plugins>
   </build>
+
   <dependencies>
     <dependency>
       <artifactId>commons-collections4</artifactId>
@@ -132,6 +109,7 @@
       <version>1.36</version>
     </dependency>
   </dependencies>
+
   <distributionManagement>
     <repository>
       <id>acrastt.Utils</id>
@@ -142,8 +120,41 @@
   <groupId>org.example.acrastt.utils</groupId>
   <modelVersion>4.0.0</modelVersion>
   <name>acrastt.Utils</name>
-
   <packaging>jar</packaging>
+
+  <profiles>
+    <profile>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>prepare-agent</goal>
+                </goals>
+                <id>prepare-agent</id>
+              </execution>
+              <execution>
+                <configuration>
+                  <formats>
+                    <format>XML</format>
+                  </formats>
+                </configuration>
+                <goals>
+                  <goal>report</goal>
+                </goals>
+                <id>report</id>
+              </execution>
+            </executions>
+            <groupId>org.jacoco</groupId>
+            <version>0.8.8</version>
+          </plugin>
+        </plugins>
+      </build>
+      <id>coverage</id>
+    </profile>
+  </profiles>
 
   <properties>
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
