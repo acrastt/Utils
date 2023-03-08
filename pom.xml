@@ -38,6 +38,8 @@
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
+          <parallel>classes</parallel>
+          <threadCount>5</threadCount>
           <includes>
             <include>**/*Test.java</include>
           </includes>
