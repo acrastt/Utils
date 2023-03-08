@@ -3,14 +3,7 @@ version: 2.1
 jobs:
   build-and-test:
     docker:
-      - image: cimg/maven:3.9.0
-        auth:
-            username: $DOCKERHUB_USERNAME
-            password: $DOCKERHUB_PASSWORD
       - image: cimg/openjdk:19.0.2
-        auth:
-            username: $DOCKERHUB_USERNAME
-            password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
       - run:
