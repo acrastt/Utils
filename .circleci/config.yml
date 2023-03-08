@@ -24,7 +24,7 @@ jobs:
       - checkout
       - run:
           name: SonarCloud
-          command: mvn -X verify sonar:sonar -Dsonar.projectKey=acrastt_Utils
+          command: mvn -e verify sonar:sonar -Dsonar.projectKey=acrastt_Utils
 
 workflows:
   main:
