@@ -104,8 +104,8 @@
   <packaging>jar</packaging>
 
   <properties>
-    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     <sonar.organization>acrastt</sonar.organization>
+    <sonar.projectKey>acrastt_Utils</sonar.projectKey>
   </properties>
 
   <scm>
