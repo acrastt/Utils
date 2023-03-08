@@ -8,7 +8,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 
-class ConcurrentListTest {
+public class ConcurrentListTest {
 
   private ConcurrentList<Integer> actual;
   private ExecutorService exec;
