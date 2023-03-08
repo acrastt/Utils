@@ -11,6 +11,7 @@ jobs:
   test:
     docker:
       - image: cimg/openjdk:19.0.2
+    parallelism: 4
     steps:
       - checkout
       - run:
