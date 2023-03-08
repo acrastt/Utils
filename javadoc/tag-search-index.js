@@ -1,2 +1,6 @@
-tagSearchIndex = [{"l": "Serialized Form", "h": "", "u": "serialized-form.html"}];
+tagSearchIndex = [{
+  "l": "Serialized Form",
+  "h": "",
+  "u": "serialized-form.html"
+}];
 updateSearchResults();
