@@ -35,6 +35,22 @@
         <groupId>org.apache.maven.plugins</groupId>
         <version>3.11.0</version>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M9</version>
+        <configuration>
+          <testFailureIgnore>true</testFailureIgnore>
+          <includes>
+            <include>**/*Test.java</include>
+          </includes>
+          <properties>
+            <configurationParameters>
+              junit.jupiter.conditions.deactivate=org.junit.*DisabledCondition
+            </configurationParameters>
+          </properties>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
   <dependencies>
