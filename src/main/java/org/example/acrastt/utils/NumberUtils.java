@@ -24,7 +24,7 @@ public final class NumberUtils {
     // Gets the last two digits
     int lastTwoDigits = absNumber % 100;
     // If the last two digits are 11 or 13, we know the suffix is "th"
-    if (lastTwoDigits == 11 || lastTwoDigits == 13) {
+    if (11 <= lastTwoDigits && lastTwoDigits <= 13) {
       return number + "th";
     }
     // Return the number and suffix depending on the last digit
@@ -39,8 +39,11 @@ public final class NumberUtils {
    * @return the number with suffix(Will not exclude exceptions)
    */
   private static String returnOrdinal(int number) {
+    // Gets the last digit
     int lastDigit = Math.abs(number) % 10;
+    // Initialize the suffix
     String suffix;
+    // Set the suffix in different situations
     if (lastDigit == 1) {
       suffix = "st";
     } else if (lastDigit == 2) {
@@ -50,6 +53,7 @@ public final class NumberUtils {
     } else {
       suffix = "th";
     }
+    // Returns the number with the suffix calculated
     return number + suffix;
   }
 }

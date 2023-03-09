@@ -195,7 +195,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
    */
   @Override
   public T remove(int index) {
-    return write(() -> remove(index));
+    return write(() -> super.remove(index));
   }
 
   /**
@@ -205,7 +205,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
    * @param toIndex   index after last element to be removed
    */
   @Override
-  protected void removeRange(int fromIndex, int toIndex) {
+  public void removeRange(int fromIndex, int toIndex) {
     write(() -> super.removeRange(fromIndex, toIndex));
   }
 

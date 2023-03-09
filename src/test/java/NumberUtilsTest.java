@@ -1,17 +1,17 @@
-import static org.example.acrastt.utils.NumberUtils.convertToOrdinal;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Test;
+import org.example.acrastt.utils.NumberUtils;
+import org.junit.jupiter.api.RepeatedTest;
 
 class NumberUtilsTest {
 
-  @Test
+  @RepeatedTest(10)
   void test() {
     // Test the convertToOrdinal method
-    assertEquals("1st", convertToOrdinal(1));
-    assertEquals("2nd", convertToOrdinal(2));
-    assertEquals("3rd", convertToOrdinal(3));
-    assertEquals("4th", convertToOrdinal(4));
-    assertEquals("5th", convertToOrdinal(5));
+    for (int i = 0; i < 100; i++) {
+      assertEquals(i + (i == 11 || i == 12 || i == 13 ? "th" :
+              i % 10 == 1 ? "st" : i % 10 == 2 ? "nd" : i % 10 == 3 ? "rd" : "th"),
+          NumberUtils.convertToOrdinal(i));
+    }
   }
 }
