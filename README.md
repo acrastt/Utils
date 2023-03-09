@@ -1,4 +1,7 @@
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=acrastt_Utils&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=acrastt_Utils)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=acrastt_Utils&metric=bugs)](https://sonarcloud.io/summary/new_code?id=acrastt_Utils)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=acrastt_Utils&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=acrastt_Utils)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=acrastt_Utils&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=acrastt_Utils)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=acrastt_Utils&metric=coverage)](https://sonarcloud.io/summary/new_code?id=acrastt_Utils)
 
 # Utils
 

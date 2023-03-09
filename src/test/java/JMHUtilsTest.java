@@ -1,3 +1,4 @@
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
@@ -47,6 +48,6 @@ class JMHUtilsTest {
 
   @Test
   void testGC() {
-    JMHUtils.runWithGC(JMHSample_01_HelloWorld.class.getName());
+    assertDoesNotThrow(() -> JMHUtils.runWithGC(JMHSample_01_HelloWorld.class.getName()));
   }
 }

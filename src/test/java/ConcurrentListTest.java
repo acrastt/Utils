@@ -25,7 +25,7 @@ class ConcurrentListTest {
   private ExecutorService exec;
 
   @BeforeEach
-  public void setup() {
+  void setup() {
     // Initialize the actual list and the executor
     actual = new ConcurrentList<>();
     stringList = new ConcurrentList<>();
@@ -51,7 +51,7 @@ class ConcurrentListTest {
   }
 
   @Test
-  public void testAddAndGet() {
+  void testAddAndGet() {
     stringList.add("hello");
     assertEquals("hello", stringList.get(0));
     stringList.add("world");
@@ -59,14 +59,14 @@ class ConcurrentListTest {
   }
 
   @Test
-  public void testIsEmpty() {
+  void testIsEmpty() {
     assertTrue(stringList.isEmpty());
     stringList.add("hello");
     assertFalse(stringList.isEmpty());
   }
 
   @Test
-  public void testContains() {
+  void testContains() {
     assertFalse(stringList.contains("hello"));
     stringList.add("hello");
     assertTrue(stringList.contains("hello"));
@@ -74,7 +74,7 @@ class ConcurrentListTest {
   }
 
   @Test
-  public void testSize() {
+  void testSize() {
     assertEquals(0, stringList.size());
     stringList.add("hello");
     assertEquals(1, stringList.size());
@@ -83,7 +83,7 @@ class ConcurrentListTest {
   }
 
   @Test
-  public void testRemove() {
+  void testRemove() {
     stringList.add("hello");
     stringList.add("world");
     assertFalse(stringList.remove("foo"));
@@ -93,7 +93,7 @@ class ConcurrentListTest {
   }
 
   @Test
-  public void testClear() {
+  void testClear() {
     stringList.add("hello");
     stringList.add("world");
     stringList.clear();
@@ -102,7 +102,7 @@ class ConcurrentListTest {
   }
 
   @Test
-  public void testAddAtPosition() {
+  void testAddAtPosition() {
     stringList.add("hello");
     stringList.add("world");
     stringList.add(1, "there");
@@ -112,7 +112,7 @@ class ConcurrentListTest {
   }
 
   @Test
-  public void testIndexOf() {
+  void testIndexOf() {
     stringList.add("hello");
     stringList.add("world");
     assertEquals(0, stringList.indexOf("hello"));
@@ -121,7 +121,7 @@ class ConcurrentListTest {
   }
 
   @Test
-  public void testLastIndexOf() {
+  void testLastIndexOf() {
     stringList.addAll(List.of("hello", "world", "hello"));
     assertEquals(2, stringList.lastIndexOf("hello"));
     assertEquals(1, stringList.lastIndexOf("world"));
@@ -129,7 +129,7 @@ class ConcurrentListTest {
   }
 
   @Test
-  public void testSubList() {
+  void testSubList() {
     stringList.addAll(List.of("hello", "world", "there"));
     assertEquals(2, stringList.subList(1, 3).size());
     assertEquals("world", stringList.subList(1, 3).get(0));
@@ -137,7 +137,7 @@ class ConcurrentListTest {
   }
 
   @Test
-  public void testAddAll() {
+  void testAddAll() {
     List<String> newList = new ArrayList<>();
     newList.add("hello");
     newList.add("world");
@@ -148,7 +148,7 @@ class ConcurrentListTest {
   }
 
   @Test
-  public void testIterator() {
+  void testIterator() {
     stringList.addAll(List.of("hello", "world", "there"));
     Iterator<String> iterator = stringList.iterator();
     assertTrue(iterator.hasNext());
@@ -306,7 +306,8 @@ class ConcurrentListTest {
 
   @Test
   void testAddAllWithTwoArguments() {
-
+    stringList.addAll(0, List.of("hello", "world", "there"));
+    assertEquals(List.of("hello", "world", "there"), stringList);
   }
 
   @AfterEach
