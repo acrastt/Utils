@@ -21,7 +21,7 @@ various applications. This repository contains the following utilities.
 
 To use this library, simply clone the repository using a tool such as GitHub CLI
 and either add necessary files to your application's source code or
-add this to your `.m2` file in your root folder.
+add this to your `.m2` directory.
 Each utility has a separate file and can be used independently.
 
 ### Requirements
