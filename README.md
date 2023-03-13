@@ -1,6 +1,5 @@
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=acrastt_Utils&metric=bugs)](https://sonarcloud.io/summary/new_code?id=acrastt_Utils)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=acrastt_Utils&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=acrastt_Utils)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=acrastt_Utils&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=acrastt_Utils)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=acrastt_Utils&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=acrastt_Utils)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=acrastt_Utils&metric=coverage)](https://sonarcloud.io/summary/new_code?id=acrastt_Utils)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=acrastt_Utils&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=acrastt_Utils)\

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="NumberUtilsTest" time="0.346" tests="10" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="ConcurrentListTest" time="0.8" tests="47" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -63,14 +63,51 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="test" classname="NumberUtilsTest" time="0.193"/>
-  <testcase name="test" classname="NumberUtilsTest" time="0.006"/>
-  <testcase name="test" classname="NumberUtilsTest" time="0.006"/>
-  <testcase name="test" classname="NumberUtilsTest" time="0.004"/>
-  <testcase name="test" classname="NumberUtilsTest" time="0.003"/>
-  <testcase name="test" classname="NumberUtilsTest" time="0.004"/>
-  <testcase name="test" classname="NumberUtilsTest" time="0.003"/>
-  <testcase name="test" classname="NumberUtilsTest" time="0.003"/>
-  <testcase name="test" classname="NumberUtilsTest" time="0.005"/>
-  <testcase name="test" classname="NumberUtilsTest" time="0.009"/>
+  <testcase name="testToStringAndToArray" classname="ConcurrentListTest" time="0.265"/>
+  <testcase name="testReplaceAll" classname="ConcurrentListTest" time="0.007"/>
+  <testcase name="testCopyConstructor" classname="ConcurrentListTest" time="0.009"/>
+  <testcase name="testClear" classname="ConcurrentListTest" time="0.011"/>
+  <testcase name="testSize" classname="ConcurrentListTest" time="0.006"/>
+  <testcase name="testSort" classname="ConcurrentListTest" time="0.011"/>
+  <testcase name="testLastIndexOf" classname="ConcurrentListTest" time="0.009"/>
+  <testcase name="testForEach" classname="ConcurrentListTest" time="0.008"/>
+  <testcase name="testListIterator" classname="ConcurrentListTest" time="0.007"/>
+  <testcase name="testRemoveRange" classname="ConcurrentListTest" time="0.01"/>
+  <testcase name="testToArrayWithArguments" classname="ConcurrentListTest" time="0.006"/>
+  <testcase name="testListIteratorAt" classname="ConcurrentListTest" time="0.009"/>
+  <testcase name="testRetainAll" classname="ConcurrentListTest" time="0.007"/>
+  <testcase name="testToArrayWithIntFunction" classname="ConcurrentListTest" time="0.007"/>
+  <testcase name="removeAt" classname="ConcurrentListTest" time="0.008"/>
+  <testcase name="testContainsAll" classname="ConcurrentListTest" time="0.008"/>
+  <testcase name="testAddAllWithTwoArguments" classname="ConcurrentListTest" time="0.01"/>
+  <testcase name="testContains" classname="ConcurrentListTest" time="0.007"/>
+  <testcase name="testAddAndGet" classname="ConcurrentListTest" time="0.004"/>
+  <testcase name="testRemoveIf" classname="ConcurrentListTest" time="0.004"/>
+  <testcase name="testEnsureCapacity" classname="ConcurrentListTest" time="0.006"/>
+  <testcase name="testConcurrency" classname="ConcurrentListTest" time="0.025"/>
+  <testcase name="testConcurrency" classname="ConcurrentListTest" time="0.018"/>
+  <testcase name="testConcurrency" classname="ConcurrentListTest" time="0.011"/>
+  <testcase name="testConcurrency" classname="ConcurrentListTest" time="0.008"/>
+  <testcase name="testConcurrency" classname="ConcurrentListTest" time="0.007"/>
+  <testcase name="testConcurrency" classname="ConcurrentListTest" time="0.012"/>
+  <testcase name="testConcurrency" classname="ConcurrentListTest" time="0.013"/>
+  <testcase name="testConcurrency" classname="ConcurrentListTest" time="0.009"/>
+  <testcase name="testConcurrency" classname="ConcurrentListTest" time="0.007"/>
+  <testcase name="testConcurrency" classname="ConcurrentListTest" time="0.007"/>
+  <testcase name="testHashCode" classname="ConcurrentListTest" time="0.004"/>
+  <testcase name="testParallelStream" classname="ConcurrentListTest" time="0.004"/>
+  <testcase name="testTrimToSize" classname="ConcurrentListTest" time="0.004"/>
+  <testcase name="testAddAll" classname="ConcurrentListTest" time="0.002"/>
+  <testcase name="testSetWithTwoParameters" classname="ConcurrentListTest" time="0.003"/>
+  <testcase name="testEquals" classname="ConcurrentListTest" time="0.003"/>
+  <testcase name="testIndexOf" classname="ConcurrentListTest" time="0.003"/>
+  <testcase name="testAddAtPosition" classname="ConcurrentListTest" time="0.003"/>
+  <testcase name="testIsEmpty" classname="ConcurrentListTest" time="0.003"/>
+  <testcase name="testRemove" classname="ConcurrentListTest" time="0.007"/>
+  <testcase name="testStream" classname="ConcurrentListTest" time="0.005"/>
+  <testcase name="testSpliterator" classname="ConcurrentListTest" time="0.003"/>
+  <testcase name="testIterator" classname="ConcurrentListTest" time="0.004"/>
+  <testcase name="testRemoveAll" classname="ConcurrentListTest" time="0.003"/>
+  <testcase name="testSubList" classname="ConcurrentListTest" time="0.004"/>
+  <testcase name="testCapacityConstructor" classname="ConcurrentListTest" time="0.004"/>
 </testsuite>
