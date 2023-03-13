@@ -1,6 +1,6 @@
 tagSearchIndex = [{
-  "l": "Serialized Form",
-  "h": "",
-  "u": "serialized-form.html"
+    "l": "Serialized Form",
+    "h": "",
+    "u": "serialized-form.html"
 }];
 updateSearchResults();
