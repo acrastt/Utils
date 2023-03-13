@@ -28,7 +28,7 @@ public final class NumberUtils {
             return number + "th";
         }
         // Return the number and suffix depending on the last digit
-        return returnOrdinal(number);
+        return number + returnOrdinal(number);
     }
 
     /**
@@ -54,6 +54,6 @@ public final class NumberUtils {
             suffix = "th";
         }
         // Returns the number with the suffix calculated
-        return number + suffix;
+        return suffix;
     }
 }
