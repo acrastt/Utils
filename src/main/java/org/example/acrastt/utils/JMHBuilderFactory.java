@@ -15,12 +15,12 @@ import org.slf4j.LoggerFactory;
  * @version 1.2
  * @since 1.0
  */
-public final class JMHUtils {
+public final class JMHBuilderFactory {
 
-    private static final Logger LOG = LoggerFactory.getLogger(JMHUtils.class);
+    private static final Logger LOG = LoggerFactory.getLogger(JMHBuilderFactory.class);
 
 
-    private JMHUtils() {
+    private JMHBuilderFactory() {
     }
 
     /**
