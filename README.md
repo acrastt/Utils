@@ -4,6 +4,7 @@
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=acrastt_Utils&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=acrastt_Utils)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=acrastt_Utils&metric=coverage)](https://sonarcloud.io/summary/new_code?id=acrastt_Utils)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=acrastt_Utils&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=acrastt_Utils)\
+
 [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=acrastt_Utils)](https://sonarcloud.io/summary/new_code?id=acrastt_Utils)
 # Utils
 
