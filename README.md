@@ -13,8 +13,9 @@ various applications. This repository contains the following utilities.
   without error.
   This is designed for a high number of reads,
   a low number of writes and a low number of threads.
-- `JMHUtils`: A utility for JMH(Java Microbenchmark Harness), currently it has
-  functions that creates json/csv file when running benchmarks.
+- `JMHBuilderFactory`: A utility for JMH(Java Microbenchmark Harness), currently it has
+  functions that creates json/csv file when running benchmarks and running with GC profiler.
+  It also can generate `ChainedOptionsBuilder` for different needs.
 - `NumberUtils`: A utility which processes numbers in Java, it currently has
   a function that converts numbers to string with ordinals.
 
@@ -64,7 +65,6 @@ Here are some examples:
 
 ```java
 import org.example.acrastt.utils.JMHBuilderFactory;
-import org.example.acrastt.utils.JMHUtils;
 
 public class Main {
     public static void main(String[] args) {
@@ -89,11 +89,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class Main {
 
     public static void main(String[] args) {
-        assertEquals("1st", NumberUtils.convertToOrdinal(1)); // 1st
-        assertEquals("2nd", NumberUtils.convertToOrdinal(2)); // 2nd
-        assertEquals("3rd", NumberUtils.convertToOrdinal(3)); // 3rd
-        assertEquals("4th", NumberUtils.convertToOrdinal(4)); // 4th
-        assertEquals("5th", NumberUtils.convertToOrdinal(5)); // 5th
+        NumberUtils.convertToOrdinal(1); // 1st
+        NumberUtils.convertToOrdinal(2); // 2nd
+        NumberUtils.convertToOrdinal(3); // 3rd
+        NumberUtils.convertToOrdinal(4); // 4th
+        NumberUtils.convertToOrdinal(5); // 5th
         // etc...
     }
 }
