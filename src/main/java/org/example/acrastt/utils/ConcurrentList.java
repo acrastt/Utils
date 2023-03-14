@@ -32,7 +32,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     /**
      * A stamped lock that is used to synchronize access to the list.
      */
-    private final StampedLock lock = new StampedLock();
+    private static final StampedLock lock = new StampedLock();
 
     /**
      * Creates a new ConcurrentList.
@@ -341,8 +341,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
      * Check if this ConcurrentList contains all items from the specified collection.
      *
      * @param c the collection to check
-     * @return true if this ConcurrentList contains all items from the specified collection, false
-     * otherwise
+     * @return true if this ConcurrentList contains all items from the specified collection, otherwise false
      */
     @Override
     public boolean containsAll(Collection<?> c) {

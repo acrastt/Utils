@@ -3,50 +3,69 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ConcurrentListTest {
 
-    private ConcurrentList<Integer> concurrent;
-
+    private final Logger LOG = LoggerFactory.getLogger(ConcurrentListTest.class);
+    private final Object obj = new Object();
     private ConcurrentList<String> stringList;
-
     private ExecutorService exec;
-
 
     @BeforeEach
     void setup() {
-        // Initialize the actual list and the executor
-        concurrent = new ConcurrentList<>();
+        // Initialize the string list and the executor
         stringList = new ConcurrentList<>();
         exec = Executors.newCachedThreadPool();
     }
 
     @RepeatedTest(10)
-    void testConcurrency() throws InterruptedException {
-        // Write integers concurrently
-        for (int i = 0; i < 100; i++) {
-            int finalI = i;
-            exec.execute(() -> {
-                for (int j = 0; j < 100; j++) {
-                    concurrent.add(finalI);
-                }
-            });
+    void testConcurrency() {
+        // Initialize both lists
+        ConcurrentList<String> concurrentList = new ConcurrentList<>();
+        ConcurrentLinkedDeque<String> threadSafe = new ConcurrentLinkedDeque<>();
+        concurrentList.add("A");
+        concurrentList.add("B");
+        concurrentList.add("C");
+        threadSafe.add("A");
+        threadSafe.add("B");
+        threadSafe.add("C");
+        // Check thread safety by adding and removing
+        Thread remove = new Thread(() -> {
+            while (concurrentList.size() < 5000 && threadSafe.size() < 5000) ;
+            for (int i = 0; i < 10000; i++) {
+                concurrentList.remove(0);
+                threadSafe.removeFirst();
+                Thread.yield();
+            }
+        });
+        Thread add = new Thread(() -> {
+            for (int i = 0; i < 10000; i++) {
+                concurrentList.add("D");
+                threadSafe.add("D");
+            }
+        });
+        add.start();
+        remove.start();
+        try {
+            add.join();
+            remove.join();
+        } catch (InterruptedException e) {
+            LOG.error("Thread interrupted: ", e);
         }
-        // Wait for all modifications to complete
-        exec.shutdown();
-        exec.awaitTermination(Long.MAX_VALUE, TimeUnit.DAYS);
-        // Compare the results
-        assertEquals(10000, concurrent.size());
+        // Compare the size of both lists
+        assertEquals(concurrentList.size(), threadSafe.size());
     }
 
     // Other methods--------------------------------------------------
@@ -195,8 +214,7 @@ class ConcurrentListTest {
 
     @Test
     void testCopyConstructor() {
-        assertEquals(new ArrayList<>(List.of("hello", "world")),
-                new ConcurrentList<>(List.of("hello", "world")));
+        assertEquals(new ArrayList<>(List.of("hello", "world")), new ConcurrentList<>(List.of("hello", "world")));
     }
 
     @Test
@@ -222,14 +240,12 @@ class ConcurrentListTest {
     @Test
     void testForEach() {
         stringList.addAll(List.of("hello", "world", "there"));
-        stringList.forEach(
-                s -> assertTrue(s.equals("hello") || s.equals("world") || s.equals("there")));
+        stringList.forEach(s -> assertTrue(s.equals("hello") || s.equals("world") || s.equals("there")));
     }
 
     @Test
     void testToArrayWithIntFunction() {
-        assertEquals(Arrays.toString(stringList.toArray()),
-                Arrays.toString(stringList.toArray(String[]::new)));
+        assertEquals(Arrays.toString(stringList.toArray()), Arrays.toString(stringList.toArray(String[]::new)));
     }
 
     @Test
