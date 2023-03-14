@@ -106,7 +106,7 @@ You can find the documentation [here](javadoc/index.html).
 ## Contributing
 
 If you want to contribute, please email us at `bohandu@hotmail.com`.
-If you find any bugs or suggestions, feel free to submit a pull request.
+If you find any bugs or suggestions, feel free to submit an issue or pull request.
 
 ## License
 

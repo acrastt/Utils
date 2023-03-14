@@ -49,7 +49,7 @@ class ConcurrentListTest {
         assertEquals(10000, concurrent.size());
     }
 
-    //----------------
+    // Other methods--------------------------------------------------
     @Test
     void testAddAndGet() {
         stringList.add("hello");
