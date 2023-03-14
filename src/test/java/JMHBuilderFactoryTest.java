@@ -20,7 +20,7 @@ class JMHBuilderFactoryTest {
 
     @Test
     void testJSON() {
-        // Runs HelloWorld benchmark with JSON and CSV
+        // Runs HelloWorld benchmark with JSON
         JMHBuilderFactory.runWithJson(JSON, JMHSample_01_HelloWorld.class.getName());
         assertTrue(Files.exists(new File(JSON).toPath()));
 
@@ -34,6 +34,7 @@ class JMHBuilderFactoryTest {
 
     @Test
     void testCSV() {
+        // Runs HelloWorld benchmark with CSV
         JMHBuilderFactory.runWithCSV(CSV, JMHSample_01_HelloWorld.class.getName());
         assertTrue(Files.exists(new File(CSV).toPath()));
         try {
@@ -45,6 +46,7 @@ class JMHBuilderFactoryTest {
 
     @Test
     void testGC() {
+        // Runs HelloWorld benchmark with GC profiling
         assertDoesNotThrow(() -> JMHBuilderFactory.runWithGC(JMHSample_01_HelloWorld.class.getName()));
     }
 }

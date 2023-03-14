@@ -11,4 +11,9 @@
     </annotationProcessing>
     <bytecodeTargetLevel target="19" />
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="acrastt.Utils" options="--add-exports com.oracle.graal.graal_enterprise/com.oracle=ALL-UNNAMED" />
+    </option>
+  </component>
 </project>
