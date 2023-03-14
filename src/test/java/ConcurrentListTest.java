@@ -21,7 +21,7 @@ class ConcurrentListTest {
     private ConcurrentList<String> stringList;
 
     private ExecutorService exec;
-    
+
 
     @BeforeEach
     void setup() {

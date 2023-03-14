@@ -18,8 +18,9 @@ import java.util.stream.Stream;
  *
  * @param <T> The type of the elements in this collection.
  * @author Bohan Du
- * @version 2.0
+ * @version 1.0.0
  * @see java.util.ArrayList
+ * @since 1.0.0
  */
 public class ConcurrentList<T> extends ArrayList<T> {
 

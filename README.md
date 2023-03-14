@@ -3,6 +3,7 @@
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=acrastt_Utils&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=acrastt_Utils)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=acrastt_Utils&metric=coverage)](https://sonarcloud.io/summary/new_code?id=acrastt_Utils)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=acrastt_Utils&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=acrastt_Utils)
+
 # Utils
 
 This is a collection of different utility functions that can be used in
@@ -21,7 +22,7 @@ various applications. This repository contains the following utilities.
 
 To use this library, simply clone the repository using a tool such as GitHub CLI
 and either add necessary files to your application's source code or
-add this to your `.m2` directory.
+add this to your maven repositories folder (e.g. `.m2` folder).
 Each utility has a separate file and can be used independently.
 
 ### Requirements
@@ -43,15 +44,15 @@ import org.example.acrastt.utils.ConcurrentList;
 
 public class Main {
 
-  public static void main(String[] args) {
-    List<String> list = new ConcurrentList<>();
-    list.add("foo");
-    list.add("bar");
-    list.add("baz");
-    list.remove("baz");
-    list.get(0);
-    // etc...
-  }
+    public static void main(String[] args) {
+        List<String> list = new ConcurrentList<>();
+        list.add("foo");
+        list.add("bar");
+        list.add("baz");
+        list.remove("baz");
+        list.get(0);
+        // etc...
+    }
 }
 ```
 
@@ -66,13 +67,13 @@ import org.example.acrastt.utils.JMHBuilderFactory;
 import org.example.acrastt.utils.JMHUtils;
 
 public class Main {
-  public static void main(String[] args) {
-    JMHBuilderFactory.runWithCsv("foo.csv", "yourClassName");
-    JMHBuilderFactory.runWithJson("bar.json", "yourClassName");
-    JMHBuilderFactory.runWithGC("yourClassName");
-    JMHBuilderFactory.runWithCSVAndGC("baz.csv", "yourClassName");
-    // etc...
-  }
+    public static void main(String[] args) {
+        JMHBuilderFactory.runWithCsv("foo.csv", "yourClassName");
+        JMHBuilderFactory.runWithJson("bar.json", "yourClassName");
+        JMHBuilderFactory.runWithGC("yourClassName");
+        JMHBuilderFactory.runWithCSVAndGC("baz.csv", "yourClassName");
+        // etc...
+    }
 }
 ```
 
@@ -87,14 +88,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Main {
 
-  public static void main(String[] args) {
-    assertEquals("1st", NumberUtils.convertToOrdinal(1)); // 1st
-    assertEquals("2nd", NumberUtils.convertToOrdinal(2)); // 2nd
-    assertEquals("3rd", NumberUtils.convertToOrdinal(3)); // 3rd
-    assertEquals("4th", NumberUtils.convertToOrdinal(4)); // 4th
-    assertEquals("5th", NumberUtils.convertToOrdinal(5)); // 5th
-    // etc...
-  }
+    public static void main(String[] args) {
+        assertEquals("1st", NumberUtils.convertToOrdinal(1)); // 1st
+        assertEquals("2nd", NumberUtils.convertToOrdinal(2)); // 2nd
+        assertEquals("3rd", NumberUtils.convertToOrdinal(3)); // 3rd
+        assertEquals("4th", NumberUtils.convertToOrdinal(4)); // 4th
+        assertEquals("5th", NumberUtils.convertToOrdinal(5)); // 5th
+        // etc...
+    }
 }
 ```
 
