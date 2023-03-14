@@ -75,7 +75,7 @@
                     <threadCount>5</threadCount>
                 </configuration>
                 <groupId>org.apache.maven.plugins</groupId>
-                <version>3.0.0-M9</version>
+                <version>3.0.0</version>
             </plugin>
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
