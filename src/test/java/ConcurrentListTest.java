@@ -35,12 +35,12 @@ class ConcurrentListTest {
         // Initialize both lists
         ConcurrentList<String> concurrentList = new ConcurrentList<>();
         ConcurrentLinkedDeque<String> threadSafe = new ConcurrentLinkedDeque<>();
-        concurrentList.add("A");
-        concurrentList.add("B");
-        concurrentList.add("C");
-        threadSafe.add("A");
-        threadSafe.add("B");
-        threadSafe.add("C");
+        concurrentList.add("Foo");
+        concurrentList.add("Bar");
+        concurrentList.add("Baz");
+        threadSafe.add("Foo");
+        threadSafe.add("Bar");
+        threadSafe.add("Baz");
         // Check thread safety by adding and removing
         Thread remove = new Thread(() -> {
             while (concurrentList.size() < 5000 && threadSafe.size() < 5000) ;
@@ -52,8 +52,8 @@ class ConcurrentListTest {
         });
         Thread add = new Thread(() -> {
             for (int i = 0; i < 10000; i++) {
-                concurrentList.add("D");
-                threadSafe.add("D");
+                concurrentList.add("Qux");
+                threadSafe.add("Qux");
             }
         });
         add.start();
