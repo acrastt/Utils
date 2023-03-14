@@ -13,7 +13,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="acrastt.Utils" options="--add-exports com.oracle.graal.graal_enterprise/com.oracle=ALL-UNNAMED" />
+      <module name="acrastt.Utils" options="" />
     </option>
   </component>
 </project>
