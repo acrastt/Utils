@@ -32,8 +32,7 @@ public final class NumberUtils {
     }
 
     /**
-     * Returns the number with suffix(Will not exclude exceptions like when the number ends with 11 or
-     * 13
+     * Returns the suffix for the specified number(Will not exclude exceptions like when the number ends with 11 or 13
      *
      * @param number the number to be calculated
      * @return the number with suffix(Will not exclude exceptions)
