@@ -25,9 +25,7 @@ import java.util.stream.Stream;
 public class ConcurrentList<T> extends ArrayList<T> {
 
     private static final long serialVersionUID = 5560587813010361548L;
-
     private static final String UNREACHABLE = "Reached an unreachable state while trying to ";
-
     private static final Logger LOG = LoggerFactory.getLogger(ConcurrentList.class);
     /**
      * A stamped lock that is used to synchronize access to the list.

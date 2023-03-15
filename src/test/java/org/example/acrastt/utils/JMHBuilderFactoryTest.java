@@ -16,7 +16,6 @@ class JMHBuilderFactoryTest {
 
     private static final String JSON = "src/test/java/org/example/acrastt/utils/JMH.json";
     private static final String CSV = "src/test/java/org/example/acrastt/utils/JMH.csv";
-
     private static final Logger LOG = LoggerFactory.getLogger(JMHBuilderFactory.class);
 
     @Test
