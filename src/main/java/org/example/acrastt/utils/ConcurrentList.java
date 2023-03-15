@@ -196,7 +196,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Removes items from "fromList"(inclusive) to "toList"(exclusive) from this ConcurrentList.
+     * Removes items from "fromIndex"(inclusive) to "toIndex"(exclusive) from this ConcurrentList.
      *
      * @param fromIndex index of the first element to be removed
      * @param toIndex   index after last element to be removed
