@@ -68,7 +68,7 @@ public final class JMHBuilderFactory {
      */
     public static void runWithGCAndJson(String file, String clazz) {
         try {
-            new Runner(getJSONAndGCProfiler(file, clazz)
+            new Runner(getJSONAndGCBuilder(file, clazz)
                     // Build and runs the benchmark
                     .build()).run();
         } catch (RunnerException e) {
@@ -181,7 +181,7 @@ public final class JMHBuilderFactory {
      * @param clazz the class to get the option builder
      * @return the option builder
      */
-    public static ChainedOptionsBuilder getJSONAndGCProfiler(String file, String clazz) {
+    public static ChainedOptionsBuilder getJSONAndGCBuilder(String file, String clazz) {
         return getJSONBuilder(file, clazz)
                 // Specify the profiler
                 .addProfiler("gc");

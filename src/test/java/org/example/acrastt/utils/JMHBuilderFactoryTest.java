@@ -63,7 +63,7 @@ class JMHBuilderFactoryTest {
             JMHBuilderFactory.getBuilder(JMHSample_01_HelloWorld.class.getName());
             JMHBuilderFactory.getJSONBuilder(JSON, JMHSample_01_HelloWorld.class.getName());
             JMHBuilderFactory.getCSVBuilder(CSV, JMHSample_01_HelloWorld.class.getName());
-            JMHBuilderFactory.getJSONAndGCProfiler(JSON, JMHSample_01_HelloWorld.class.getName());
+            JMHBuilderFactory.getJSONAndGCBuilder(JSON, JMHSample_01_HelloWorld.class.getName());
             JMHBuilderFactory.getCSVAndGCBuilder(CSV, JMHSample_01_HelloWorld.class.getName());
             JMHBuilderFactory.getBuilder(JSON, JMHBuilderFactory.class.getName());
         });
