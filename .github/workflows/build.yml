@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Setup GraalVM Community Edition 8
+      - name: Setup GraalVM Community Edition
         uses: graalvm/setup-graalvm@v1
         with:
           version: '20.3.0'
