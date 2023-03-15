@@ -16,9 +16,9 @@ jobs:
       - name: Setup GraalVM Community Edition
         uses: graalvm/setup-graalvm@v1
         with:
-          version: '20.3.0'
-          java-version: '8'
-          #gds-token: ${{ secrets.GDS_TOKEN }}
+          version: '22.3.1'
+          java-version: '11'
+          gds-token: ${{ secrets.GDS_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Cache SonarCloud packages
         uses: actions/cache@v3
