@@ -38,6 +38,7 @@ class JMHBuilderFactoryTest {
         // Runs HelloWorld benchmark with CSV
         JMHBuilderFactory.runWithCSV(CSV, JMHSample_01_HelloWorld.class.getName());
         assertTrue(Files.exists(new File(CSV).toPath()));
+        String ord = NumberUtils.convertToOrdinal(1);
         try {
             Files.delete(new File(CSV).toPath());
         } catch (IOException e) {
@@ -54,5 +55,17 @@ class JMHBuilderFactoryTest {
     @Test
     void testPlain() {
         assertDoesNotThrow(() -> JMHBuilderFactory.runJMH(JMHSample_01_HelloWorld.class.getName()));
+    }
+
+    @Test
+    void testOthers() {
+        assertDoesNotThrow(() -> {
+            JMHBuilderFactory.getBuilder(JMHSample_01_HelloWorld.class.getName());
+            JMHBuilderFactory.getJSONBuilder(JSON, JMHSample_01_HelloWorld.class.getName());
+            JMHBuilderFactory.getCSVBuilder(CSV, JMHSample_01_HelloWorld.class.getName());
+            JMHBuilderFactory.getJSONAndGCProfiler(JSON, JMHSample_01_HelloWorld.class.getName());
+            JMHBuilderFactory.getCSVAndGCBuilder(CSV, JMHSample_01_HelloWorld.class.getName());
+            JMHBuilderFactory.getBuilder(JSON, JMHBuilderFactory.class.getName());
+        });
     }
 }
