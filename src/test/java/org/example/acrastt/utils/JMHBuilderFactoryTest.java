@@ -50,4 +50,9 @@ class JMHBuilderFactoryTest {
         // Runs HelloWorld benchmark with GC profiling
         assertDoesNotThrow(() -> JMHBuilderFactory.runWithGC(JMHSample_01_HelloWorld.class.getName()));
     }
+
+    @Test
+    void testPlain() {
+        assertDoesNotThrow(() -> JMHBuilderFactory.runJMH(JMHSample_01_HelloWorld.class.getName()));
+    }
 }
