@@ -1,4 +1,5 @@
-import org.example.acrastt.utils.NumberUtils;
+package org.example.acrastt.utils;
+
 import org.junit.jupiter.api.RepeatedTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -1,4 +1,5 @@
-import org.example.acrastt.utils.JMHBuilderFactory;
+package org.example.acrastt.utils;
+
 import org.junit.jupiter.api.Test;
 import org.openjdk.jmh.samples.JMHSample_01_HelloWorld;
 import org.slf4j.Logger;
@@ -13,8 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class JMHBuilderFactoryTest {
 
-    private static final String JSON = "src/test/java/JMH.json";
-    private static final String CSV = "src/test/java/JMH.csv";
+    private static final String JSON = "src/test/java/org/example/acrastt/utils/JMH.json";
+    private static final String CSV = "src/test/java/org/example/acrastt/utils/JMH.csv";
 
     private static final Logger LOG = LoggerFactory.getLogger(JMHBuilderFactory.class);
 

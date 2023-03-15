@@ -24,7 +24,8 @@ public final class JMHBuilderFactory {
     }
 
     /**
-     * Run a JMH benchmark while saving the results in a json file. The json file will be saved with
+     * Run a JMH benchmark while saving the results in a json file.
+     * The json file will be saved with
      * specified directory and name.
      *
      * @param file  the name of the json file to be saved
@@ -41,7 +42,8 @@ public final class JMHBuilderFactory {
     }
 
     /**
-     * Run a JMH benchmark while saving the results in a csv file. The csv file will be saved with
+     * Run a JMH benchmark while saving the results in a csv file.
+     * The csv file will be saved with
      * specified directory and name.
      *
      * @param file  the name of the csv file to be saved
@@ -183,5 +185,18 @@ public final class JMHBuilderFactory {
         return getJSONBuilder(file, clazz)
                 // Specify the profiler
                 .addProfiler("gc");
+    }
+
+    /**
+     * This runs the given JMH benchmark
+     *
+     * @param clazz class of the benchmark to be run
+     */
+    public static void runJMH(String clazz) {
+        try {
+            new Runner(getBuilder(clazz).build()).run();
+        } catch (RunnerException e) {
+            LOG.error("Error when running JMH benchmark", e);
+        }
     }
 }
