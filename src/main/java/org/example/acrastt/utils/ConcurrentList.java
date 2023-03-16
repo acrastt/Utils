@@ -4,6 +4,7 @@ package org.example.acrastt.utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.Serial;
 import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.locks.StampedLock;
@@ -24,8 +25,8 @@ import java.util.stream.Stream;
  */
 public class ConcurrentList<T> extends ArrayList<T> {
 
+    @Serial
     private static final long serialVersionUID = 5560587813010361548L;
-    private static final String UNREACHABLE = "Reached an unreachable state while trying to ";
     private static final Logger LOG = LoggerFactory.getLogger(ConcurrentList.class);
     /**
      * A stamped lock that is used to synchronize access to the list.
@@ -77,8 +78,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
         } else {
             return read(c);
         }
-        // This shouldn't happen
-        throw new IllegalStateException(UNREACHABLE + "read optimistically");
+        return null;
     }
 
     /**
@@ -96,10 +96,10 @@ public class ConcurrentList<T> extends ArrayList<T> {
             return c.call();
         } catch (Exception e) {
             LOG.error("Exception while trying to read", e);
-            return null;
         } finally {
             lock.unlockRead(stamp);
         }
+        return null;
     }
 
     /**
@@ -117,10 +117,10 @@ public class ConcurrentList<T> extends ArrayList<T> {
             return c.call();
         } catch (Exception e) {
             LOG.error("Exception while writing concurrently", e);
-            return null;
         } finally {
             lock.unlockWrite(stamp);
         }
+        return null;
     }
 
     /**

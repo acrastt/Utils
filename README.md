@@ -22,7 +22,7 @@ Each utility has a separate file and can be used independently.
 
 ### Requirements
 
-- JDK(Java Development Kit) 11 or later^
+- JDK(Java Development Kit) 17 or later^
 - Apache Maven 3.2.5 or later^
 
   ^: This is the minimum requirement, but you should consider an LTS version.
