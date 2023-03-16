@@ -60,24 +60,6 @@
                 <version>0.8.8</version>
             </plugin>
             <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <includes>
-                        <include>**/*Test.java</include>
-                    </includes>
-                    <parallel>methods</parallel>
-                    <properties>
-                        <configurationParameters>
-                            junit.jupiter.conditions.deactivate=org.junit.*DisabledCondition
-                        </configurationParameters>
-                    </properties>
-                    <testFailureIgnore>false</testFailureIgnore>
-                    <threadCount>5</threadCount>
-                </configuration>
-                <groupId>org.apache.maven.plugins</groupId>
-                <version>3.0.0</version>
-            </plugin>
-            <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
                 <groupId>org.apache.maven.plugins</groupId>
                 <version>3.3.0</version>
