@@ -4,7 +4,6 @@ package org.example.acrastt.utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.Serial;
 import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.locks.StampedLock;
@@ -25,12 +24,8 @@ import java.util.stream.Stream;
  */
 public class ConcurrentList<T> extends ArrayList<T> {
 
-    @Serial
     private static final long serialVersionUID = 5560587813010361548L;
     private static final Logger LOG = LoggerFactory.getLogger(ConcurrentList.class);
-    /**
-     * A stamped lock that is used to synchronize access to the list.
-     */
     private static final StampedLock lock = new StampedLock();
 
     /**
