@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class NumberUtilsTest {
 
-    @RepeatedTest(10)
+    @RepeatedTest(100)
     void test() {
         // Test the convertToOrdinal method
         for (int i = 0; i < 100; i++) {
