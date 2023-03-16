@@ -96,11 +96,10 @@ public class ConcurrentList<T> extends ArrayList<T> {
             return c.call();
         } catch (Exception e) {
             LOG.error("Exception while trying to read", e);
+            return null;
         } finally {
             lock.unlockRead(stamp);
         }
-        // This shouldn't happen
-        throw new IllegalStateException(UNREACHABLE + "read");
     }
 
     /**
@@ -118,11 +117,10 @@ public class ConcurrentList<T> extends ArrayList<T> {
             return c.call();
         } catch (Exception e) {
             LOG.error("Exception while writing concurrently", e);
+            return null;
         } finally {
             lock.unlockWrite(stamp);
         }
-        // This shouldn't happen
-        throw new IllegalStateException(UNREACHABLE + "write");
     }
 
     /**
@@ -506,7 +504,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
      */
     @Override
     public java.util.List<T> subList(int fromIndex, int toIndex) {
-        return read(() -> super.subList(fromIndex, toIndex));
+        return optimisticRead(() -> super.subList(fromIndex, toIndex));
     }
 
     /**
@@ -539,6 +537,6 @@ public class ConcurrentList<T> extends ArrayList<T> {
      */
     @Override
     public Stream<T> parallelStream() {
-        return read(super::parallelStream);
+        return optimisticRead(super::parallelStream);
     }
 }
