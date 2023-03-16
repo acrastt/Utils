@@ -40,19 +40,12 @@ public final class NumberUtils {
     private static String returnOrdinal(int number) {
         // Gets the last digit
         int lastDigit = Math.abs(number) % 10;
-        // Initialize the suffix
-        String suffix;
-        // Set the suffix in different situations
-        if (lastDigit == 1) {
-            suffix = "st";
-        } else if (lastDigit == 2) {
-            suffix = "nd";
-        } else if (lastDigit == 3) {
-            suffix = "rd";
-        } else {
-            suffix = "th";
-        }
-        // Returns the number with the suffix calculated
-        return suffix;
+        // Set the suffix in different situations and return
+        return switch (lastDigit) {
+            case 1 -> "st";
+            case 2 -> "nd";
+            case 3 -> "rd";
+            default -> "th";
+        };
     }
 }
