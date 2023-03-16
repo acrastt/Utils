@@ -2,7 +2,7 @@
 <project version="4">
   <component name="SonarLintProjectSettings">
     <option name="bindingEnabled" value="true" />
-    <option name="projectKey" value="acrastt_Utils" />
+    <option name="projectKey" value="Utils" />
     <option name="serverId" value="connection" />
   </component>
 </project>
