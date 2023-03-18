@@ -19,11 +19,9 @@ public final class NumberUtils {
      * @return the String with ordinals
      */
     public static String convertToOrdinal(int number) {
-        // Gets the absolute value to convert negative numbers
-        int absNumber = Math.abs(number);
-        // Gets the last two digits
-        int lastTwoDigits = absNumber % 100;
-        // If the last two digits are 11 or 13, we know the suffix is "th"
+        // Gets the last two digits of the absolute value of number
+        int lastTwoDigits = Math.abs(number) % 100;
+        // If the last two digits are 11 or 13, we know the suffix is "th". So return number and "th" is the right thing to do
         if (11 <= lastTwoDigits && lastTwoDigits <= 13) {
             return number + "th";
         }
@@ -32,7 +30,7 @@ public final class NumberUtils {
     }
 
     /**
-     * Returns the suffix for the specified number(Will not exclude exceptions like when the number ends with 11 or 13
+     * Returns the suffix for the specified number(Will not exclude exceptions like when the number ends with 11, 12, or 13
      *
      * @param number the number to be calculated
      * @return the number with suffix(Will not exclude exceptions)
@@ -40,7 +38,7 @@ public final class NumberUtils {
     private static String returnOrdinal(int number) {
         // Gets the last digit
         int lastDigit = Math.abs(number) % 10;
-        // Set the suffix in different situations and return
+        // Return the suffix based on different situations
         return switch (lastDigit) {
             case 1 -> "st";
             case 2 -> "nd";

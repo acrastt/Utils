@@ -4,9 +4,13 @@ import org.openjdk.jmh.results.format.ResultFormatType;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.ChainedOptionsBuilder;
+import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.HashSet;
+import java.util.List;
 
 /**
  * The utility class for JMH.
@@ -24,179 +28,178 @@ public final class JMHBuilderFactory {
     }
 
     /**
-     * Run a JMH benchmark while saving the results in a json file.
-     * The json file will be saved with
-     * specified directory and name.
+     * This runs the given JMH benchmark and saves the results in a JSON file.
      *
-     * @param file  the name of the json file to be saved
-     * @param clazz the class to be called for the benchmark
+     * @param clazz  the class to be called for the benchmark
+     * @param result the name of the JSON file to be saved
      */
-    public static void runWithJson(String file, String clazz) {
+    public static void runWithJson(String clazz, String result) {
         try {
-            new Runner(getJSONBuilder(file, clazz)
-                    // Build and runs the benchmark
-                    .build()).run();
+            // Runs the benchmark
+            new Runner(getOptions(clazz, result, JMHConfig.JSON)).run();
         } catch (RunnerException e) {
             LOG.error("Error when running JMH benchmark with JSON", e);
         }
     }
 
     /**
-     * Run a JMH benchmark while saving the results in a csv file.
-     * The csv file will be saved with
-     * specified directory and name.
+     * This runs the given JMH benchmark and saves the results in a CSV file.
      *
-     * @param file  the name of the csv file to be saved
-     * @param clazz the class to be called for the benchmark
+     * @param clazz  class of the benchmark to be run
+     * @param result the name of the CSV file to be saved
      */
-    public static void runWithCSV(String file, String clazz) {
+    public static void runWithCSV(String clazz, String result) {
         try {
-            new Runner(getCSVBuilder(file, clazz)
-                    // Build and runs the benchmark
-                    .build()).run();
+            // Runs the benchmark
+            new Runner(getOptions(clazz, result, JMHConfig.CSV)).run();
         } catch (RunnerException e) {
             LOG.error("Error running JMH benchmark with CSV", e);
         }
     }
 
     /**
-     * This runs the given JMH benchmark with GC profiling(Memory measurement) and saves the results
-     * in a json file.
+     * This runs the given JMH benchmark with GC profiling and saves the results in a JSON file.
      *
-     * @param file  the json file to be saved
-     * @param clazz class of the benchmark to be run
+     * @param clazz  class of the benchmark to be run
+     * @param result the file name of the JSON result to be stored
      */
-    public static void runWithGCAndJson(String file, String clazz) {
+    public static void runWithGCAndJson(String clazz, String result) {
         try {
-            new Runner(getJSONAndGCBuilder(file, clazz)
-                    // Build and runs the benchmark
-                    .build()).run();
+            // Runs the benchmark
+            new Runner(getOptions(clazz, result, JMHConfig.GC, JMHConfig.JSON)).run();
         } catch (RunnerException e) {
             LOG.error("Error when running JMH benchmark with GC and JSON", e);
         }
     }
 
     /**
-     * This runs the given JMH benchmark with GC profiling(Memory measurement) and saves the results
-     * in a csv file.
+     * This runs the given JMH benchmark with GC profiling and saves the results in a CSV file.
      *
-     * @param file  the csv file to be saved
-     * @param clazz class of the benchmark to be run
+     * @param clazz  class of the benchmark to be run
+     * @param result the file name of the CSV result to be stored
      */
-    public static void runWithGCAndCSV(String file, String clazz) {
+    public static void runWithGCAndCSV(String clazz, String result) {
         try {
-            new Runner(getCSVAndGCBuilder(file, clazz)
-                    // Build and runs the benchmark
-                    .build()).run();
+            // Runs the benchmark
+            new Runner(getOptions(clazz, result, JMHConfig.GC, JMHConfig.CSV)).run();
         } catch (RunnerException e) {
             LOG.error("Error when running JMH benchmark with GC and CSV", e);
         }
     }
 
     /**
-     * This runs the given JMH benchmark with GC profiling(Memory measurement).
+     * This runs the given JMH benchmark with GC profiling.
      *
      * @param clazz class of the benchmark to be run
      */
     public static void runWithGC(String clazz) {
         try {
-            new Runner(getBuilder(clazz)
-                    // Adds the GC profiler
-                    .addProfiler("gc")
-                    // Build and runs the benchmark
-                    .build()).run();
+            // Runs the benchmark
+            new Runner(getOptions(clazz, "", JMHConfig.GC)).run();
         } catch (RunnerException e) {
             LOG.error("Error when running JMH benchmark with GC", e);
         }
     }
 
     /**
-     * Gets the option builder for the result in file and the class clazz
-     *
-     * @param file  the file of the result to be stored
-     * @param clazz the class to get the option builder
-     * @return the option builder
-     */
-    public static ChainedOptionsBuilder getBuilder(String file, String clazz) {
-        return getBuilder(clazz)
-                // Specify the file of the results
-                .result(file);
-    }
-
-    /**
-     * Return the builder for the class clazz
-     *
-     * @param clazz the class to get the option builder
-     * @return the option builder
-     */
-    public static ChainedOptionsBuilder getBuilder(String clazz) {
-        return new OptionsBuilder()
-                // Specify the class to be called for the benchmark
-                .include(clazz);
-    }
-
-    /**
-     * Return the builder for the CSV result in file and the class clazz
-     *
-     * @param file  the file of the result in CSV to be stored
-     * @param clazz the class to get the option builder
-     * @return the option builder
-     */
-    public static ChainedOptionsBuilder getCSVBuilder(String file, String clazz) {
-        return getBuilder(file, clazz)
-                // Specify the result format
-                .resultFormat(ResultFormatType.CSV);
-    }
-
-    /**
-     * Return the builder for the JSON result in file and the class clazz
-     *
-     * @param file  the file of the result in JSON to be stored
-     * @param clazz the class to get the option builder
-     * @return the option builder
-     */
-    public static ChainedOptionsBuilder getJSONBuilder(String file, String clazz) {
-        return getBuilder(file, clazz)
-                // Specify the result format
-                .resultFormat(ResultFormatType.JSON);
-    }
-
-    /**
-     * Returns the option builder for the CSV result in file and the class clazz
-     *
-     * @param file  the file of the result in CSV to be stored
-     * @param clazz the class to get the option builder
-     * @return the option builder
-     */
-    public static ChainedOptionsBuilder getCSVAndGCBuilder(String file, String clazz) {
-        return getCSVBuilder(file, clazz)
-                // Specify the profiler
-                .addProfiler("gc");
-    }
-
-    /**
-     * Returns the option builder for the JSON result in file and the class clazz
-     *
-     * @param file  the file of the result in JSON to be stored
-     * @param clazz the class to get the option builder
-     * @return the option builder
-     */
-    public static ChainedOptionsBuilder getJSONAndGCBuilder(String file, String clazz) {
-        return getJSONBuilder(file, clazz)
-                // Specify the profiler
-                .addProfiler("gc");
-    }
-
-    /**
      * This runs the given JMH benchmark
      *
-     * @param clazz class of the benchmark to be run
+     * @param clazz   class of the benchmark to be run
+     * @param result  the file name of the result to be stored, if not using results, leave it blank("")
+     * @param configs Configurations of the JMH benchmark
+     * @see org.example.acrastt.utils.JMHBuilderFactory.JMHConfig
      */
-    public static void runJMH(String clazz) {
+    public static void runJMH(String clazz, String result, JMHConfig... configs) {
         try {
-            new Runner(getBuilder(clazz).build()).run();
+            // Runs the benchmark
+            new Runner(getBuilder(clazz, result, configs).build()).run();
         } catch (RunnerException e) {
             LOG.error("Error when running JMH benchmark", e);
         }
+    }
+
+
+    /**
+     * Returns the ChainedOptionsBuilder for the specified parameters
+     *
+     * @param clazz   the class of the benchmark
+     * @param result  the file name of the result to be stored, if not using results, leave it blank("")
+     * @param configs the configuration of the JMH benchmark
+     * @return the ChainedOptionsBuilder for the specified parameters
+     * @see org.example.acrastt.utils.JMHBuilderFactory.JMHConfig
+     */
+    public static ChainedOptionsBuilder getBuilder(String clazz, String result, JMHConfig... configs) {
+        // Creates a set based on the configuration
+        HashSet<JMHConfig> configsList = new HashSet<>(List.of(configs));
+        // Initialize the builder
+        ChainedOptionsBuilder builder = new OptionsBuilder().include(clazz);
+        // When there are configurations
+        if (!(configsList.contains(JMHConfig.NONE) || configsList.size() == 0)) {
+            // When there is a result file specification
+            if (!result.equals("")) {
+                // Result in file
+                builder.result(result);
+                // When the result format is JSON
+                if (configsList.contains(JMHConfig.JSON)) {
+                    // Add JSON attribute
+                    builder.resultFormat(ResultFormatType.JSON);
+                }
+                // When the result format is CSV
+                if (configsList.contains(JMHConfig.CSV)) {
+                    // Throw an error if there are multiple result formats
+                    if (configsList.contains(JMHConfig.JSON))
+                        throw new IllegalArgumentException("You can only choose one result format(JSON or CSV)");
+                    // Add CSV attribute
+                    builder.resultFormat(ResultFormatType.CSV);
+                }
+            } else {
+                // When there is no result file specified and there are result configuration
+                if (configsList.contains(JMHConfig.JSON) || configsList.contains(JMHConfig.CSV))
+                    // Throw the exception
+                    throw new IllegalArgumentException("Please specify result file");
+            }
+            // When there's GC configuration
+            if (configsList.contains(JMHConfig.GC)) {
+                // Add GC attribute
+                builder.addProfiler("gc");
+            }
+        } else {
+            // If there are more than one configuration and have the value "none"
+            if (configsList.size() > 1) {
+                // Log the exception
+                // Should it throw IllegalArgumentException or just log?
+                LOG.error("Specified configuration 'none', but other configurations found.",
+                        new IllegalArgumentException("Specified configuration 'none', but other configurations found."));
+            }
+        }
+        return builder;
+    }
+
+
+    /**
+     * Returns the Options for the specified parameters
+     *
+     * @param clazz   the class of the benchmark
+     * @param result  the file name of the result to be stored, if not using results, leave it blank("")
+     * @param configs the configuration of the JMH benchmark
+     * @return the Options for the specified parameters
+     * @see org.example.acrastt.utils.JMHBuilderFactory.JMHConfig
+     */
+    public static Options getOptions(String clazz, String result, JMHConfig... configs) {
+        return getBuilder(clazz, result, configs).build();
+    }
+
+    /**
+     * Class of JMH configurations
+     */
+    public enum JMHConfig {
+        // Use the JSON result format
+        JSON,
+        // Use the CSV result format
+        CSV,
+        // Use the gc profiler
+        GC,
+        // Use none
+        NONE
     }
 }
