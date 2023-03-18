@@ -137,7 +137,7 @@ public final class JMHBuilderFactory {
      * @param clazz   the class of the benchmark
      * @param result  the file name of the result to be stored, if not using results, leave it blank("")
      * @param configs the configuration of the JMH benchmark
-     * @return the ChainedOptionsBuilder for the specified parameters
+     * @return the {@link org.openjdk.jmh.runner.options.ChainedOptionsBuilder} for the specified parameters
      * @see org.example.acrastt.utils.JMHBuilderFactory.JMHConfig
      */
     public static ChainedOptionsBuilder getBuilder(String clazz, String result, JMHConfig... configs) {
@@ -200,7 +200,7 @@ public final class JMHBuilderFactory {
      * @param clazz   the class of the benchmark
      * @param result  the file name of the result to be stored, if not using results, leave it blank("")
      * @param configs the configuration of the JMH benchmark
-     * @return the Options for the specified parameters
+     * @return the {@link org.openjdk.jmh.runner.options.Options} for the specified parameters
      * @see org.example.acrastt.utils.JMHBuilderFactory.JMHConfig
      */
     public static Options getOptions(String clazz, String result, JMHConfig... configs) {
@@ -211,13 +211,21 @@ public final class JMHBuilderFactory {
      * Class of JMH configurations
      */
     public enum JMHConfig {
-        // Use the JSON result format
+        /**
+         * Use the JSON result format
+         */
         JSON,
-        // Use the CSV result format
+        /**
+         * Use the CSV result format
+         */
         CSV,
-        // Use the gc profiler
+        /**
+         * Use the gc profiler
+         */
         GC,
-        // Use none
+        /**
+         * Use none
+         */
         NONE
     }
 }
