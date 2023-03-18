@@ -1,38 +1,72 @@
 # Utils
 
-This is a collection of different utility functions that can be used in
-various applications. This repository contains the following utilities.
+This is a collection of
+different utility functions
+that can be used in
+various applications. This
+repository contains the
+following utilities.
 
-- `ConcurrentList`: A thread-safe list that allows concurrent operations
+- `ConcurrentList`: A
+  thread-safe list that allows
+  concurrent operations
   without error.
-  This is designed for a high number of reads,
-  a low number of writes and a low number of threads.
-- `JMHBuilderFactory`: A utility for JMH(Java Microbenchmark Harness), currently it has
-  functions that creates json/csv file when running benchmarks and running with GC profiler.
-  It also can generate `ChainedOptionsBuilder` for different needs.
-- `NumberUtils`: A utility which processes numbers in Java, it currently has
-  a function that converts numbers to string with ordinals.
+  This is designed for a high
+  number of reads,
+  a low number of writes and a
+  low number of threads.
+- `JMHBuilderFactory`: A
+  utility for JMH(Java
+  Microbenchmark Harness),
+  currently it has
+  functions that creates
+  json/csv file when running
+  benchmarks and running with
+  GC profiler.
+  It also can
+  generate `ChainedOptionsBuilder`
+  for different needs.
+- `NumberUtils`: A utility
+  which processes numbers in
+  Java, it currently has
+  a function that converts
+  numbers to string with
+  ordinals.
 
 ## Getting Started
 
-To use this library, simply clone the repository using a tool such as GitHub CLI
-and either add necessary files to your application's source code or
-add this to your maven repositories folder (e.g. `.m2` folder).
-Each utility has a separate file and can be used independently.
+To use this library, simply
+clone the repository using a
+tool such as GitHub CLI
+and either add necessary files
+to your application's source
+code or
+add this to your maven
+repositories folder (
+e.g. `.m2` folder).
+Each utility has a separate
+file and can be used
+independently.
 
 ### Requirements
 
-- JDK(Java Development Kit) 14 or later^
+- JDK(Java Development Kit) 14
+  or later^
 - Apache Maven 3.2.5 or later^
 
-  ^: This is the minimum requirement, but you should consider an LTS version.
+  ^: This is the minimum
+  requirement, but you should
+  consider an LTS version.
 
 ## Usage
 
 ### ConcurrentList
 
-Since ConcurrentList is an implementation of ArrayList, just use it
-like a normal ArrayList. There is an example:
+Since ConcurrentList is an
+implementation of ArrayList,
+just use it
+like a normal ArrayList. There
+is an example:
 
 ```java
 import org.example.acrastt.utils.ConcurrentList;
@@ -53,7 +87,9 @@ public class Main {
 
 ### JMHUtils
 
-JMHUtils had self-explanation methods, so just find methods that
+JMHUtils had self-explanation
+methods, so just find methods
+that
 match your needs.
 Here are some examples:
 
@@ -73,7 +109,9 @@ public class Main {
 
 ### NumberUtils
 
-NumberUtils is a utility class for numbers. Here are some examples:
+NumberUtils is a utility class
+for numbers. Here are some
+examples:
 
 ```java
 import org.example.acrastt.utils.NumberUtils;
@@ -95,13 +133,20 @@ public class Main {
 
 ## Documentation
 
-You can find the documentation [here](javadoc/index.html).
+You can find the
+documentation [here](javadoc/index.html).
 
 ## Contributing
 
-If you want to contribute, please email us at `bohandu@hotmail.com`.
-If you find any bugs or suggestions, feel free to submit an issue or pull request.
+If you want to contribute,
+please email us
+at `bohandu@hotmail.com`.
+If you find any bugs or
+suggestions, feel free to
+submit an issue or pull
+request.
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE.txt)
+This project is licensed under
+the [MIT License](LICENSE.txt)

@@ -37,8 +37,10 @@ public final class JMHBuilderFactory {
         try {
             // Runs the benchmark
             new Runner(getOptions(clazz, result, JMHConfig.JSON)).run();
-        } catch (RunnerException e) {
+        } catch (
+                RunnerException e) {
             LOG.error("Error when running JMH benchmark with JSON", e);
+            throw new RuntimeException(e);
         }
     }
 
@@ -52,8 +54,10 @@ public final class JMHBuilderFactory {
         try {
             // Runs the benchmark
             new Runner(getOptions(clazz, result, JMHConfig.CSV)).run();
-        } catch (RunnerException e) {
+        } catch (
+                RunnerException e) {
             LOG.error("Error running JMH benchmark with CSV", e);
+            throw new RuntimeException(e);
         }
     }
 
@@ -67,8 +71,10 @@ public final class JMHBuilderFactory {
         try {
             // Runs the benchmark
             new Runner(getOptions(clazz, result, JMHConfig.GC, JMHConfig.JSON)).run();
-        } catch (RunnerException e) {
+        } catch (
+                RunnerException e) {
             LOG.error("Error when running JMH benchmark with GC and JSON", e);
+            throw new RuntimeException(e);
         }
     }
 
@@ -82,8 +88,10 @@ public final class JMHBuilderFactory {
         try {
             // Runs the benchmark
             new Runner(getOptions(clazz, result, JMHConfig.GC, JMHConfig.CSV)).run();
-        } catch (RunnerException e) {
+        } catch (
+                RunnerException e) {
             LOG.error("Error when running JMH benchmark with GC and CSV", e);
+            throw new RuntimeException(e);
         }
     }
 
@@ -96,8 +104,10 @@ public final class JMHBuilderFactory {
         try {
             // Runs the benchmark
             new Runner(getOptions(clazz, "", JMHConfig.GC)).run();
-        } catch (RunnerException e) {
+        } catch (
+                RunnerException e) {
             LOG.error("Error when running JMH benchmark with GC", e);
+            throw new RuntimeException(e);
         }
     }
 
@@ -113,8 +123,10 @@ public final class JMHBuilderFactory {
         try {
             // Runs the benchmark
             new Runner(getBuilder(clazz, result, configs).build()).run();
-        } catch (RunnerException e) {
+        } catch (
+                RunnerException e) {
             LOG.error("Error when running JMH benchmark", e);
+            throw new RuntimeException(e);
         }
     }
 
@@ -147,16 +159,22 @@ public final class JMHBuilderFactory {
                 // When the result format is CSV
                 if (configsList.contains(JMHConfig.CSV)) {
                     // Throw an error if there are multiple result formats
-                    if (configsList.contains(JMHConfig.JSON))
-                        throw new IllegalArgumentException("You can only choose one result format(JSON or CSV)");
+                    if (configsList.contains(JMHConfig.JSON)) {
+                        IllegalArgumentException error = new IllegalArgumentException("You can only choose one result format(JSON or CSV)");
+                        LOG.error(error.getMessage(), error);
+                        throw error;
+                    }
                     // Add CSV attribute
                     builder.resultFormat(ResultFormatType.CSV);
                 }
             } else {
                 // When there is no result file specified and there are result configuration
-                if (configsList.contains(JMHConfig.JSON) || configsList.contains(JMHConfig.CSV))
+                if (configsList.contains(JMHConfig.JSON) || configsList.contains(JMHConfig.CSV)) {
                     // Throw the exception
-                    throw new IllegalArgumentException("Please specify result file");
+                    IllegalArgumentException error = new IllegalArgumentException("Please specify result file");
+                    LOG.error(error.getMessage(), error);
+                    throw error;
+                }
             }
             // When there's GC configuration
             if (configsList.contains(JMHConfig.GC)) {

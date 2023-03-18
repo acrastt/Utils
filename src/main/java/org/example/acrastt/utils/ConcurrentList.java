@@ -69,13 +69,14 @@ public class ConcurrentList<T> extends ArrayList<T> {
         if (lock.validate(stamp)) {
             try {
                 return c.call();
-            } catch (Exception e) {
-                LOG.error("Exception when trying to read optimistically", e);
+            } catch (
+                    Exception e) {
+                LOG.error("Exception when trying to read optimistically");
+                throw new RuntimeException(e);
             }
         } else {
             return read(c);
         }
-        return null;
     }
 
     /**
@@ -91,12 +92,13 @@ public class ConcurrentList<T> extends ArrayList<T> {
         // Calls the method and releases the lock
         try {
             return c.call();
-        } catch (Exception e) {
-            LOG.error("Exception while trying to read", e);
+        } catch (
+                Exception e) {
+            LOG.error("Error when trying to read", e);
+            throw new RuntimeException(e);
         } finally {
             lock.unlockRead(stamp);
         }
-        return null;
     }
 
     /**
@@ -112,12 +114,13 @@ public class ConcurrentList<T> extends ArrayList<T> {
         // Calls the method and releases the lock
         try {
             return c.call();
-        } catch (Exception e) {
-            LOG.error("Exception while writing concurrently", e);
+        } catch (
+                Exception e) {
+            LOG.error("Exception trying to write", e);
+            throw new RuntimeException(e);
         } finally {
             lock.unlockWrite(stamp);
         }
-        return null;
     }
 
     /**
