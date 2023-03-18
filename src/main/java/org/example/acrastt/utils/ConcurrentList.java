@@ -460,7 +460,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Searches for the last occurrence of int.
+     * Searches for the last occurrence of o.
      *
      * @param o the object to search for
      * @return the index of the last occurrence of o, -1 if o is not found

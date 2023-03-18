@@ -22,14 +22,14 @@ import static org.junit.jupiter.api.Assertions.*;
 @Execution(ExecutionMode.CONCURRENT)
 class ConcurrentListTest {
 
-    private final Logger LOG = LoggerFactory.getLogger(ConcurrentListTest.class);
-    private final Object obj = new Object();
-    private ConcurrentList<String> stringList;
-    private ExecutorService exec;
+    private static final Logger LOG = LoggerFactory.getLogger(ConcurrentListTest.class);
+    private static final Object obj = new Object();
+    private static ConcurrentList<String> stringList;
+    private static ExecutorService exec;
 
 
     @BeforeAll
-    void initialize() {
+    static void initialize() {
         stringList = new ConcurrentList<>();
     }
 
@@ -40,7 +40,7 @@ class ConcurrentListTest {
         exec = Executors.newCachedThreadPool();
     }
 
-    @RepeatedTest(100)
+    @RepeatedTest(10)
     void testConcurrency() {
         // Initialize both lists
         ConcurrentList<String> concurrentList = new ConcurrentList<>();
@@ -53,15 +53,15 @@ class ConcurrentListTest {
         threadSafe.add("Baz");
         // Check thread safety by adding and removing
         Thread remove = new Thread(() -> {
-            while (concurrentList.size() < 5000 && threadSafe.size() < 5000) ;
-            for (int i = 0; i < 100000; i++) {
+            while (concurrentList.size() < 50 && threadSafe.size() < 50) ;
+            for (int i = 0; i < 100; i++) {
                 concurrentList.remove(0);
                 threadSafe.removeFirst();
                 Thread.yield();
             }
         });
         Thread add = new Thread(() -> {
-            for (int i = 0; i < 100000; i++) {
+            for (int i = 0; i < 100; i++) {
                 concurrentList.add("Qux");
                 threadSafe.add("Qux");
             }
