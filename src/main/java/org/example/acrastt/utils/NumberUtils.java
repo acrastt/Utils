@@ -9,6 +9,10 @@ package org.example.acrastt.utils;
  */
 public final class NumberUtils {
 
+
+    /**
+     * Do not use this(Why this is private)
+     */
     private NumberUtils() {
     }
 

@@ -21,9 +21,14 @@ import java.util.List;
  */
 public final class JMHBuilderFactory {
 
+    /**
+     * Logger used to print information
+     */
     private static final Logger LOG = LogManager.getLogger(JMHBuilderFactory.class);
 
-
+    /**
+     * Do not use this(Why this is private)
+     */
     private JMHBuilderFactory() {
     }
 
@@ -218,24 +223,54 @@ public final class JMHBuilderFactory {
         NONE
     }
 
+    /**
+     * A runtime exception class for exceptions happened using JMH runner
+     */
     private static class JMHRuntimeException extends RuntimeException {
 
+        /**
+         * Creates a JMHRuntimeException with no information
+         */
         public JMHRuntimeException() {
             super();
         }
 
+        /**
+         * Creates a JMHRuntimeException with message as the information
+         *
+         * @param message the message information
+         */
         public JMHRuntimeException(String message) {
             super(message);
         }
 
+        /**
+         * Creates a JMHRuntimeException with message and a throwable as the information
+         *
+         * @param cause   the throwable information to be passed
+         * @param message the message information
+         */
         public JMHRuntimeException(String message, Throwable cause) {
             super(message, cause);
         }
 
+        /**
+         * Creates a JMHRuntimeException with a throwable as the information
+         *
+         * @param cause the throwable information to be passed
+         */
         public JMHRuntimeException(Throwable cause) {
             super(cause);
         }
 
+        /**
+         * Creates a JMHRuntimeException with specified information
+         *
+         * @param message            the message information
+         * @param cause              the throwable to be passed
+         * @param enableSuppression  true if enabling suppression, otherwise false
+         * @param writableStackTrace true if the stacktrace should be writable, otherwise false
+         */
         protected JMHRuntimeException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
             super(message, cause, enableSuppression, writableStackTrace);
         }

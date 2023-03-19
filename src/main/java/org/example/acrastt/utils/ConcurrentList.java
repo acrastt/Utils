@@ -24,8 +24,14 @@ import java.util.stream.Stream;
  */
 public class ConcurrentList<T> extends ArrayList<T> {
 
+    /**
+     * The serial version UID
+     */
     @Serial
     private static final long serialVersionUID = 5395098984625645320L;
+    /**
+     * The lock that synchronize the methods
+     */
     private static final StampedLock lock = new StampedLock();
 
     /**
