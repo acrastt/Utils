@@ -3,218 +3,120 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="http://maven.apache.org/POM/4.0.0"
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <artifactId>
-        acrastt.Utils
-    </artifactId>
+    <artifactId>acrastt.Utils</artifactId>
 
     <build>
         <plugins>
             <plugin>
-                <artifactId>
-                    maven-enforcer-plugin
-                </artifactId>
+                <artifactId>maven-enforcer-plugin</artifactId>
                 <executions>
                     <execution>
                         <configuration>
                             <rules>
                                 <requireMavenVersion>
-                                    <version>
-                                        3.2.5
-                                    </version>
+                                    <version>3.2.5</version>
                                 </requireMavenVersion>
                             </rules>
                         </configuration>
                         <goals>
-                            <goal>
-                                enforce
-                            </goal>
+                            <goal>enforce</goal>
                         </goals>
-                        <id>
-                            enforce-maven
-                        </id>
+                        <id>enforce-maven</id>
                     </execution>
                 </executions>
-                <groupId>
-                    org.apache.maven.plugins
-                </groupId>
-                <version>
-                    3.2.1
-                </version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <version>3.2.1</version>
             </plugin>
             <plugin>
-                <artifactId>
-                    maven-compiler-plugin
-                </artifactId>
+                <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>
-                        14
-                    </source>
-                    <target>
-                        14
-                    </target>
+                    <source>14</source>
+                    <target>14</target>
                 </configuration>
-                <groupId>
-                    org.apache.maven.plugins
-                </groupId>
-                <version>
-                    3.11.0
-                </version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <version>3.11.0</version>
             </plugin>
         </plugins>
     </build>
 
     <dependencies>
         <dependency>
-            <artifactId>
-                commons-collections4
-            </artifactId>
-            <groupId>
-                org.apache.commons
-            </groupId>
-            <version>4.4
-            </version>
+            <artifactId>commons-collections4</artifactId>
+            <groupId>org.apache.commons</groupId>
+            <version>4.4</version>
         </dependency>
         <dependency>
-            <artifactId>
-                commons-math
-            </artifactId>
-            <groupId>
-                org.apache.commons
-            </groupId>
-            <version>2.2
-            </version>
+            <artifactId>commons-math</artifactId>
+            <groupId>org.apache.commons</groupId>
+            <version>2.2</version>
         </dependency>
         <dependency>
-            <artifactId>
-                commons-lang3
-            </artifactId>
-            <groupId>
-                org.apache.commons
-            </groupId>
-            <version>3.12.0
-            </version>
+            <artifactId>commons-lang3</artifactId>
+            <groupId>org.apache.commons</groupId>
+            <version>3.12.0</version>
         </dependency>
         <dependency>
-            <artifactId>
-                commons-io
-            </artifactId>
-            <groupId>
-                commons-io
-            </groupId>
-            <version>2.11.0
-            </version>
+            <artifactId>commons-io</artifactId>
+            <groupId>commons-io</groupId>
+            <version>2.11.0</version>
         </dependency>
         <dependency>
-            <artifactId>
-                jmh-core
-            </artifactId>
-            <groupId>
-                org.openjdk.jmh
-            </groupId>
-            <version>1.36
-            </version>
+            <artifactId>jmh-core</artifactId>
+            <groupId>org.openjdk.jmh</groupId>
+            <version>1.36</version>
         </dependency>
         <dependency>
-            <artifactId>
-                jmh-generator-annprocess
-            </artifactId>
-            <groupId>
-                org.openjdk.jmh
-            </groupId>
-            <version>1.36
-            </version>
+            <artifactId>jmh-generator-annprocess</artifactId>
+            <groupId>org.openjdk.jmh</groupId>
+            <version>1.36</version>
         </dependency>
         <dependency>
-            <artifactId>
-                logback-classic
-            </artifactId>
-            <groupId>
-                ch.qos.logback
-            </groupId>
-            <version>1.4.6
-            </version>
+            <artifactId>logback-classic</artifactId>
+            <groupId>ch.qos.logback</groupId>
+            <version>1.4.6</version>
         </dependency>
         <dependency>
-            <artifactId>
-                junit-jupiter-api
-            </artifactId>
-            <groupId>
-                org.junit.jupiter
-            </groupId>
-            <scope>test
-            </scope>
-            <version>5.9.2
-            </version>
+            <artifactId>junit-jupiter-api</artifactId>
+            <groupId>org.junit.jupiter</groupId>
+            <scope>test</scope>
+            <version>5.9.2</version>
         </dependency>
         <dependency>
-            <artifactId>
-                junit-jupiter-engine
-            </artifactId>
-            <groupId>
-                org.junit.jupiter
-            </groupId>
-            <scope>test
-            </scope>
-            <version>5.9.2
-            </version>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <groupId>org.junit.jupiter</groupId>
+            <scope>test</scope>
+            <version>5.9.2</version>
         </dependency>
         <dependency>
-            <artifactId>
-                jmh-samples
-            </artifactId>
-            <groupId>
-                org.openjdk.jmh
-            </groupId>
-            <scope>test
-            </scope>
-            <version>1.36
-            </version>
+            <artifactId>jmh-samples</artifactId>
+            <groupId>org.openjdk.jmh</groupId>
+            <scope>test</scope>
+            <version>1.36</version>
         </dependency>
     </dependencies>
 
     <distributionManagement>
         <repository>
-            <id>
-                acrastt.Utils
-            </id>
-            <name>
-                acrastt.Utils
-            </name>
-            <url>
-                https://github.com/acrastt/Utils
-            </url>
+            <id>acrastt.Utils</id>
+            <name>acrastt.Utils</name>
+            <url>https://github.com/acrastt/Utils</url>
         </repository>
     </distributionManagement>
-    <groupId>
-        org.example.acrastt.utils
-    </groupId>
-    <modelVersion>4.0.0
-    </modelVersion>
+    <groupId>org.example.acrastt.utils</groupId>
+    <modelVersion>4.0.0</modelVersion>
     <name>acrastt.Utils</name>
     <packaging>jar</packaging>
 
     <properties>
-        <project.build.sourceEncoding>
-            UTF-8
-        </project.build.sourceEncoding>
-        <sonar.organization>
-            acrastt
-        </sonar.organization>
-        <sonar.host.url>
-            https://sonarcloud.io
-        </sonar.host.url>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <sonar.organization>acrastt</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
     <scm>
-        <connection>
-            scm:git:https://github.com/bot-333/Utils.git
-        </connection>
-        <developerConnection>
-            scm:git:https://github.com/bot-333/Utils.git
-        </developerConnection>
-        <url>
-            scm:git:https://github.com/bot-333/Utils.git
-        </url>
+        <connection>scm:git:https://github.com/acrastt/Utils.git</connection>
+        <developerConnection>scm:git:https://github.com/acrastt/Utils.git</developerConnection>
+        <url>scm:git:https://github.com/acrastt/Utils.git</url>
     </scm>
 
     <version>1.0.0</version>
