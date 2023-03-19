@@ -1,13 +1,13 @@
 package org.example.acrastt.utils;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openjdk.jmh.results.format.ResultFormatType;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.ChainedOptionsBuilder;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.HashSet;
 import java.util.List;
@@ -21,7 +21,7 @@ import java.util.List;
  */
 public final class JMHBuilderFactory {
 
-    private static final Logger LOG = LoggerFactory.getLogger(JMHBuilderFactory.class);
+    private static final Logger LOG = LogManager.getLogger(JMHBuilderFactory.class);
 
 
     private JMHBuilderFactory() {
@@ -139,17 +139,16 @@ public final class JMHBuilderFactory {
         HashSet<JMHConfig> configsList = new HashSet<>(List.of(configs));
         // Initialize the builder
         ChainedOptionsBuilder builder = new OptionsBuilder().include(clazz);
-        // When there are configurations
+        // When there aren't any configurations
         if (configsList.contains(JMHConfig.NONE) || configsList.isEmpty()) {
             // If there are more than one configuration and have the value "none"
             if (configsList.size() > 1) {
                 // Log the exception
-                // Should it throw IllegalArgumentException or just log?
-                LOG.error("Specified configuration 'none', but other configurations found.",
+                LOG.error("Using 'none' as first priority: \n",
                         new IllegalArgumentException("Specified configuration 'none', but other configurations found."));
             }
         } else {
-            // When there is a result file specification
+            // When there isn't a result file specification
             if (result.equals("")) {
                 // When there is no result file specified and there are result configuration
                 if (configsList.contains(JMHConfig.JSON) || configsList.contains(JMHConfig.CSV)) {
