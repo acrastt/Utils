@@ -140,9 +140,23 @@ public final class JMHBuilderFactory {
         // Initialize the builder
         ChainedOptionsBuilder builder = new OptionsBuilder().include(clazz);
         // When there are configurations
-        if (!(configsList.contains(JMHConfig.NONE) || configsList.isEmpty())) {
+        if (configsList.contains(JMHConfig.NONE) || configsList.isEmpty()) {
+            // If there are more than one configuration and have the value "none"
+            if (configsList.size() > 1) {
+                // Log the exception
+                // Should it throw IllegalArgumentException or just log?
+                LOG.error("Specified configuration 'none', but other configurations found.",
+                        new IllegalArgumentException("Specified configuration 'none', but other configurations found."));
+            }
+        } else {
             // When there is a result file specification
-            if (!result.equals("")) {
+            if (result.equals("")) {
+                // When there is no result file specified and there are result configuration
+                if (configsList.contains(JMHConfig.JSON) || configsList.contains(JMHConfig.CSV)) {
+                    // Throw the exception
+                    throw new IllegalArgumentException("Please specify result file");
+                }
+            } else {
                 // Result in file
                 builder.result(result);
                 // When the result format is JSON
@@ -159,25 +173,11 @@ public final class JMHBuilderFactory {
                     // Add CSV attribute
                     builder.resultFormat(ResultFormatType.CSV);
                 }
-            } else {
-                // When there is no result file specified and there are result configuration
-                if (configsList.contains(JMHConfig.JSON) || configsList.contains(JMHConfig.CSV)) {
-                    // Throw the exception
-                    throw new IllegalArgumentException("Please specify result file");
-                }
             }
             // When there's GC configuration
             if (configsList.contains(JMHConfig.GC)) {
                 // Add GC attribute
                 builder.addProfiler("gc");
-            }
-        } else {
-            // If there are more than one configuration and have the value "none"
-            if (configsList.size() > 1) {
-                // Log the exception
-                // Should it throw IllegalArgumentException or just log?
-                LOG.error("Specified configuration 'none', but other configurations found.",
-                        new IllegalArgumentException("Specified configuration 'none', but other configurations found."));
             }
         }
         return builder;
