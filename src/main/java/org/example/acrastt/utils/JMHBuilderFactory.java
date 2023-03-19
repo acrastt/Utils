@@ -146,7 +146,7 @@ public final class JMHBuilderFactory {
         // Initialize the builder
         ChainedOptionsBuilder builder = new OptionsBuilder().include(clazz);
         // When there are configurations
-        if (!(configsList.contains(JMHConfig.NONE) || configsList.size() == 0)) {
+        if (!(configsList.contains(JMHConfig.NONE) || configsList.isEmpty())) {
             // When there is a result file specification
             if (!result.equals("")) {
                 // Result in file
@@ -160,9 +160,8 @@ public final class JMHBuilderFactory {
                 if (configsList.contains(JMHConfig.CSV)) {
                     // Throw an error if there are multiple result formats
                     if (configsList.contains(JMHConfig.JSON)) {
-                        IllegalArgumentException error = new IllegalArgumentException("You can only choose one result format(JSON or CSV)");
-                        LOG.error(error.getMessage(), error);
-                        throw error;
+                        throw  new IllegalArgumentException("You can only choose one result format" +
+                            "(JSON or CSV)");
                     }
                     // Add CSV attribute
                     builder.resultFormat(ResultFormatType.CSV);
@@ -171,9 +170,7 @@ public final class JMHBuilderFactory {
                 // When there is no result file specified and there are result configuration
                 if (configsList.contains(JMHConfig.JSON) || configsList.contains(JMHConfig.CSV)) {
                     // Throw the exception
-                    IllegalArgumentException error = new IllegalArgumentException("Please specify result file");
-                    LOG.error(error.getMessage(), error);
-                    throw error;
+                    throw new IllegalArgumentException("Please specify result file");
                 }
             }
             // When there's GC configuration

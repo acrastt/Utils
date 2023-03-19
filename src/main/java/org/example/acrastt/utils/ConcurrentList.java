@@ -1,6 +1,7 @@
 package org.example.acrastt.utils;
 
 
+import org.apache.commons.lang3.concurrent.ConcurrentRuntimeException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -71,8 +72,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
                 return c.call();
             } catch (
                     Exception e) {
-                LOG.error("Exception when trying to read optimistically");
-                throw new RuntimeException(e);
+                throw new ConcurrentRuntimeException(e);
             }
         } else {
             return read(c);
@@ -94,8 +94,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
             return c.call();
         } catch (
                 Exception e) {
-            LOG.error("Error when trying to read", e);
-            throw new RuntimeException(e);
+            throw new ConcurrentRuntimeException(e);
         } finally {
             lock.unlockRead(stamp);
         }
@@ -117,7 +116,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
         } catch (
                 Exception e) {
             LOG.error("Exception trying to write", e);
-            throw new RuntimeException(e);
+            throw new ConcurrentRuntimeException(e);
         } finally {
             lock.unlockWrite(stamp);
         }
