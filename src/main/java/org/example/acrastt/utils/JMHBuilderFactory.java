@@ -39,8 +39,7 @@ public final class JMHBuilderFactory {
             new Runner(getOptions(clazz, result, JMHConfig.JSON)).run();
         } catch (
                 RunnerException e) {
-            LOG.error("Error when running JMH benchmark with JSON", e);
-            throw new RuntimeException(e);
+            throw new JMHRuntimeException(e);
         }
     }
 
@@ -56,8 +55,7 @@ public final class JMHBuilderFactory {
             new Runner(getOptions(clazz, result, JMHConfig.CSV)).run();
         } catch (
                 RunnerException e) {
-            LOG.error("Error running JMH benchmark with CSV", e);
-            throw new RuntimeException(e);
+            throw new JMHRuntimeException(e);
         }
     }
 
@@ -73,8 +71,7 @@ public final class JMHBuilderFactory {
             new Runner(getOptions(clazz, result, JMHConfig.GC, JMHConfig.JSON)).run();
         } catch (
                 RunnerException e) {
-            LOG.error("Error when running JMH benchmark with GC and JSON", e);
-            throw new RuntimeException(e);
+            throw new JMHRuntimeException(e);
         }
     }
 
@@ -90,8 +87,7 @@ public final class JMHBuilderFactory {
             new Runner(getOptions(clazz, result, JMHConfig.GC, JMHConfig.CSV)).run();
         } catch (
                 RunnerException e) {
-            LOG.error("Error when running JMH benchmark with GC and CSV", e);
-            throw new RuntimeException(e);
+            throw new JMHRuntimeException(e);
         }
     }
 
@@ -106,8 +102,7 @@ public final class JMHBuilderFactory {
             new Runner(getOptions(clazz, "", JMHConfig.GC)).run();
         } catch (
                 RunnerException e) {
-            LOG.error("Error when running JMH benchmark with GC", e);
-            throw new RuntimeException(e);
+            throw new JMHRuntimeException(e);
         }
     }
 
@@ -125,8 +120,7 @@ public final class JMHBuilderFactory {
             new Runner(getBuilder(clazz, result, configs).build()).run();
         } catch (
                 RunnerException e) {
-            LOG.error("Error when running JMH benchmark", e);
-            throw new RuntimeException(e);
+            throw new JMHRuntimeException(e);
         }
     }
 
@@ -160,8 +154,7 @@ public final class JMHBuilderFactory {
                 if (configsList.contains(JMHConfig.CSV)) {
                     // Throw an error if there are multiple result formats
                     if (configsList.contains(JMHConfig.JSON)) {
-                        throw  new IllegalArgumentException("You can only choose one result format" +
-                            "(JSON or CSV)");
+                        throw new IllegalArgumentException("You can only choose one result format(JSON or CSV)");
                     }
                     // Add CSV attribute
                     builder.resultFormat(ResultFormatType.CSV);
@@ -224,5 +217,28 @@ public final class JMHBuilderFactory {
          * Use none
          */
         NONE
+    }
+
+    private static class JMHRuntimeException extends RuntimeException {
+
+        public JMHRuntimeException() {
+            super();
+        }
+
+        public JMHRuntimeException(String message) {
+            super(message);
+        }
+
+        public JMHRuntimeException(String message, Throwable cause) {
+            super(message, cause);
+        }
+
+        public JMHRuntimeException(Throwable cause) {
+            super(cause);
+        }
+
+        protected JMHRuntimeException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+            super(message, cause, enableSuppression, writableStackTrace);
+        }
     }
 }

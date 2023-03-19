@@ -28,7 +28,6 @@ public class ConcurrentList<T> extends ArrayList<T> {
 
     @Serial
     private static final long serialVersionUID = 5395098984625645320L;
-    private static final Logger LOG = LoggerFactory.getLogger(ConcurrentList.class);
     private static final StampedLock lock = new StampedLock();
 
     /**
@@ -115,7 +114,6 @@ public class ConcurrentList<T> extends ArrayList<T> {
             return c.call();
         } catch (
                 Exception e) {
-            LOG.error("Exception trying to write", e);
             throw new ConcurrentRuntimeException(e);
         } finally {
             lock.unlockWrite(stamp);
