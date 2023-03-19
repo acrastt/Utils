@@ -20,7 +20,6 @@ jobs:
           java-version: '17'
           gds-token: ${{ secrets.GDS_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          components: 'native-image'
           cache: 'maven'
       - name: Cache SonarCloud Packages
         uses: actions/cache@v3
