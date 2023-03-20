@@ -29,6 +29,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
      */
     @Serial
     private static final long serialVersionUID = 5395098984625645320L;
+
     /**
      * The lock that synchronize the methods
      */

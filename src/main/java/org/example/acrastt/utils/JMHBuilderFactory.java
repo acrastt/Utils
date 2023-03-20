@@ -44,7 +44,7 @@ public final class JMHBuilderFactory {
             new Runner(getOptions(clazz, result, JMHConfig.JSON)).run();
         } catch (
                 RunnerException e) {
-            throw new JMHRuntimeException(e);
+            LOG.error("Error when running benchmark " + clazz, e);
         }
     }
 
@@ -60,7 +60,7 @@ public final class JMHBuilderFactory {
             new Runner(getOptions(clazz, result, JMHConfig.CSV)).run();
         } catch (
                 RunnerException e) {
-            throw new JMHRuntimeException(e);
+            LOG.error("Error when running benchmark " + clazz, e);
         }
     }
 
@@ -76,7 +76,7 @@ public final class JMHBuilderFactory {
             new Runner(getOptions(clazz, result, JMHConfig.GC, JMHConfig.JSON)).run();
         } catch (
                 RunnerException e) {
-            throw new JMHRuntimeException(e);
+            LOG.error("Error when running benchmark " + clazz, e);
         }
     }
 
@@ -92,7 +92,7 @@ public final class JMHBuilderFactory {
             new Runner(getOptions(clazz, result, JMHConfig.GC, JMHConfig.CSV)).run();
         } catch (
                 RunnerException e) {
-            throw new JMHRuntimeException(e);
+            LOG.error("Error when running benchmark " + clazz, e);
         }
     }
 
@@ -107,7 +107,7 @@ public final class JMHBuilderFactory {
             new Runner(getOptions(clazz, "", JMHConfig.GC)).run();
         } catch (
                 RunnerException e) {
-            throw new JMHRuntimeException(e);
+            LOG.error("Error when running benchmark " + clazz, e);
         }
     }
 
@@ -125,7 +125,7 @@ public final class JMHBuilderFactory {
             new Runner(getBuilder(clazz, result, configs).build()).run();
         } catch (
                 RunnerException e) {
-            throw new JMHRuntimeException(e);
+            LOG.error("Error when running benchmark " + clazz, e);
         }
     }
 
@@ -134,7 +134,7 @@ public final class JMHBuilderFactory {
      * Returns the ChainedOptionsBuilder for the specified parameters
      *
      * @param clazz   the class of the benchmark
-     * @param result  the file name of the result to be stored, if not using results, leave it blank("")
+     * @param result  the file name of the result to be stored, if not using results, leave it null
      * @param configs the configuration of the JMH benchmark
      * @return the {@link org.openjdk.jmh.runner.options.ChainedOptionsBuilder} for the specified parameters
      * @see org.example.acrastt.utils.JMHBuilderFactory.JMHConfig
@@ -149,16 +149,16 @@ public final class JMHBuilderFactory {
             // If there are more than one configuration and have the value "none"
             if (configsList.size() > 1) {
                 // Log the exception
-                LOG.error("Using 'none' as first priority: \n",
+                LOG.warn("Using 'none' as first priority: \n",
                         new IllegalArgumentException("Specified configuration 'none', but other configurations found."));
             }
         } else {
             // When there isn't a result file specification
-            if (result.equals("")) {
+            if (result == null || result.trim().equals("")) {
                 // When there is no result file specified and there are result configuration
                 if (configsList.contains(JMHConfig.JSON) || configsList.contains(JMHConfig.CSV)) {
-                    // Throw the exception
-                    throw new IllegalArgumentException("Please specify result file");
+                    // Log the exception
+                    LOG.error("Result type detected, but no result file specification found");
                 }
             } else {
                 // Result in file
@@ -172,7 +172,7 @@ public final class JMHBuilderFactory {
                 if (configsList.contains(JMHConfig.CSV)) {
                     // Throw an error if there are multiple result formats
                     if (configsList.contains(JMHConfig.JSON)) {
-                        throw new IllegalArgumentException("You can only choose one result format(JSON or CSV)");
+                        LOG.warn("You can only choose one result format, using JSON as result format");
                     }
                     // Add CSV attribute
                     builder.resultFormat(ResultFormatType.CSV);
@@ -221,58 +221,5 @@ public final class JMHBuilderFactory {
          * Use none
          */
         NONE
-    }
-
-    /**
-     * A runtime exception class for exceptions happened using JMH runner
-     */
-    private static class JMHRuntimeException extends RuntimeException {
-
-        /**
-         * Creates a JMHRuntimeException with no information
-         */
-        public JMHRuntimeException() {
-            super();
-        }
-
-        /**
-         * Creates a JMHRuntimeException with message as the information
-         *
-         * @param message the message information
-         */
-        public JMHRuntimeException(String message) {
-            super(message);
-        }
-
-        /**
-         * Creates a JMHRuntimeException with message and a throwable as the information
-         *
-         * @param cause   the throwable information to be passed
-         * @param message the message information
-         */
-        public JMHRuntimeException(String message, Throwable cause) {
-            super(message, cause);
-        }
-
-        /**
-         * Creates a JMHRuntimeException with a throwable as the information
-         *
-         * @param cause the throwable information to be passed
-         */
-        public JMHRuntimeException(Throwable cause) {
-            super(cause);
-        }
-
-        /**
-         * Creates a JMHRuntimeException with specified information
-         *
-         * @param message            the message information
-         * @param cause              the throwable to be passed
-         * @param enableSuppression  true if enabling suppression, otherwise false
-         * @param writableStackTrace true if the stacktrace should be writable, otherwise false
-         */
-        protected JMHRuntimeException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-            super(message, cause, enableSuppression, writableStackTrace);
-        }
     }
 }
