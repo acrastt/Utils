@@ -4,7 +4,12 @@ package org.example.acrastt.utils;
 import org.apache.commons.lang3.concurrent.ConcurrentRuntimeException;
 
 import java.io.Serial;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.ListIterator;
+import java.util.Spliterator;
 import java.util.concurrent.Callable;
 import java.util.concurrent.locks.StampedLock;
 import java.util.function.Consumer;
@@ -14,7 +19,8 @@ import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
 
 /**
- * This is a thread-safe implementation of the {@link java.util.ArrayList} interface.
+ * This is a thread-safe implementation of the
+ * {@link java.util.ArrayList} interface.
  *
  * @param <T> The type of the elements in this collection.
  * @author Bohan Du
@@ -70,7 +76,8 @@ public class ConcurrentList<T> extends ArrayList<T> {
     private <V> V optimisticRead(Callable<V> c) {
         // Gets the optimistic read lock
         long stamp = lock.tryOptimisticRead();
-        // If there is no one writing, call the method. Otherwise, use normal read lock
+        // If there is no one writing, call the method.
+        // Otherwise, use normal read lock
         if (lock.validate(stamp)) {
             try {
                 return c.call();
@@ -145,7 +152,8 @@ public class ConcurrentList<T> extends ArrayList<T> {
      * Check if "o" has the same value as this ConcurrentList.
      *
      * @param o the object to be compared for equality with this list
-     * @return true if the specified object is equal to this list. Otherwise false
+     * @return true if the specified object is equal to this list.
+     * Otherwise false
      */
     @Override
     public boolean equals(Object o) {
@@ -164,7 +172,8 @@ public class ConcurrentList<T> extends ArrayList<T> {
 
 
     /**
-     * Trims this ConcurrentList so that it contains no null elements(In its base list).
+     * Trims this ConcurrentList so that it contains
+     * no null elements(In its base list).
      */
     @Override
     public void trimToSize() {
@@ -172,8 +181,8 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Ensures that this ConcurrentList can hold at least the specified number of elements without
-     * increasing the base list
+     * Ensures that this ConcurrentList can hold at least the specified number
+     * of elements without increasing the base list
      *
      * @param minCapacity the desired minimum capacity
      */
@@ -194,7 +203,8 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Removes items from "fromIndex"(inclusive) to "toIndex"(exclusive) from this ConcurrentList.
+     * Removes items from "fromIndex"(inclusive) to
+     * "toIndex"(exclusive) from this ConcurrentList.
      *
      * @param fromIndex index of the first element to be removed
      * @param toIndex   index after last element to be removed
@@ -238,7 +248,8 @@ public class ConcurrentList<T> extends ArrayList<T> {
      * Checks if this ConcurrentList contains the specified element.
      *
      * @param o the element to be checked for containment in this list
-     * @return true if this ConcurrentList contains the specified element, otherwise false
+     * @return true if this ConcurrentList contains the specified element,
+     * otherwise false
      */
     @Override
     public boolean contains(Object o) {
@@ -257,7 +268,8 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Make action to all elements in this ConcurrentList based on the given action.
+     * Make action to all elements
+     * in this ConcurrentList based on the given action.
      *
      * @param action the action that will be performed on each element
      * @see java.util.function.Consumer
@@ -281,7 +293,8 @@ public class ConcurrentList<T> extends ArrayList<T> {
      * Returns this ConcurrentList in V[] form.
      *
      * @param <V> the type of the array elements
-     * @param a   the array to be returned(Will make a copy), if the length of a is smaller than the
+     * @param a   the array to be returned(Will make a copy),
+     *            if the length of a is smaller than the
      *            size of this ConcurrentList, a new array will be created
      * @return the collection in V[] form
      */
@@ -291,7 +304,8 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Returns the V[] form of this ConcurrentList allocated using provided function.
+     * Returns the V[] form of this ConcurrentList
+     * allocated using provided function.
      *
      * @param <V>       the type of the array elements
      * @param generator the function
@@ -303,7 +317,8 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Adds an element at the index provided, elements after the index will be pushed forward.
+     * Adds an element at the index provided,
+     * elements after the index will be pushed forward.
      *
      * @param index   the index
      * @param element the element to be added
@@ -328,7 +343,8 @@ public class ConcurrentList<T> extends ArrayList<T> {
      * Remove the first occurrence o from this ConcurrentList.
      *
      * @param o the element to be removed
-     * @return true if the list contained the specified element, otherwise false
+     * @return true if the list contained the specified element,
+     * otherwise false
      */
     @Override
     public boolean remove(Object o) {
@@ -339,7 +355,8 @@ public class ConcurrentList<T> extends ArrayList<T> {
      * Check if this ConcurrentList contains all items from the specified collection.
      *
      * @param c the collection to check
-     * @return true if this ConcurrentList contains all items from the specified collection, otherwise false
+     * @return true if this ConcurrentList contains all items
+     * from the specified collection, otherwise false
      */
     @Override
     public boolean containsAll(Collection<?> c) {
@@ -362,7 +379,8 @@ public class ConcurrentList<T> extends ArrayList<T> {
      *
      * @param index the index the collection is to be added at
      * @param c     the collection to be added
-     * @return true if this ConcurrentList changed because of the call, otherwise false
+     * @return true if this ConcurrentList changed because of the call,
+     * otherwise false
      */
     @Override
     public boolean addAll(int index, Collection<? extends T> c) {
@@ -373,7 +391,8 @@ public class ConcurrentList<T> extends ArrayList<T> {
      * Remove all items specified in the collection.
      *
      * @param c the collection
-     * @return true if this ConcurrentList changed because of the call, otherwise false
+     * @return true if this ConcurrentList changed because of the call,
+     * otherwise false
      */
     @Override
     public boolean removeAll(Collection<?> c) {
@@ -384,7 +403,8 @@ public class ConcurrentList<T> extends ArrayList<T> {
      * Remove if the specified filter returns true for each element.
      *
      * @param filter the filter
-     * @return true if this ConcurrentList changed because of the call, otherwise false
+     * @return true if this ConcurrentList changed because of the call,
+     * otherwise false
      */
     @Override
     public boolean removeIf(Predicate<? super T> filter) {
@@ -395,7 +415,8 @@ public class ConcurrentList<T> extends ArrayList<T> {
      * Removes all elements from this ConcurrentList that is not in the specified collection.
      *
      * @param c the collection
-     * @return true if this ConcurrentList changed because of the call, otherwise false
+     * @return true if this ConcurrentList changed because of the call,
+     * otherwise false
      */
     @Override
     public boolean retainAll(Collection<?> c) {
@@ -487,7 +508,8 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Returns the list iterator of this ConcurrentList starting at index(inclusive).
+     * Returns the list iterator of this
+     * ConcurrentList starting at index(inclusive).
      *
      * @param index the index of the first element to be returned
      * @return the list iterator
@@ -498,7 +520,8 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Returns the smaller list from fromIndex(inclusive) to toIndex(exclusive).
+     * Returns the smaller list from
+     * fromIndex(inclusive) to toIndex(exclusive).
      *
      * @param fromIndex the first index to be returned
      * @param toIndex   the index after the last element to be returned

@@ -25,7 +25,8 @@ public final class NumberUtils {
     public static String convertToOrdinal(int number) {
         // Gets the last two digits of the absolute value of number
         int lastTwoDigits = Math.abs(number) % 100;
-        // If the last two digits are 11 or 13, we know the suffix is "th". So return number and "th" is the right thing to do
+        // If the last two digits are 11 or 13, we know the suffix is "th".
+        // So return number and "th" is the right thing to do
         if (11 <= lastTwoDigits && lastTwoDigits <= 13) {
             return number + "th";
         }
@@ -34,7 +35,8 @@ public final class NumberUtils {
     }
 
     /**
-     * Returns the suffix for the specified number(Will not exclude exceptions like when the number ends with 11, 12, or 13
+     * Returns the suffix for the specified number
+     * (Will not exclude exceptions when the number ends with 11, 12, or 13)
      *
      * @param number the number to be calculated
      * @return the number with suffix(Will not exclude exceptions)

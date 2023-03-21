@@ -67,7 +67,8 @@ public final class JMHBuilderFactory {
     }
 
     /**
-     * This runs the given JMH benchmark with GC profiling and saves the results in a JSON file.
+     * This runs the given JMH benchmark with GC profiling
+     * and saves the results in a JSON file.
      *
      * @param clazz  class of the benchmark to be run
      * @param result the file name of the JSON result to be stored
@@ -83,7 +84,8 @@ public final class JMHBuilderFactory {
     }
 
     /**
-     * This runs the given JMH benchmark with GC profiling and saves the results in a CSV file.
+     * This runs the given JMH benchmark with GC profiling
+     * and saves the results in a CSV file.
      *
      * @param clazz  class of the benchmark to be run
      * @param result the file name of the CSV result to be stored
@@ -117,7 +119,8 @@ public final class JMHBuilderFactory {
      * This runs the given JMH benchmark
      *
      * @param clazz   class of the benchmark to be run
-     * @param result  the file name of the result to be stored, if not using results, leave it blank("")
+     * @param result  the file name of the result to be stored,
+     *                if not using results, leave it blank("")
      * @param configs Configurations of the JMH benchmark
      * @see org.example.acrastt.utils.JMHBuilderFactory.JMHConfig
      */
@@ -136,31 +139,39 @@ public final class JMHBuilderFactory {
      * Returns the ChainedOptionsBuilder for the specified parameters
      *
      * @param clazz   the class of the benchmark
-     * @param result  the file name of the result to be stored, if not using results, leave it null
+     * @param result  the file name of the result to be stored,
+     *                if not using results, leave it null
      * @param configs the configuration of the JMH benchmark
-     * @return the {@link org.openjdk.jmh.runner.options.ChainedOptionsBuilder} for the specified parameters
+     * @return the {@link org.openjdk.jmh.runner.options.ChainedOptionsBuilder}
+     * for the specified parameters
      * @see org.example.acrastt.utils.JMHBuilderFactory.JMHConfig
      */
-    public static ChainedOptionsBuilder getBuilder(String clazz, String result, JMHConfig... configs) {
+    public static ChainedOptionsBuilder getBuilder
+    (String clazz, String result, JMHConfig... configs) {
         // Creates a set based on the configuration
         HashSet<JMHConfig> configsList = new HashSet<>(List.of(configs));
         // Initialize the builder
         ChainedOptionsBuilder builder = new OptionsBuilder().include(clazz);
         // When there aren't any configurations
         if (configsList.contains(JMHConfig.NONE) || configsList.isEmpty()) {
-            // If there are more than one configuration and have the value "none"
+            // If there are more than one configuration
+            // and have the value "none"
             if (configsList.size() > 1) {
                 // Log the exception
                 LOG.warn("Using 'none' as first priority: \n",
-                        new IllegalArgumentException("Specified configuration 'none', but other configurations found."));
+                        new IllegalArgumentException("Specified " +
+                                "configuration 'none'," +
+                                " but other configurations found."));
             }
         } else {
             // When there isn't a result file specification
             if (result == null || result.trim().equals("")) {
                 // When there is no result file specified and there are result configuration
-                if (configsList.contains(JMHConfig.JSON) || configsList.contains(JMHConfig.CSV)) {
+                if (configsList.contains(JMHConfig.JSON)
+                        || configsList.contains(JMHConfig.CSV)) {
                     // Log the exception
-                    LOG.error("Result type detected, but no result file specification found");
+                    LOG.error("Result type detected," +
+                            " but no result file specification found");
                 }
             } else {
                 // Result in file
@@ -174,7 +185,8 @@ public final class JMHBuilderFactory {
                 if (configsList.contains(JMHConfig.CSV)) {
                     // Throw an error if there are multiple result formats
                     if (configsList.contains(JMHConfig.JSON)) {
-                        LOG.warn("You can only choose one result format, using JSON as result format");
+                        LOG.warn("You can only choose one result format," +
+                                " using JSON as result format");
                     }
                     // Add CSV attribute
                     builder.resultFormat(ResultFormatType.CSV);
@@ -194,9 +206,11 @@ public final class JMHBuilderFactory {
      * Returns the Options for the specified parameters
      *
      * @param clazz   the class of the benchmark
-     * @param result  the file name of the result to be stored, if not using results, leave it blank("")
+     * @param result  the file name of the result to be stored,
+     *                if not using results, leave it blank("")
      * @param configs the configuration of the JMH benchmark
-     * @return the {@link org.openjdk.jmh.runner.options.Options} for the specified parameters
+     * @return the {@link org.openjdk.jmh.runner.options.Options}
+     * for the specified parameters
      * @see org.example.acrastt.utils.JMHBuilderFactory.JMHConfig
      */
     public static Options getOptions(String clazz, String result, JMHConfig... configs) {
