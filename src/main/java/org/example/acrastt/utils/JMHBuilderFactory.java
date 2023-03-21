@@ -80,7 +80,8 @@ public final class JMHBuilderFactory {
     public static void runWithGCAndJson(String clazz, String result) {
         try {
             // Runs the benchmark
-            new Runner(getOptions(clazz, result, JMHConfig.GC, JMHConfig.JSON)).run();
+            new Runner(getOptions(
+                    clazz, result, JMHConfig.GC, JMHConfig.JSON)).run();
         } catch (
                 RunnerException e) {
             LOG.error(ERROR_WHEN_RUNNING_BENCHMARK + clazz, e);
@@ -97,7 +98,8 @@ public final class JMHBuilderFactory {
     public static void runWithGCAndCSV(String clazz, String result) {
         try {
             // Runs the benchmark
-            new Runner(getOptions(clazz, result, JMHConfig.GC, JMHConfig.CSV)).run();
+            new Runner(getOptions(
+                    clazz, result, JMHConfig.GC, JMHConfig.CSV)).run();
         } catch (
                 RunnerException e) {
             LOG.error(ERROR_WHEN_RUNNING_BENCHMARK + clazz, e);
