@@ -1,3 +1,5 @@
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/3c39cacdf087478584b220a554cff265)](https://app.codacy.com/gh/acrastt/Utils/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+
 This is a collection of different utility functions that can be used in various
 applications. This
 repository contains the following utilities.
