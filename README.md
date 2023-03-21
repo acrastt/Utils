@@ -1,5 +1,3 @@
-# Utils
-
 This is a collection of different utility functions that can be used in various
 applications. This
 repository contains the following utilities.

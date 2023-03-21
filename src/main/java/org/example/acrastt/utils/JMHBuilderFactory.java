@@ -24,9 +24,11 @@ public final class JMHBuilderFactory {
     /**
      * Logger used to print information
      */
-    private static final Logger LOG = LogManager.getLogger(JMHBuilderFactory.class);
+    private static final Logger LOG
+            = LogManager.getLogger(JMHBuilderFactory.class);
 
-    private static final String ERROR_WHEN_RUNNING_BENCHMARK = "Error when running benchmark ";
+    private static final String ERROR_WHEN_RUNNING_BENCHMARK
+            = "Error when running benchmark ";
 
     /**
      * Do not use this(Why this is private)
@@ -43,7 +45,8 @@ public final class JMHBuilderFactory {
     public static void runWithJson(String clazz, String result) {
         try {
             // Runs the benchmark
-            new Runner(getOptions(clazz, result, JMHConfig.JSON)).run();
+            new Runner(getOptions(
+                    clazz, result, JMHConfig.JSON)).run();
         } catch (
                 RunnerException e) {
             LOG.error(ERROR_WHEN_RUNNING_BENCHMARK + clazz, e);
@@ -59,7 +62,8 @@ public final class JMHBuilderFactory {
     public static void runWithCSV(String clazz, String result) {
         try {
             // Runs the benchmark
-            new Runner(getOptions(clazz, result, JMHConfig.CSV)).run();
+            new Runner(getOptions(
+                    clazz, result, JMHConfig.CSV)).run();
         } catch (
                 RunnerException e) {
             LOG.error(ERROR_WHEN_RUNNING_BENCHMARK + clazz, e);
@@ -124,7 +128,8 @@ public final class JMHBuilderFactory {
      * @param configs Configurations of the JMH benchmark
      * @see org.example.acrastt.utils.JMHBuilderFactory.JMHConfig
      */
-    public static void runJMH(String clazz, String result, JMHConfig... configs) {
+    public static void runJMH
+    (String clazz, String result, JMHConfig... configs) {
         try {
             // Runs the benchmark
             new Runner(getBuilder(clazz, result, configs).build()).run();
@@ -166,7 +171,8 @@ public final class JMHBuilderFactory {
         } else {
             // When there isn't a result file specification
             if (result == null || result.trim().equals("")) {
-                // When there is no result file specified and there are result configuration
+                // When there is no result file specified
+                // and there are result configuration
                 if (configsList.contains(JMHConfig.JSON)
                         || configsList.contains(JMHConfig.CSV)) {
                     // Log the exception
@@ -213,7 +219,8 @@ public final class JMHBuilderFactory {
      * for the specified parameters
      * @see org.example.acrastt.utils.JMHBuilderFactory.JMHConfig
      */
-    public static Options getOptions(String clazz, String result, JMHConfig... configs) {
+    public static Options getOptions
+    (String clazz, String result, JMHConfig... configs) {
         return getBuilder(clazz, result, configs).build();
     }
 

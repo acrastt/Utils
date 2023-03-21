@@ -352,7 +352,8 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Check if this ConcurrentList contains all items from the specified collection.
+     * Check if this ConcurrentList contains
+     * all items from the specified collection.
      *
      * @param c the collection to check
      * @return true if this ConcurrentList contains all items
@@ -412,7 +413,8 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Removes all elements from this ConcurrentList that is not in the specified collection.
+     * Removes all elements from this ConcurrentList
+     * that is not in the specified collection.
      *
      * @param c the collection
      * @return true if this ConcurrentList changed because of the call,
