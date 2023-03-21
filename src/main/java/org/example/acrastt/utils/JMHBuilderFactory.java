@@ -26,6 +26,8 @@ public final class JMHBuilderFactory {
      */
     private static final Logger LOG = LogManager.getLogger(JMHBuilderFactory.class);
 
+    private static final String ERROR_WHEN_RUNNING_BENCHMARK = "Error when running benchmark ";
+
     /**
      * Do not use this(Why this is private)
      */
@@ -44,7 +46,7 @@ public final class JMHBuilderFactory {
             new Runner(getOptions(clazz, result, JMHConfig.JSON)).run();
         } catch (
                 RunnerException e) {
-            LOG.error("Error when running benchmark " + clazz, e);
+            LOG.error(ERROR_WHEN_RUNNING_BENCHMARK + clazz, e);
         }
     }
 
@@ -60,7 +62,7 @@ public final class JMHBuilderFactory {
             new Runner(getOptions(clazz, result, JMHConfig.CSV)).run();
         } catch (
                 RunnerException e) {
-            LOG.error("Error when running benchmark " + clazz, e);
+            LOG.error(ERROR_WHEN_RUNNING_BENCHMARK + clazz, e);
         }
     }
 
@@ -76,7 +78,7 @@ public final class JMHBuilderFactory {
             new Runner(getOptions(clazz, result, JMHConfig.GC, JMHConfig.JSON)).run();
         } catch (
                 RunnerException e) {
-            LOG.error("Error when running benchmark " + clazz, e);
+            LOG.error(ERROR_WHEN_RUNNING_BENCHMARK + clazz, e);
         }
     }
 
@@ -92,7 +94,7 @@ public final class JMHBuilderFactory {
             new Runner(getOptions(clazz, result, JMHConfig.GC, JMHConfig.CSV)).run();
         } catch (
                 RunnerException e) {
-            LOG.error("Error when running benchmark " + clazz, e);
+            LOG.error(ERROR_WHEN_RUNNING_BENCHMARK + clazz, e);
         }
     }
 
@@ -107,7 +109,7 @@ public final class JMHBuilderFactory {
             new Runner(getOptions(clazz, "", JMHConfig.GC)).run();
         } catch (
                 RunnerException e) {
-            LOG.error("Error when running benchmark " + clazz, e);
+            LOG.error(ERROR_WHEN_RUNNING_BENCHMARK + clazz, e);
         }
     }
 
@@ -125,7 +127,7 @@ public final class JMHBuilderFactory {
             new Runner(getBuilder(clazz, result, configs).build()).run();
         } catch (
                 RunnerException e) {
-            LOG.error("Error when running benchmark " + clazz, e);
+            LOG.error(ERROR_WHEN_RUNNING_BENCHMARK + clazz, e);
         }
     }
 

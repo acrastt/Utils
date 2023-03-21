@@ -46,14 +46,19 @@
             <version>4.4</version>
         </dependency>
         <dependency>
-            <artifactId>commons-math</artifactId>
+            <artifactId>commons-math3</artifactId>
             <groupId>org.apache.commons</groupId>
-            <version>2.2</version>
+            <version>3.6.1</version>
         </dependency>
         <dependency>
             <artifactId>commons-lang3</artifactId>
             <groupId>org.apache.commons</groupId>
             <version>3.12.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>1.10.0</version>
         </dependency>
         <dependency>
             <artifactId>commons-io</artifactId>
@@ -62,6 +67,12 @@
         </dependency>
         <dependency>
             <artifactId>jmh-core</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-math3</artifactId>
+                    <groupId>org.apache.commons</groupId>
+                </exclusion>
+            </exclusions>
             <groupId>org.openjdk.jmh</groupId>
             <version>1.36</version>
         </dependency>
@@ -92,12 +103,6 @@
             <scope>test</scope>
             <version>5.9.2</version>
         </dependency>
-        <dependency>
-            <artifactId>jmh-samples</artifactId>
-            <groupId>org.openjdk.jmh</groupId>
-            <scope>test</scope>
-            <version>1.36</version>
-        </dependency>
     </dependencies>
 
     <distributionManagement>
@@ -120,7 +125,8 @@
 
     <scm>
         <connection>scm:git:https://github.com/acrastt/Utils.git</connection>
-        <developerConnection>scm:git:https://github.com/acrastt/Utils.git</developerConnection>
+        <developerConnection>scm:git:https://github.com/acrastt/Utils.git
+        </developerConnection>
         <url>scm:git:https://github.com/acrastt/Utils.git</url>
     </scm>
 

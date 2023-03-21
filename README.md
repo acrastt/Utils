@@ -1,23 +1,29 @@
-[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=acrastt_Utils)
-
 # Utils
 
-This is a collection of different utility functions that can be used in various applications. This
+This is a collection of different utility functions that can be used in various
+applications. This
 repository contains the following utilities.
 
-- `ConcurrentList`: A thread-safe list that allows¬ concurrent operations without error. This is
-  designed for a high number of reads, a low number of writes and a low number of threads.
+- `ConcurrentList`: A thread-safe list that allows¬ concurrent operations
+  without error. This is
+  designed for a high number of reads, a low number of writes and a low number
+  of threads.
 - `JMHBuilderFactory`: A utility for JMH(Java
-  Microbenchmark Harness), currently it has functions that creates json/csv file when running
+  Microbenchmark Harness), currently it has functions that creates json/csv file
+  when running
   benchmarks and running with GC profiler.
-- `NumberUtils`: A utility which processes numbers in Java, it currently has a function that
+- `NumberUtils`: A utility which processes numbers in Java, it currently has a
+  function that
   converts numbers to string with ordinals.
 
 ## Getting Started
 
-To use this library, simply clone the repository using a tool such as GitHub CLI and either add
-necessary files to your application's source code or add this to your maven repositories folder (
-e.g. `.m2` folder). Each utility has a separate file and can be used independently.
+To use this library, simply clone the repository using a tool such as GitHub CLI
+and either add
+necessary files to your application's source code or add this to your maven
+repositories folder (
+e.g. `.m2` folder). Each utility has a separate file and can be used
+independently.
 
 ### Requirements
 
@@ -30,7 +36,8 @@ e.g. `.m2` folder). Each utility has a separate file and can be used independent
 
 ### ConcurrentList
 
-Since ConcurrentList is an implementation of ArrayList, just use it like a normal ArrayList. Here is
+Since ConcurrentList is an implementation of ArrayList, just use it like a
+normal ArrayList. Here is
 an example:
 
 ```java
@@ -52,7 +59,8 @@ public class Main {
 
 ### JMHUtils
 
-JMHUtils had self-explanation methods, so just find methods that match your needs. Here are some
+JMHUtils had self-explanation methods, so just find methods that match your
+needs. Here are some
 examples:
 
 ```java
@@ -97,7 +105,8 @@ You can find the documentation [here](javadoc/index.html).
 
 ## Contributing
 
-If you want to contribute, please email us at `bohandu@hotmail.com`. If you find any bugs or had any
+If you want to contribute, please email us at `bohandu@hotmail.com`. If you find
+any bugs or had any
 suggestions, feel free to submit an issue or pull request.
 
 ## License
