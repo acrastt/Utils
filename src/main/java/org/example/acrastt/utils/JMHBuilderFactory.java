@@ -23,10 +23,15 @@ public final class JMHBuilderFactory {
 
     /**
      * Logger used to print information
+     *
+     * @see org.apache.logging.log4j.Logger
      */
     private static final Logger LOG
             = LogManager.getLogger(JMHBuilderFactory.class);
 
+    /**
+     * The benchmark error message
+     */
     private static final String ERROR_WHEN_RUNNING_BENCHMARK
             = "Error when running benchmark ";
 
@@ -141,9 +146,20 @@ public final class JMHBuilderFactory {
         }
     }
 
+    /**
+     * This runs the given JMH benchmark
+     *
+     * @param clazz class of the benchmark to be run
+     * @see org.example.acrastt.utils.JMHBuilderFactory.JMHConfig
+     */
+    public static void runJMH(String clazz) {
+        runJMH(clazz, "", JMHConfig.NONE);
+    }
+
 
     /**
-     * Returns the ChainedOptionsBuilder for the specified parameters
+     * Returns the {@link org.openjdk.jmh.runner.options.ChainedOptionsBuilder}
+     * for the specified parameters
      *
      * @param clazz   the class of the benchmark
      * @param result  the file name of the result to be stored,
@@ -209,6 +225,19 @@ public final class JMHBuilderFactory {
         return builder;
     }
 
+    /**
+     * Returns the {@link org.openjdk.jmh.runner.options.ChainedOptionsBuilder}
+     * for the specified class
+     *
+     * @param clazz the class of the benchmark
+     * @return the {@link org.openjdk.jmh.runner.options.ChainedOptionsBuilder}
+     * for the specified parameters
+     * @see org.example.acrastt.utils.JMHBuilderFactory.JMHConfig
+     */
+    public static ChainedOptionsBuilder getBuilder(String clazz) {
+        return getBuilder(clazz, null, JMHConfig.NONE);
+    }
+
 
     /**
      * Returns the Options for the specified parameters
@@ -239,7 +268,7 @@ public final class JMHBuilderFactory {
          */
         CSV,
         /**
-         * Use the gc profiler
+         * Use the GC profiler
          */
         GC,
         /**

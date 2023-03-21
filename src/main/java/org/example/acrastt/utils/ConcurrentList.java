@@ -20,7 +20,7 @@ import java.util.stream.Stream;
 
 /**
  * This is a thread-safe implementation of the
- * {@link java.util.ArrayList} interface.
+ * {@link java.util.ArrayList} class.
  *
  * @param <T> The type of the elements in this collection.
  * @author Bohan Du
@@ -28,7 +28,7 @@ import java.util.stream.Stream;
  * @see java.util.ArrayList
  * @since 1.0.0
  */
-public class ConcurrentList<T> extends ArrayList<T> {
+public class ConcurrentList<T> extends ArrayList<T>{
 
     /**
      * The serial version UID
