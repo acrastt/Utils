@@ -33,7 +33,7 @@ public final class JMHBuilderFactory {
      * The benchmark error message
      */
     private static final String ERROR_WHEN_RUNNING_BENCHMARK
-            = "Error when running benchmark ";
+            = "Error when running benchmark '%s'";
 
     /**
      * Do not use this(Why this is private)
@@ -54,7 +54,7 @@ public final class JMHBuilderFactory {
                     clazz, result, JMHConfig.JSON)).run();
         } catch (
                 RunnerException e) {
-            LOG.error(ERROR_WHEN_RUNNING_BENCHMARK + clazz, e);
+            LOG.error(String.format(ERROR_WHEN_RUNNING_BENCHMARK, clazz), e);
         }
     }
 
@@ -71,7 +71,7 @@ public final class JMHBuilderFactory {
                     clazz, result, JMHConfig.CSV)).run();
         } catch (
                 RunnerException e) {
-            LOG.error(ERROR_WHEN_RUNNING_BENCHMARK + clazz, e);
+            LOG.error(String.format(ERROR_WHEN_RUNNING_BENCHMARK, clazz), e);
         }
     }
 
@@ -89,7 +89,7 @@ public final class JMHBuilderFactory {
                     clazz, result, JMHConfig.GC, JMHConfig.JSON)).run();
         } catch (
                 RunnerException e) {
-            LOG.error(ERROR_WHEN_RUNNING_BENCHMARK + clazz, e);
+            LOG.error(String.format(ERROR_WHEN_RUNNING_BENCHMARK, clazz), e);
         }
     }
 
@@ -107,7 +107,7 @@ public final class JMHBuilderFactory {
                     clazz, result, JMHConfig.GC, JMHConfig.CSV)).run();
         } catch (
                 RunnerException e) {
-            LOG.error(ERROR_WHEN_RUNNING_BENCHMARK + clazz, e);
+            LOG.error(String.format(ERROR_WHEN_RUNNING_BENCHMARK, clazz), e);
         }
     }
 
@@ -122,7 +122,7 @@ public final class JMHBuilderFactory {
             new Runner(getOptions(clazz, "", JMHConfig.GC)).run();
         } catch (
                 RunnerException e) {
-            LOG.error(ERROR_WHEN_RUNNING_BENCHMARK + clazz, e);
+            LOG.error(String.format(ERROR_WHEN_RUNNING_BENCHMARK, clazz), e);
         }
     }
 
@@ -142,7 +142,7 @@ public final class JMHBuilderFactory {
             new Runner(getBuilder(clazz, result, configs).build()).run();
         } catch (
                 RunnerException e) {
-            LOG.error(ERROR_WHEN_RUNNING_BENCHMARK + clazz, e);
+            LOG.error(String.format(ERROR_WHEN_RUNNING_BENCHMARK, clazz), e);
         }
     }
 
@@ -172,14 +172,14 @@ public final class JMHBuilderFactory {
     public static ChainedOptionsBuilder getBuilder
     (String clazz, String result, JMHConfig... configs) {
         // Creates a set based on the configuration
-        HashSet<JMHConfig> configsList = new HashSet<>(List.of(configs));
+        HashSet<JMHConfig> configurationList = new HashSet<>(List.of(configs));
         // Initialize the builder
         ChainedOptionsBuilder builder = new OptionsBuilder().include(clazz);
         // When there aren't any configurations
-        if (configsList.contains(JMHConfig.NONE) || configsList.isEmpty()) {
+        if (configurationList.contains(JMHConfig.NONE) || configurationList.isEmpty()) {
             // If there are more than one configuration
             // and have the value "none"
-            if (configsList.size() > 1) {
+            if (configurationList.size() > 1) {
                 // Log the exception
                 LOG.warn("Using 'none' as first priority: \n",
                         new IllegalArgumentException("Specified " +
@@ -191,8 +191,8 @@ public final class JMHBuilderFactory {
             if (result == null || result.trim().equals("")) {
                 // When there is no result file specified
                 // and there are result configuration
-                if (configsList.contains(JMHConfig.JSON)
-                        || configsList.contains(JMHConfig.CSV)) {
+                if (configurationList.contains(JMHConfig.JSON)
+                        || configurationList.contains(JMHConfig.CSV)) {
                     // Log the exception
                     LOG.error("Result type detected," +
                             " but no result file specification found");
@@ -201,14 +201,14 @@ public final class JMHBuilderFactory {
                 // Result in file
                 builder.result(result);
                 // When the result format is JSON
-                if (configsList.contains(JMHConfig.JSON)) {
+                if (configurationList.contains(JMHConfig.JSON)) {
                     // Add JSON attribute
                     builder.resultFormat(ResultFormatType.JSON);
                 }
                 // When the result format is CSV
-                if (configsList.contains(JMHConfig.CSV)) {
+                if (configurationList.contains(JMHConfig.CSV)) {
                     // Throw an error if there are multiple result formats
-                    if (configsList.contains(JMHConfig.JSON)) {
+                    if (configurationList.contains(JMHConfig.JSON)) {
                         LOG.warn("You can only choose one result format," +
                                 " using JSON as result format");
                     }
@@ -217,7 +217,7 @@ public final class JMHBuilderFactory {
                 }
             }
             // When there's GC configuration
-            if (configsList.contains(JMHConfig.GC)) {
+            if (configurationList.contains(JMHConfig.GC)) {
                 // Add GC attribute
                 builder.addProfiler("gc");
             }
