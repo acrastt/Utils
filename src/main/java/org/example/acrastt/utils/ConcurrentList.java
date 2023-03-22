@@ -4,12 +4,7 @@ package org.example.acrastt.utils;
 import org.apache.commons.lang3.concurrent.ConcurrentRuntimeException;
 
 import java.io.Serial;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.ListIterator;
-import java.util.Spliterator;
+import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.locks.StampedLock;
 import java.util.function.Consumer;
@@ -28,7 +23,7 @@ import java.util.stream.Stream;
  * @see java.util.ArrayList
  * @since 1.0.0
  */
-public class ConcurrentList<T> extends ArrayList<T>{
+public class ConcurrentList<T> extends ArrayList<T> {
 
     /**
      * The serial version UID
