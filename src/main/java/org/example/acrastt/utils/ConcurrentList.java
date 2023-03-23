@@ -158,7 +158,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     /**
      * Returns the hash code for this ConcurrentList.
      *
-     * @return The hash code
+     * @return the hash code
      */
     @Override
     public int hashCode() {
