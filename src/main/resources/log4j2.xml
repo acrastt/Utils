@@ -2,8 +2,7 @@
 <Configuration status="INFO">
     <Appenders>
         <Console name="ConsoleAppender" target="SYSTEM_OUT">
-            <PatternLayout
-                    pattern="%m%n"/>
+            <PatternLayout pattern="%m%n"/>
         </Console>
         <File name="FileAppender" fileName="target/logs/${date:yyyyMMdd}.log"
               immediateFlush="false" append="true">
