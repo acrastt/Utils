@@ -163,7 +163,7 @@ public final class JMHBuilderFactory {
      *
      * @param clazz   the class of the benchmark
      * @param result  the file name of the result to be stored,
-     *                if not using results, leave it null
+     *                if not using results, leave it null or blank
      * @param configs the configuration of the JMH benchmark
      * @return the {@link org.openjdk.jmh.runner.options.ChainedOptionsBuilder}
      * for the specified parameters
@@ -244,7 +244,7 @@ public final class JMHBuilderFactory {
      *
      * @param clazz   the class of the benchmark
      * @param result  the file name of the result to be stored,
-     *                if not using results, leave it blank("")
+     *                if not using results, leave it null or blank
      * @param configs the configuration of the JMH benchmark
      * @return the {@link org.openjdk.jmh.runner.options.Options}
      * for the specified parameters
