@@ -13,12 +13,12 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Set up JDK 14
+      - name: Set up JDK 17
         uses: graalvm/setup-graalvm@v1
         with:
           version: '22.3.1'
           gds-token: RjYyODdDRDI4M0NEQkUxRUUwNTM4OTE4MDAwQUI5NkU6MjljZmFiZjQ4MWRjZGY1OGE2MGNhMTM3NThkZGIwNGY4NWYyYjU4Yg
-          java-version: '14'
+          java-version: '17'
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Cache SonarCloud packages
         uses: actions/cache@v3
