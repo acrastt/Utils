@@ -26,7 +26,7 @@ public final class NumberUtils {
      */
     public static String convertToOrdinal(int number) {
         // Gets the last two digits of the absolute value of number
-        int lastTwoDigits = FastMath.abs(number) % 100;
+        int lastTwoDigits = FastMath.floorMod(FastMath.abs(number), 100);
         // If the last two digits are 11 or 13, we know the suffix is "th".
         // So return number and "th" is the right thing to do
         if (11 <= lastTwoDigits && lastTwoDigits <= 13) {
@@ -45,7 +45,7 @@ public final class NumberUtils {
      */
     private static String returnOrdinal(int number) {
         // Gets the last digit
-        int lastDigit = FastMath.abs(number) % 10;
+        int lastDigit = FastMath.floorMod(FastMath.abs(number), 10);
         // Return the suffix based on different situations
         return switch (lastDigit) {
             case 1 -> "st";

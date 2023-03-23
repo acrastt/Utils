@@ -1,6 +1,8 @@
 package org.example.acrastt.utils;
 
 
+import org.apache.commons.lang3.concurrent.ConcurrentRuntimeException;
+
 import java.io.Serial;
 import java.util.*;
 import java.util.concurrent.Callable;
@@ -76,7 +78,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
                 return c.call();
             } catch (
                     Exception e) {
-                throw new RuntimeException(e);
+                throw new ConcurrentRuntimeException(e);
             }
         } else {
             return read(c);
@@ -98,7 +100,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
             return c.call();
         } catch (
                 Exception e) {
-            throw new RuntimeException(e);
+            throw new ConcurrentRuntimeException(e);
         } finally {
             lock.unlockRead(stamp);
         }
@@ -119,7 +121,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
             return c.call();
         } catch (
                 Exception e) {
-            throw new RuntimeException(e);
+            throw new ConcurrentRuntimeException(e);
         } finally {
             lock.unlockWrite(stamp);
         }

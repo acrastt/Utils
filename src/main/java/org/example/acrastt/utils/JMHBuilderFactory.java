@@ -9,7 +9,8 @@ import org.openjdk.jmh.runner.options.ChainedOptionsBuilder;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
-import java.util.*;
+import java.util.EnumSet;
+import java.util.List;
 
 /**
  * The utility class for JMH.
