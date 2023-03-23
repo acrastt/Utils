@@ -78,7 +78,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
                 return c.call();
             } catch (
                     Exception e) {
-                throw new ConcurrentRuntimeException(e);
+                throw new RuntimeException(e);
             }
         } else {
             return read(c);
@@ -100,7 +100,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
             return c.call();
         } catch (
                 Exception e) {
-            throw new ConcurrentRuntimeException(e);
+            throw new RuntimeException(e);
         } finally {
             lock.unlockRead(stamp);
         }
@@ -121,7 +121,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
             return c.call();
         } catch (
                 Exception e) {
-            throw new ConcurrentRuntimeException(e);
+            throw new RuntimeException(e);
         } finally {
             lock.unlockWrite(stamp);
         }
@@ -431,7 +431,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Sorts this ConcurrentList with TimSort.
+     * Sorts this ConcurrentList.
      *
      * @param c the comparator to compare elements
      */

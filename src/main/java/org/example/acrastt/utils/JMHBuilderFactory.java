@@ -9,8 +9,7 @@ import org.openjdk.jmh.runner.options.ChainedOptionsBuilder;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 /**
  * The utility class for JMH.
@@ -30,100 +29,9 @@ public final class JMHBuilderFactory {
             = LogManager.getLogger(JMHBuilderFactory.class);
 
     /**
-     * The benchmark error message
-     */
-    private static final String ERROR_WHEN_RUNNING_BENCHMARK
-            = "Error when running benchmark '%s'";
-
-    /**
      * Do not use this(Why this is private)
      */
     private JMHBuilderFactory() {
-    }
-
-    /**
-     * This runs the given JMH benchmark and saves the results in a JSON file.
-     *
-     * @param clazz  the class to be called for the benchmark
-     * @param result the name of the JSON file to be saved
-     */
-    public static void runWithJson(String clazz, String result) {
-        try {
-            // Runs the benchmark
-            new Runner(getOptions(
-                    clazz, result, JMHConfig.JSON)).run();
-        } catch (
-                RunnerException e) {
-            LOG.error(String.format(ERROR_WHEN_RUNNING_BENCHMARK, clazz), e);
-        }
-    }
-
-    /**
-     * This runs the given JMH benchmark and saves the results in a CSV file.
-     *
-     * @param clazz  class of the benchmark to be run
-     * @param result the name of the CSV file to be saved
-     */
-    public static void runWithCSV(String clazz, String result) {
-        try {
-            // Runs the benchmark
-            new Runner(getOptions(
-                    clazz, result, JMHConfig.CSV)).run();
-        } catch (
-                RunnerException e) {
-            LOG.error(String.format(ERROR_WHEN_RUNNING_BENCHMARK, clazz), e);
-        }
-    }
-
-    /**
-     * This runs the given JMH benchmark with GC profiling
-     * and saves the results in a JSON file.
-     *
-     * @param clazz  class of the benchmark to be run
-     * @param result the file name of the JSON result to be stored
-     */
-    public static void runWithGCAndJson(String clazz, String result) {
-        try {
-            // Runs the benchmark
-            new Runner(getOptions(
-                    clazz, result, JMHConfig.GC, JMHConfig.JSON)).run();
-        } catch (
-                RunnerException e) {
-            LOG.error(String.format(ERROR_WHEN_RUNNING_BENCHMARK, clazz), e);
-        }
-    }
-
-    /**
-     * This runs the given JMH benchmark with GC profiling
-     * and saves the results in a CSV file.
-     *
-     * @param clazz  class of the benchmark to be run
-     * @param result the file name of the CSV result to be stored
-     */
-    public static void runWithGCAndCSV(String clazz, String result) {
-        try {
-            // Runs the benchmark
-            new Runner(getOptions(
-                    clazz, result, JMHConfig.GC, JMHConfig.CSV)).run();
-        } catch (
-                RunnerException e) {
-            LOG.error(String.format(ERROR_WHEN_RUNNING_BENCHMARK, clazz), e);
-        }
-    }
-
-    /**
-     * This runs the given JMH benchmark with GC profiling.
-     *
-     * @param clazz class of the benchmark to be run
-     */
-    public static void runWithGC(String clazz) {
-        try {
-            // Runs the benchmark
-            new Runner(getOptions(clazz, "", JMHConfig.GC)).run();
-        } catch (
-                RunnerException e) {
-            LOG.error(String.format(ERROR_WHEN_RUNNING_BENCHMARK, clazz), e);
-        }
     }
 
     /**
@@ -142,7 +50,7 @@ public final class JMHBuilderFactory {
             new Runner(getBuilder(clazz, result, configs).build()).run();
         } catch (
                 RunnerException e) {
-            LOG.error(String.format(ERROR_WHEN_RUNNING_BENCHMARK, clazz), e);
+            LOG.error(String.format("Error when running benchmark '%s'", clazz), e);
         }
     }
 
@@ -153,7 +61,7 @@ public final class JMHBuilderFactory {
      * @see org.example.acrastt.utils.JMHBuilderFactory.JMHConfig
      */
     public static void runJMH(String clazz) {
-        runJMH(clazz, "", JMHConfig.NONE);
+        runJMH(clazz, null, JMHConfig.NONE);
     }
 
 
@@ -172,7 +80,7 @@ public final class JMHBuilderFactory {
     public static ChainedOptionsBuilder getBuilder
     (String clazz, String result, JMHConfig... configs) {
         // Creates a set based on the configuration
-        HashSet<JMHConfig> configurationList = new HashSet<>(List.of(configs));
+        EnumSet<JMHConfig> configurationList = EnumSet.copyOf(List.of(configs));
         // Initialize the builder
         ChainedOptionsBuilder builder = new OptionsBuilder().include(clazz);
         // When there aren't any configurations
@@ -238,6 +146,9 @@ public final class JMHBuilderFactory {
         return getBuilder(clazz, null, JMHConfig.NONE);
     }
 
+    public static Options getOptions(String clazz) {
+        return getOptions(clazz, null, JMHConfig.NONE);
+    }
 
     /**
      * Returns the Options for the specified parameters
