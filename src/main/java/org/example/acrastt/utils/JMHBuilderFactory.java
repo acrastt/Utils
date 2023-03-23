@@ -85,7 +85,8 @@ public final class JMHBuilderFactory {
         // Initialize the builder
         ChainedOptionsBuilder builder = new OptionsBuilder().include(clazz);
         // When there aren't any configurations
-        if (configurationList.contains(JMHConfig.NONE) || configurationList.isEmpty()) {
+        if (configurationList.contains(JMHConfig.NONE)
+                || configurationList.isEmpty()) {
             // If there are more than one configuration
             // and have the value "none"
             if (configurationList.size() > 1) {
