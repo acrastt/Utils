@@ -32,7 +32,7 @@ public final class JMHBuilderFactory {
     /**
      * Should not be called
      */
-    private JMHBuilderFactory(){
+    private JMHBuilderFactory() {
         throw new IllegalAccessError();
     }
 
@@ -81,6 +81,9 @@ public final class JMHBuilderFactory {
      */
     public static ChainedOptionsBuilder getBuilder
     (String clazz, String result, JMHConfig... configs) {
+        if (clazz == null || clazz.isBlank()) {
+            throw new IllegalArgumentException(String.format("Invalid argument clazz: '%s'", clazz));
+        }
         // Creates a set based on the configuration
         EnumSet<JMHConfig> configurationList = EnumSet.copyOf(List.of(configs));
         // Initialize the builder
@@ -90,7 +93,7 @@ public final class JMHBuilderFactory {
                 || configurationList.isEmpty()) {
             // If there are more than one configuration
             // and have the value "none"
-            if (configurationList.size() > 1) {
+            if (!configurationList.isEmpty()) {
                 // Log the exception
                 LOG.warn("Using 'none' as first priority: \n",
                         new IllegalArgumentException("Specified " +
@@ -99,7 +102,7 @@ public final class JMHBuilderFactory {
             }
         } else {
             // When there isn't a result file specification
-            if (result == null || result.trim().equals("")) {
+            if (result == null || result.isBlank()) {
                 // When there is no result file specified
                 // and there are result configuration
                 if (configurationList.contains(JMHConfig.JSON)
