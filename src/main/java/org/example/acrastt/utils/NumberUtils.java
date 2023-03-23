@@ -11,13 +11,6 @@ import org.apache.commons.math3.util.FastMath;
  */
 public final class NumberUtils {
 
-
-    /**
-     * Do not use this(Why this is private)
-     */
-    private NumberUtils() {
-    }
-
     /**
      * Convert a number to number with ordinals in String form.
      *

@@ -29,11 +29,6 @@ public final class JMHBuilderFactory {
     private static final Logger LOG
             = LogManager.getLogger(JMHBuilderFactory.class);
 
-    /**
-     * Do not use this(Why this is private)
-     */
-    private JMHBuilderFactory() {
-    }
 
     /**
      * This runs the given JMH benchmark
