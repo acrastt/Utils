@@ -12,6 +12,13 @@ import org.apache.commons.math3.util.FastMath;
 public final class NumberUtils {
 
     /**
+     * Should not be called
+     */
+    private NumberUtils() {
+        throw new IllegalAccessError();
+    }
+
+    /**
      * Convert a number to number with ordinals in String form.
      *
      * @param number the number to be converted

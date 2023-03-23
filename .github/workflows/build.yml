@@ -17,7 +17,7 @@ jobs:
         uses: graalvm/setup-graalvm@v1
         with:
           version: '22.3.1'
-          gds-token: RjYyODdDRDI4M0NEQkUxRUUwNTM4OTE4MDAwQUI5NkU6MjljZmFiZjQ4MWRjZGY1OGE2MGNhMTM3NThkZGIwNGY4NWYyYjU4Yg
+          gds-token: ${{ secrets.GRAAL_TOKEN }}
           java-version: '17'
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Cache SonarCloud packages

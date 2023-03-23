@@ -29,6 +29,12 @@ public final class JMHBuilderFactory {
     private static final Logger LOG
             = LogManager.getLogger(JMHBuilderFactory.class);
 
+    /**
+     * Should not be called
+     */
+    private JMHBuilderFactory(){
+        throw new IllegalAccessError();
+    }
 
     /**
      * This runs the given JMH benchmark
