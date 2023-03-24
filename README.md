@@ -61,13 +61,13 @@ examples:
 
 ```java
 import org.example.acrastt.utils.JMHBuilderFactory;
+import org.example.acrastt.utils.JMHBuilderFactory.JMHConfig;
 
 public class Main {
     public static void main(String[] args) {
-        JMHBuilderFactory.runWithCsv("foo.csv", "yourClassName");
-        JMHBuilderFactory.runWithJson("bar.json", "yourClassName");
-        JMHBuilderFactory.runWithGC("yourClassName");
-        JMHBuilderFactory.runWithCSVAndGC("baz.csv", "yourClassName");
+        JMHBuilderFactory.runJMH("yourJMHClassName", "result.json", JMHConfig.JSON);
+        JMHBuilderFactory.runJMH("yourJMHClassName", "result.csv", JMHConfig.CSV);
+        JMHBuilderFactory.runJMH("yourJMHClassName", null, JMHConfig.GC);
         // etc...
     }
 }
