@@ -2,6 +2,7 @@ package org.example.acrastt.utils;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openjdk.jmh.infra.Blackhole;
 import org.openjdk.jmh.results.format.ResultFormatType;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
@@ -19,7 +20,7 @@ import java.util.List;
  * @version 1.0.0
  * @since 1.0.0
  */
-public final class JMHBuilderFactory {
+public final class JMHUtils {
 
     /**
      * Logger used to print information
@@ -27,13 +28,49 @@ public final class JMHBuilderFactory {
      * @see org.apache.logging.log4j.Logger
      */
     private static final Logger LOG
-            = LogManager.getLogger(JMHBuilderFactory.class);
+            = LogManager.getLogger(JMHUtils.class);
+
+    /**
+     * Blackhole used for Blackhole-related methods
+     */
+    private static Blackhole bh = null;
 
     /**
      * Should not be called
      */
-    private JMHBuilderFactory() {
+    private JMHUtils() {
         throw new IllegalAccessError();
+    }
+
+    /**
+     * Gets the singleton Blackhole instance
+     *
+     * @return the Blackhole
+     */
+    public static Blackhole getBlackhole(){
+        if (bh == null) {
+            bh = new Blackhole("Today's password is swordfish. I understand" +
+                    " instantiating Blackholes directly is dangerous.");
+        }
+        return bh;
+    }
+
+    /**
+     * Evaporates the given Blackhole
+     *
+     * @param bhToEvaporate the Blackhole to evaporate
+     */
+    public static void evaporate(Blackhole bhToEvaporate){
+        bhToEvaporate.evaporate("Yes, I am Stephen Hawking," +
+                " and know a thing or two about black holes.");
+    }
+
+    /**
+     * Evaporates the singleton Blackhole instance
+     */
+    public static void evaporate(){
+        bh.evaporate("Yes, I am Stephen Hawking," +
+                " and know a thing or two about black holes.");
     }
 
     /**
@@ -43,7 +80,7 @@ public final class JMHBuilderFactory {
      * @param result  the file name of the result to be stored,
      *                if not using results, leave it blank("")
      * @param configs Configurations of the JMH benchmark
-     * @see org.example.acrastt.utils.JMHBuilderFactory.JMHConfig
+     * @see JMHUtils.JMHConfig
      */
     public static void runJMH
     (String clazz, String result, JMHConfig... configs) {
@@ -60,7 +97,7 @@ public final class JMHBuilderFactory {
      * This runs the given JMH benchmark
      *
      * @param clazz class of the benchmark to be run
-     * @see org.example.acrastt.utils.JMHBuilderFactory.JMHConfig
+     * @see JMHUtils.JMHConfig
      */
     public static void runJMH(String clazz) {
         runJMH(clazz, null, JMHConfig.NONE);
@@ -77,7 +114,7 @@ public final class JMHBuilderFactory {
      * @param configs the configuration of the JMH benchmark
      * @return the {@link org.openjdk.jmh.runner.options.ChainedOptionsBuilder}
      * for the specified parameters
-     * @see org.example.acrastt.utils.JMHBuilderFactory.JMHConfig
+     * @see JMHUtils.JMHConfig
      */
     public static ChainedOptionsBuilder getBuilder
     (String clazz, String result, JMHConfig... configs) {
@@ -95,7 +132,7 @@ public final class JMHBuilderFactory {
             // and have the value "none"
             if (!configurationList.isEmpty()) {
                 // Log the exception
-                LOG.warn("Using 'none' as first priority: \n",
+                LOG.warn("Using 'none' as first priority: ",
                         new IllegalArgumentException("Specified " +
                                 "configuration 'none'," +
                                 " but other configurations found."));
@@ -124,7 +161,7 @@ public final class JMHBuilderFactory {
                     // Throw an error if there are multiple result formats
                     if (configurationList.contains(JMHConfig.JSON)) {
                         LOG.warn("You can only choose one result format," +
-                                " using JSON as result format");
+                                " using JSON as first priority");
                     }
                     // Add CSV attribute
                     builder.resultFormat(ResultFormatType.CSV);
@@ -146,7 +183,7 @@ public final class JMHBuilderFactory {
      * @param clazz the class of the benchmark
      * @return the {@link org.openjdk.jmh.runner.options.ChainedOptionsBuilder}
      * for the specified parameters
-     * @see org.example.acrastt.utils.JMHBuilderFactory.JMHConfig
+     * @see JMHUtils.JMHConfig
      */
     public static ChainedOptionsBuilder getBuilder(String clazz) {
         return getBuilder(clazz, null, JMHConfig.NONE);
@@ -165,7 +202,7 @@ public final class JMHBuilderFactory {
      * @param configs the configuration of the JMH benchmark
      * @return the {@link org.openjdk.jmh.runner.options.Options}
      * for the specified parameters
-     * @see org.example.acrastt.utils.JMHBuilderFactory.JMHConfig
+     * @see JMHUtils.JMHConfig
      */
     public static Options getOptions
     (String clazz, String result, JMHConfig... configs) {

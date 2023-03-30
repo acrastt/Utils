@@ -8,8 +8,9 @@ applications. This repository contains the following utilities.
   a low number of writes and a low number of threads.
 - `JMHBuilderFactory`: A utility for JMH(Java
   Microbenchmark Harness), currently it has functions
-  that creates json/csv file when running
-  benchmarks and running with GC profiler.
+  that creates json/csv file when running benchmarks 
+  and running with GC profiler. It could also create 
+  and evaporate Blackholes without challengeResponse
 - `NumberUtils`: A utility which processes numbers in Java, it currently has a
   function that converts numbers to string with ordinals.
 
@@ -60,7 +61,7 @@ needs. Here are some
 examples:
 
 ```java
-import org.example.acrastt.utils.JMHBuilderFactory;
+import org.example.acrastt.utils.JMHUtils;
 
 public class Main {
     public static void main(String[] args) {
