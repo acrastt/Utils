@@ -48,10 +48,12 @@ public final class JMHUtils {
      * @return the Blackhole
      */
     public static Blackhole getBlackhole(){
+        // Lazy initialization
         if (bh == null) {
             bh = new Blackhole("Today's password is swordfish. I understand" +
                     " instantiating Blackholes directly is dangerous.");
         }
+        // Return the Blackhole instance
         return bh;
     }
 
@@ -61,6 +63,7 @@ public final class JMHUtils {
      * @param bhToEvaporate the Blackhole to evaporate
      */
     public static void evaporate(Blackhole bhToEvaporate){
+        // Evaporates the specified Blackhole
         bhToEvaporate.evaporate("Yes, I am Stephen Hawking," +
                 " and know a thing or two about black holes.");
     }
@@ -69,6 +72,7 @@ public final class JMHUtils {
      * Evaporates the singleton Blackhole instance
      */
     public static void evaporate(){
+        // Evaporates the singleton Blackhole
         bh.evaporate("Yes, I am Stephen Hawking," +
                 " and know a thing or two about black holes.");
     }
