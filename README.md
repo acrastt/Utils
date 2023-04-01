@@ -19,7 +19,7 @@ applications. This repository contains the following utilities.
 To use this library, simply clone the repository
 using a tool such as GitHub CLI and either add
 necessary files to your application's source code or add this to your maven
-repositories folder (e.g. `.m2` folder).
+repositories folder (e.g. `.m2/repository` folder).
 Each utility has a separate file and can be used independently.
 
 ### Requirements
