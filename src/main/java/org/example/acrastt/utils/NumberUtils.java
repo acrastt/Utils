@@ -1,5 +1,7 @@
 package org.example.acrastt.utils;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * The utility class for numbers(int, double, long, etc.).
  *
@@ -17,15 +19,15 @@ public final class NumberUtils {
     }
 
     /**
-     * Convert a number to number with ordinals in String form.
+     * Convert a number to number with ordinals in String form
      *
      * @param number the number to be converted
      * @return the String with ordinals
      */
-    public static String convertToOrdinal(int number) {
+    public static @NotNull String convertToOrdinal(int number) {
         // Gets the last two digits of the absolute value of number
         int lastTwoDigits = Math.abs(number) % 100;
-        // If the last two digits are 11 or 13, we know the suffix is "th".
+        // If the last two digits are 11 or 13, we know the suffix is "th"
         // So return number and "th" is the right thing to do
         if (11 <= lastTwoDigits && lastTwoDigits <= 13) {
             return number + "th";

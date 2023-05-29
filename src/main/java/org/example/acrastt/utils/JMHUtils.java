@@ -36,7 +36,7 @@ public final class JMHUtils {
     private static Blackhole bh = null;
 
     /**
-     * Should not be called
+     * Should not be called.
      */
     private JMHUtils() {
         throw new IllegalAccessError();

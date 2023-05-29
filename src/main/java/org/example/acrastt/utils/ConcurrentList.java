@@ -128,7 +128,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Runs a method without a result with write lock technique.
+     * Runs a method without a result with write lock technique
      *
      * @param r the method to execute
      */
@@ -144,10 +144,10 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Check if "o" has the same value as this ConcurrentList.
+     * Check if "o" has the same value as this ConcurrentList
      *
      * @param o the object to be compared for equality with this list
-     * @return true if the specified object is equal to this list.
+     * @return true if the specified object is equal to this list
      * Otherwise false
      */
     @Override
@@ -168,7 +168,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
 
     /**
      * Trims this ConcurrentList so that it contains
-     * no null elements(In its base list).
+     * no null elements(In its base list)
      */
     @Override
     public void trimToSize() {
@@ -186,8 +186,8 @@ public class ConcurrentList<T> extends ArrayList<T> {
         write(() -> super.ensureCapacity(minCapacity));
     }
 
-    /**
-     * Removes the item with the specified index from this ConcurrentList.
+    /*
+     * Removes the item with the specified index from this ConcurrentList
      *
      * @param index the index of the element to be removed
      * @return the removed element
@@ -199,7 +199,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
 
     /**
      * Removes items from "fromIndex"(inclusive) to
-     * "toIndex"(exclusive) from this ConcurrentList.
+     * "toIndex"(exclusive) from this ConcurrentList
      *
      * @param fromIndex index of the first element to be removed
      * @param toIndex   index after last element to be removed
@@ -219,7 +219,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
 
 
     /**
-     * Returns the number of elements in this ConcurrentList.
+     * Returns the number of elements in this ConcurrentList
      *
      * @return the number of elements
      */
@@ -230,7 +230,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
 
 
     /**
-     * Checks if this ConcurrentList is empty.
+     * Checks if this ConcurrentList is empty
      *
      * @return true if this ConcurrentList is empty, otherwise false
      */
@@ -240,7 +240,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Checks if this ConcurrentList contains the specified element.
+     * Checks if this ConcurrentList contains the specified element
      *
      * @param o the element to be checked for containment in this list
      * @return true if this ConcurrentList contains the specified element,
@@ -252,7 +252,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Returns the Iterator for this ConcurrentList.
+     * Returns the Iterator for this ConcurrentList
      *
      * @return the iterator
      * @see java.util.Iterator
@@ -264,7 +264,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
 
     /**
      * Make action to all elements
-     * in this ConcurrentList based on the given action.
+     * in this ConcurrentList based on the given action
      *
      * @param action the action that will be performed on each element
      * @see java.util.function.Consumer
@@ -275,7 +275,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Returns this ConcurrentList in Object[] form.
+     * Returns this ConcurrentList in Object[] form
      *
      * @return the list in Object[] form
      */
@@ -285,7 +285,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Returns this ConcurrentList in V[] form.
+     * Returns this ConcurrentList in V[] form
      *
      * @param <V> the type of the array elements
      * @param a   the array to be returned(Will make a copy),
@@ -300,7 +300,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
 
     /**
      * Returns the V[] form of this ConcurrentList
-     * allocated using provided function.
+     * allocated using provided function
      *
      * @param <V>       the type of the array elements
      * @param generator the function
@@ -313,7 +313,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
 
     /**
      * Adds an element at the index provided,
-     * elements after the index will be pushed forward.
+     * elements after the index will be pushed forward
      *
      * @param index   the index
      * @param element the element to be added
@@ -324,7 +324,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Add item t to the end of this ConcurrentList.
+     * Add item t to the end of this ConcurrentList
      *
      * @param t the element to be added
      * @return true
@@ -335,7 +335,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Remove the first occurrence o from this ConcurrentList.
+     * Remove the first occurrence o from this ConcurrentList
      *
      * @param o the element to be removed
      * @return true if the list contained the specified element,
@@ -348,7 +348,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
 
     /**
      * Check if this ConcurrentList contains
-     * all items from the specified collection.
+     * all items from the specified collection
      *
      * @param c the collection to check
      * @return true if this ConcurrentList contains all items
@@ -360,7 +360,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Adds all items from the specified collection.
+     * Adds all items from the specified collection
      *
      * @param c the collection to add
      * @return true if this ConcurrentList changed because of the call
@@ -371,7 +371,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Adds all items from the specified collection at index.
+     * Adds all items from the specified collection at index
      *
      * @param index the index the collection is to be added at
      * @param c     the collection to be added
@@ -384,7 +384,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Remove all items specified in the collection.
+     * Remove all items specified in the collection
      *
      * @param c the collection
      * @return true if this ConcurrentList changed because of the call,
@@ -396,7 +396,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Remove if the specified filter returns true for each element.
+     * Remove if the specified filter returns true for each element
      *
      * @param filter the filter
      * @return true if this ConcurrentList changed because of the call,
@@ -409,7 +409,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
 
     /**
      * Removes all elements from this ConcurrentList
-     * that is not in the specified collection.
+     * that is not in the specified collection
      *
      * @param c the collection
      * @return true if this ConcurrentList changed because of the call,
@@ -421,7 +421,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Replace all with the result of the operator for each item.
+     * Replace all with the result of the operator for each item
      *
      * @param operator the operator
      */
@@ -431,7 +431,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Sorts this ConcurrentList.
+     * Sorts this ConcurrentList
      *
      * @param c the comparator to compare elements
      */
@@ -441,7 +441,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Removes all elements from this ConcurrentList.
+     * Removes all elements from this ConcurrentList
      */
     @Override
     public void clear() {
@@ -449,7 +449,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Get an item at index.
+     * Get an item at index
      *
      * @param index the index
      * @return the item at index
@@ -460,7 +460,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Set the item at index to an element.
+     * Set the item at index to an element
      *
      * @param index   the index
      * @param element the element
@@ -472,7 +472,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Returns the index of o's first occurrence.
+     * Returns the index of o's first occurrence
      *
      * @param o the object to search for
      * @return the index of the first occurrence of o, -1 if o is not found
@@ -483,7 +483,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Searches for the last occurrence of o.
+     * Searches for the last occurrence of o
      *
      * @param o the object to search for
      * @return the index of the last occurrence of o, -1 if o is not found
@@ -494,7 +494,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Returns the list iterator of this ConcurrentList.
+     * Returns the list iterator of this ConcurrentList
      *
      * @return the list iterator
      * @see java.util.ListIterator
@@ -506,7 +506,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
 
     /**
      * Returns the list iterator of this
-     * ConcurrentList starting at index(inclusive).
+     * ConcurrentList starting at index(inclusive)
      *
      * @param index the index of the first element to be returned
      * @return the list iterator
@@ -518,7 +518,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
 
     /**
      * Returns the smaller list from
-     * fromIndex(inclusive) to toIndex(exclusive).
+     * fromIndex(inclusive) to toIndex(exclusive)
      *
      * @param fromIndex the first index to be returned
      * @param toIndex   the index after the last element to be returned
@@ -530,7 +530,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Returns the spliterator of this ConcurrentList.
+     * Returns the spliterator of this ConcurrentList
      *
      * @return the spliterator
      * @see java.util.Spliterator
@@ -541,7 +541,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Returns the stream of this ConcurrentList.
+     * Returns the stream of this ConcurrentList
      *
      * @return the stream
      * @see java.util.stream.Stream
@@ -552,7 +552,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     }
 
     /**
-     * Returns the parallel stream of this ConcurrentList.
+     * Returns the parallel stream of this ConcurrentList
      *
      * @return the parallel stream
      * @see java.util.stream.Stream
