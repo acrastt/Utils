@@ -44,12 +44,12 @@ public class Collatz {
             // If infinite loops are detected
             if (used.contains(i)) {
                 // Mark i as which does not satisfy
-                memory.put(i, false);
-               // Return false meaning i does not satisfy
+                memory.putIfAbsent(i, false);
+                // Return false meaning i does not satisfy
                 return false;
             }
             // If i is marked as which does not satisfy
-            if(Boolean.FALSE.equals(memory.get(i))) {
+            if (Boolean.FALSE.equals(memory.get(i))) {
                 // Return false meaning i does not satisfy
                 return false;
             }
@@ -68,12 +68,14 @@ public class Collatz {
             }
         }
         // Mark i as which does satisfy
-        memory.put(i, true);
+        used.forEach(trueI -> memory.putIfAbsent(trueI, true));
+        // Return true meaning i does satisfy
         return true;
     }
 
     /**
      * Another version of checkCollatz with a long typed value
+     *
      * @param i the number to be checked
      * @return whether i satisfies the Collatz conjecture
      */
