@@ -41,6 +41,13 @@ public class Collatz {
         // Set used to detect infinite loops
         Set<BigInteger> used = new HashSet<>();
         while (!i.equals(BigInteger.ONE)) {
+            int x = i.intValue();
+            // Check whether the value is a power of 2,
+            // if yes then you can keep dividing it by 2 to get 1.
+            // Which satisfies the Collatz conjecture
+            if ((x & (x - 1)) == 0) {
+                break;
+            }
             // If infinite loops are detected
             if (used.contains(i)) {
                 // Mark i as which does not satisfy
