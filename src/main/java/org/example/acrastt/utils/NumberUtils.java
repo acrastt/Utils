@@ -33,21 +33,10 @@ public final class NumberUtils {
             return number + "th";
         }
         // Return the number and suffix depending on the last digit
-        return number + returnOrdinal(number);
-    }
-
-    /**
-     * Returns the suffix for the specified number
-     * (Will not exclude exceptions when the number ends with 11, 12, or 13)
-     *
-     * @param number the number to be calculated
-     * @return the number with suffix(Will not exclude exceptions)
-     */
-    private static String returnOrdinal(int number) {
         // Gets the last digit
         int lastDigit = Math.abs(number) % 10;
         // Return the suffix based on different situations
-        return switch (lastDigit) {
+        return number + switch (lastDigit) {
             case 1 -> "st";
             case 2 -> "nd";
             case 3 -> "rd";
