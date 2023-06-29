@@ -2,6 +2,7 @@ package org.example.acrastt.utils;
 
 
 import org.apache.commons.lang3.concurrent.ConcurrentRuntimeException;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.Serial;
 import java.util.*;
@@ -34,7 +35,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
     /**
      * The lock that synchronize the methods
      */
-    private static final StampedLock lock = new StampedLock();
+    private final StampedLock lock = new StampedLock();
 
     /**
      * Creates a new ConcurrentList.
@@ -132,7 +133,7 @@ public class ConcurrentList<T> extends ArrayList<T> {
      *
      * @param r the method to execute
      */
-    private void write(Runnable r) {
+    private void write(@NotNull Runnable r) {
         // Gets the write lock
         long stamp = lock.writeLock();
         // Runs the method and releases the lock

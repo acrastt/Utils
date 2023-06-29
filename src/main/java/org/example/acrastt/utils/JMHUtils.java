@@ -2,6 +2,9 @@ package org.example.acrastt.utils;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.openjdk.jmh.infra.Blackhole;
 import org.openjdk.jmh.results.format.ResultFormatType;
 import org.openjdk.jmh.runner.Runner;
@@ -33,7 +36,8 @@ public final class JMHUtils {
     /**
      * Blackhole used for Blackhole-related methods
      */
-    private static Blackhole bh = null;
+    private static Blackhole bh;
+    private static final Object obj = new Object();
 
     /**
      * Should not be called.
@@ -49,9 +53,11 @@ public final class JMHUtils {
      */
     public static Blackhole getBlackhole() {
         // Lazy initialization
-        if (bh == null) {
-            bh = new Blackhole("Today's password is swordfish. I understand" +
-                    " instantiating Blackholes directly is dangerous.");
+        synchronized (obj) {
+            if (bh == null) {
+                bh = new Blackhole("Today's password is swordfish. I understand" +
+                        " instantiating Blackholes directly is dangerous.");
+            }
         }
         // Return the Blackhole instance
         return bh;
@@ -62,7 +68,7 @@ public final class JMHUtils {
      *
      * @param bhToEvaporate the Blackhole to evaporate
      */
-    public static void evaporate(Blackhole bhToEvaporate) {
+    public static void evaporate(@NotNull Blackhole bhToEvaporate) {
         // Evaporates the specified Blackhole
         bhToEvaporate.evaporate("Yes, I am Stephen Hawking," +
                 " and know a thing or two about black holes.");
@@ -72,10 +78,27 @@ public final class JMHUtils {
      * Evaporates the singleton Blackhole instance
      */
     public static void evaporate() {
-        // Evaporates the singleton Blackhole
-        bh.evaporate("Yes, I am Stephen Hawking," +
-                " and know a thing or two about black holes.");
+        synchronized (obj) {
+            if (bh != null) {
+                // Evaporates the singleton Blackhole
+                bh.evaporate("Yes, I am Stephen Hawking," +
+                        " and know a thing or two about black holes.");
+            }
+        }
     }
+
+    /**
+     * This runs the given JMH benchmark
+     *
+     * @param clazz   class of the benchmark to be run
+     * @param configs Configurations of the JMH benchmark
+     * @see JMHUtils.JMHConfig
+     */
+    public static void runJMH
+    (String clazz, JMHConfig... configs) {
+        runJMH(clazz, null, configs);
+    }
+
 
     /**
      * This runs the given JMH benchmark
@@ -90,7 +113,7 @@ public final class JMHUtils {
     (String clazz, String result, JMHConfig... configs) {
         try {
             // Runs the benchmark
-            new Runner(getBuilder(clazz, result, configs).build()).run();
+            new Runner(getOptions(clazz, result, configs)).run();
         } catch (
                 RunnerException e) {
             LOG.error(String.format("Error when running benchmark '%s'", clazz), e);
@@ -98,15 +121,19 @@ public final class JMHUtils {
     }
 
     /**
-     * This runs the given JMH benchmark
+     * Returns the {@link org.openjdk.jmh.runner.options.ChainedOptionsBuilder}
+     * for the specified parameters
      *
-     * @param clazz class of the benchmark to be run
+     * @param clazz   the class of the benchmark
+     * @param configs the configuration of the JMH benchmark
+     * @return the {@link org.openjdk.jmh.runner.options.ChainedOptionsBuilder}
+     * for the specified parameters
      * @see JMHUtils.JMHConfig
      */
-    public static void runJMH(String clazz) {
-        runJMH(clazz, null, JMHConfig.NONE);
+    public static ChainedOptionsBuilder getBuilder
+    (String clazz, JMHConfig... configs) {
+        return getBuilder(clazz, null, configs);
     }
-
 
     /**
      * Returns the {@link org.openjdk.jmh.runner.options.ChainedOptionsBuilder}
@@ -120,7 +147,8 @@ public final class JMHUtils {
      * for the specified parameters
      * @see JMHUtils.JMHConfig
      */
-    public static ChainedOptionsBuilder getBuilder
+    @Contract("null, _, _ -> fail")
+    public static @Nullable ChainedOptionsBuilder getBuilder
     (String clazz, String result, JMHConfig... configs) {
         if (clazz == null || clazz.isBlank()) {
             throw new IllegalArgumentException(String.format("Invalid argument clazz: '%s'", clazz));
@@ -151,6 +179,7 @@ public final class JMHUtils {
                     // Log the exception
                     LOG.error("Result type detected," +
                             " but no result file specification found");
+                    return null;
                 }
             } else {
                 // Result in file
@@ -164,8 +193,8 @@ public final class JMHUtils {
                 if (configurationList.contains(JMHConfig.CSV)) {
                     // Throw an error if there are multiple result formats
                     if (configurationList.contains(JMHConfig.JSON)) {
-                        LOG.warn("You can only choose one result format," +
-                                " using JSON as first priority");
+                        LOG.error("You can only choose one result format");
+                        return null;
                     }
                     // Add CSV attribute
                     builder.resultFormat(ResultFormatType.CSV);
@@ -181,24 +210,23 @@ public final class JMHUtils {
     }
 
     /**
-     * Returns the {@link org.openjdk.jmh.runner.options.ChainedOptionsBuilder}
-     * for the specified class
+     * Returns the {@link org.openjdk.jmh.runner.options.Options}
+     * for the specified parameters
      *
-     * @param clazz the class of the benchmark
-     * @return the {@link org.openjdk.jmh.runner.options.ChainedOptionsBuilder}
+     * @param clazz   the class of the benchmark
+     * @param configs the configuration of the JMH benchmark
+     * @return the {@link org.openjdk.jmh.runner.options.Options}
      * for the specified parameters
      * @see JMHUtils.JMHConfig
      */
-    public static ChainedOptionsBuilder getBuilder(String clazz) {
-        return getBuilder(clazz, null, JMHConfig.NONE);
-    }
-
-    public static Options getOptions(String clazz) {
-        return getOptions(clazz, null, JMHConfig.NONE);
+    public static Options getOptions
+    (String clazz, JMHConfig... configs) {
+        return getOptions(clazz, null, configs);
     }
 
     /**
-     * Returns the Options for the specified parameters
+     * Returns the {@link org.openjdk.jmh.runner.options.Options}
+     * for the specified parameters
      *
      * @param clazz   the class of the benchmark
      * @param result  the file name of the result to be stored,
@@ -208,9 +236,14 @@ public final class JMHUtils {
      * for the specified parameters
      * @see JMHUtils.JMHConfig
      */
-    public static Options getOptions
+    public static @Nullable Options getOptions
     (String clazz, String result, JMHConfig... configs) {
-        return getBuilder(clazz, result, configs).build();
+        ChainedOptionsBuilder builder = getBuilder(clazz, result, configs);
+        if (builder == null) {
+            LOG.error("Exception while getting options");
+            return null;
+        }
+        return builder.build();
     }
 
     /**
